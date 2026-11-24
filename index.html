@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BICKERS_WEBSITE_v.1</title>
+<title>Bickers Klebetechnik – Klebeplotter GLUEJET &amp; TAPEJET</title>
 <script>document.documentElement.lang='de'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +60,7 @@ nav.main a.active{color:var(--blue);font-weight:600}
 .dd{position:relative}
 .dd > a::after{content:"";border:4.5px solid transparent;border-top-color:currentColor;margin-top:4px}
 .dd-menu{display:none;position:absolute;top:100%;left:0;min-width:230px;background:#fff;box-shadow:var(--shadow);border-radius:6px;padding:6px;z-index:50}
-.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:flex;flex-direction:column}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:flex;flex-direction:column}.dd.dd-closed .dd-menu{display:none!important}
 .dd-menu a{padding:9px 12px;text-decoration:none;color:var(--ink);border-radius:4px;font-size:15px}
 .dd-menu a:hover{background:var(--bg);color:var(--blue)}
 .icon-btn{display:flex;align-items:center;gap:8px;border:0;background:#E5ECF0;color:var(--ink);padding:10px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:15px;white-space:nowrap}
@@ -84,7 +84,7 @@ nav.main a.active{color:var(--blue);font-weight:600}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:3px;padding:13px 22px;font-weight:700;cursor:pointer;text-decoration:none;font-size:16px;transition:background .15s,transform .15s}
 .btn-primary{background:var(--orange);color:#fff}
 .btn-primary:hover{background:var(--orange-deep)}
-.btn-blue{background:var(--blue-ink);color:#fff}
+.btn-blue{background:var(--sec);color:#fff}
 .btn-blue:hover{background:#0A2638}
 .btn-ghost{background:transparent;color:var(--blue);border:1.5px solid var(--line)}
 .btn-ghost:hover{border-color:var(--blue)}
@@ -168,7 +168,7 @@ section.block[id]{scroll-margin-top:170px}
 /* Startseite (klassisch-modern) */
 .s-eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
 .s-eyebrow::before{content:"";width:32px;height:2px;background:var(--orange);flex:none}
-.s-eyebrow-light{color:#9FE0FC}
+.s-eyebrow-light{color:#E1F4FF}
 .s-muted{color:var(--muted)}
 .s-hero{position:relative;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--line)}
 .s-hero-bg{position:absolute;top:-10px;bottom:-30px;left:max(30%,calc(50% - 300px));right:-16%;display:flex;align-items:center;justify-content:flex-start;pointer-events:none}
@@ -184,13 +184,13 @@ section.block[id]{scroll-margin-top:170px}
 .s-lead{font-size:clamp(17px,1.5vw,20px);color:var(--muted);margin-top:18px;max-width:28em}
 .s-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .s-btn-out{background:transparent;color:var(--blue-ink);border:1.5px solid var(--blue-ink)}
-.s-btn-out:hover{background:var(--blue-ink);color:#fff}
+.s-btn-out:hover{background:var(--sec);color:#fff}
 .s-btn-out-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
 .s-btn-out-light:hover{background:#fff;color:var(--blue-ink)}
 .s-hero-img{margin:0;position:relative}
 .s-hero-img img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
 .s-hero-img::after{content:"";position:absolute;right:-14px;bottom:-14px;width:45%;height:55%;border-right:3px solid var(--orange);border-bottom:3px solid var(--orange);pointer-events:none}
-.s-hero-img figcaption{position:absolute;left:0;bottom:0;background:var(--blue-ink);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;padding:8px 14px;border-radius:0 6px 0 6px}
+.s-hero-img figcaption{position:absolute;left:0;bottom:0;background:var(--sec);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;padding:8px 14px;border-radius:0 6px 0 6px}
 .s-facts{list-style:none;margin:0;padding:22px 0 30px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
 .s-facts li{padding:0 24px;border-left:1px solid var(--line)}
 .s-facts li:first-child{padding-left:0;border-left:0}
@@ -199,11 +199,11 @@ section.block[id]{scroll-margin-top:170px}
 .s-facts b span{font-size:inherit;color:inherit}
 @media (max-width:900px){.s-hero-bg{position:relative;top:auto;bottom:auto;left:0;right:0;justify-content:center;width:auto;max-width:none;padding:24px 16px 0;height:auto}.s-hero-bg img{height:auto;object-position:center}.s-hero::after{display:none}.s-hero-grid{min-height:0;padding-top:20px}}
 @media (max-width:620px){.s-facts{grid-template-columns:1fr;gap:14px}.s-facts li{padding:0;border-left:0;border-top:1px solid var(--line);padding-top:14px}.s-facts li:first-child{border-top:0;padding-top:0}}
-.s-plotter{background:var(--blue-ink);color:#fff;padding:80px 0}
+.s-plotter{background:var(--sec);color:#fff;padding:80px 0}
 .s-plotter-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
 .s-prods{display:grid;gap:18px}
-.s-prod{position:relative;display:block;background:#0B6A99;border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:28px 28px 26px 112px;color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
-.s-prod:hover{background:#0A6896;border-color:var(--orange)}
+.s-prod{position:relative;display:block;background:#085F8A;border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:28px 28px 26px 112px;color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
+.s-prod:hover{background:#085F8A;border-color:var(--orange)}
 .s-note-btn{margin-top:26px}.s-prod-n{position:absolute;top:18px;right:22px;font-size:13px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.45)}
 .s-prod-ic{position:absolute;left:24px;top:28px;width:64px;height:64px;border-radius:6px;background:#fff;display:grid;place-items:center}
 .s-prod-ic svg{width:50px;height:auto}
@@ -257,7 +257,7 @@ section.block[id]{scroll-margin-top:170px}
 .s-callout > div{max-width:46em}.s-callout b{color:var(--blue-ink)}.s-callout p{color:var(--muted);margin-top:6px;font-size:15px}
 .s-partners{padding:64px 0}
 .s-partners .s-head{margin-bottom:12px}
-.s-cta{background:var(--blue-ink);color:#fff;padding:56px 0;border-top:4px solid var(--orange)}
+.s-cta{background:var(--sec);color:#fff;padding:56px 0;border-top:4px solid var(--orange)}
 .s-cta-in{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .s-cta h2{color:#fff;font-size:clamp(24px,2.8vw,34px)}
 .s-cta p{opacity:.85;margin-top:8px}
@@ -266,7 +266,7 @@ section.block[id]{scroll-margin-top:170px}
 header.site .logo img{transition:height .3s ease}
 header.site .head-top{transition:padding .3s ease}
 @media (min-width:961px){header.site.compact .logo img{height:54px}header.site.compact .head-top{padding-top:6px}}
-#toTop{position:fixed;right:20px;bottom:20px;z-index:55;width:46px;height:46px;border:0;border-radius:6px;background:var(--blue-ink);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,background .2s}
+#toTop{position:fixed;right:20px;bottom:20px;z-index:55;width:46px;height:46px;border:0;border-radius:6px;background:var(--sec);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,background .2s}
 #toTop.show{opacity:1;transform:none;pointer-events:auto}
 #toTop:hover{background:var(--orange)}
 .s-two-img{overflow:hidden;border-radius:6px}
@@ -323,7 +323,7 @@ section.block.alt{background:var(--surface)}
 /* Maschinen-Teaser */
 .machines{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media (max-width:760px){.machines{grid-template-columns:1fr}}
-.machine{background:var(--blue-ink);color:#fff;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;min-height:260px;position:relative;overflow:hidden}
+.machine{background:var(--sec);color:#fff;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;min-height:260px;position:relative;overflow:hidden}
 .machine h3{color:#fff;font-size:26px}
 .machine p{opacity:.85;max-width:28em}
 .machine .btn{align-self:flex-start;margin-top:auto}
@@ -380,7 +380,7 @@ section.block.alt{background:var(--surface)}
 .timeline b{font-family:var(--font-display);color:var(--orange);font-size:18px}
 
 /* Footer */
-footer.site{background:var(--blue-ink);color:#C9D5E3;padding:56px 0 28px;font-size:15px}
+footer.site{background:var(--sec);color:#C9D5E3;padding:56px 0 28px;font-size:15px}
 footer.site .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
 @media (max-width:860px){footer.site .cols{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){footer.site .cols{grid-template-columns:1fr}}
@@ -389,7 +389,7 @@ footer.site a{color:#C9D5E3;text-decoration:none;display:block;padding:3px 0}
 footer.site a:hover{color:#fff}
 footer.site .bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;opacity:.8}
 
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--blue-ink);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:var(--shadow);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;font-weight:600;font-size:15px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--sec);color:#fff;padding:12px 18px;border-radius:10px;box-shadow:var(--shadow);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;font-weight:600;font-size:15px}
 .toast.show{opacity:1;transform:translateX(-50%)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .demo-bar a{color:#fff;font-weight:700}
@@ -417,13 +417,13 @@ header.site .logo img{height:64px;width:auto;max-width:none;object-fit:contain}
 }
 
 /* Materialien dunkel */
-.s-sec-dark{background:var(--blue-ink);color:#fff}
+.s-sec-dark{background:var(--sec);color:#fff}
 .s-sec-dark h2{color:#fff}
 .s-sec-dark .s-muted{color:rgba(255,255,255,.8)}
-.s-sec-dark .s-eyebrow{color:#9FE0FC}
-.s-sec-dark .s-mat{background:#0B6A99;border-color:rgba(255,255,255,.16);color:#fff}
+.s-sec-dark .s-eyebrow{color:#E1F4FF}
+.s-sec-dark .s-mat{background:#085F8A;border-color:rgba(255,255,255,.16);color:#fff}
 .s-sec-dark .s-mat:hover{border-color:var(--orange)}
-.s-sec-dark .s-callout{background:#0B6A99;border-color:rgba(255,255,255,.16);border-left-color:var(--orange)}
+.s-sec-dark .s-callout{background:#085F8A;border-color:rgba(255,255,255,.16);border-left-color:var(--orange)}
 .s-sec-dark .s-callout b{color:#fff}
 .s-sec-dark .s-callout p{color:rgba(255,255,255,.8)}
 
@@ -683,7 +683,7 @@ body.grp-kleb .page-head h2{color:var(--blue-ink);font-size:clamp(32px,3.8vw,50p
 body.grp-kleb .subnav{margin-top:26px;gap:6px}
 body.grp-kleb .subnav a{border-radius:3px;background:#fff;border-color:var(--line);color:var(--blue-ink)}
 body.grp-kleb .subnav a:hover{border-color:var(--blue-ink);color:var(--blue-ink)}
-body.grp-kleb .subnav a.on{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
+body.grp-kleb .subnav a.on{background:var(--sec);border-color:var(--blue-ink);color:#fff}
 body.grp-kleb .eyebrow{display:flex;align-items:center;gap:12px;letter-spacing:.14em}
 body.grp-kleb .eyebrow::before{content:"";width:32px;height:2px;background:var(--orange);flex:none}
 body.grp-kleb section.block.alt{background:#E8F0F5}
@@ -694,14 +694,14 @@ body.grp-kleb section.block{padding:72px 0}
 body.grp-kleb .pdet,body.grp-kleb .pcard{border-radius:6px}
 body.grp-kleb .k-sec-title{display:flex;align-items:center;gap:12px}
 /* Produktbereiche dunkelblau wie Startseite */
-body.grp-kleb section.block.s-sec-dark{background:var(--blue-ink)}
+body.grp-kleb section.block.s-sec-dark{background:var(--sec)}
 .s-sec-dark + .s-sec-dark{border-top:1px solid rgba(255,255,255,.12)}
 .pdet,.prow{color:var(--ink)}
 .s-sec-dark .pdet,.s-sec-dark .prow,.s-sec-dark .zb-ph{box-shadow:0 20px 40px -24px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08)}
 .s-sec-dark .pdet:hover{box-shadow:0 0 0 2px var(--orange),0 24px 44px -24px rgba(0,0,0,.6)}
 .s-sec-dark .k-sec-head h2{color:#fff}
 .s-sec-dark .k-sec-head p{color:rgba(255,255,255,.8)}
-.s-sec-dark .eyebrow{color:#9FE0FC}
+.s-sec-dark .eyebrow{color:#E1F4FF}
 .mech-intro:last-child{margin-bottom:0}
 body.grp-kleb footer.site{border-top:4px solid var(--orange)}
 body.grp-kleb section.block.plist-band{background:var(--bg)}
@@ -709,7 +709,7 @@ body.grp-kleb section.block.plist-band{background:var(--bg)}
 .s-sec-dark .mech-intro p{color:rgba(255,255,255,.85)}
 .s-sec-dark .mech-intro strong{color:#fff}
 .s-sec-dark .mech-intro .mech-claim{color:#fff}
-.s-sec-dark a:not(.btn){color:#9FE0FC}
+.s-sec-dark a:not(.btn){color:#E1F4FF}
 .s-sec-dark .k-sort-head h2,.s-sec-dark .k-sort b,.s-sec-dark .zb-list b{color:#fff}
 .s-sec-dark .k-sort span,.s-sec-dark .zb-list span{color:rgba(255,255,255,.78)}
 .s-sec-dark .k-sort .k-ic{background:rgba(236,101,0,.12);color:#F08A3C;box-shadow:0 0 0 1.5px var(--orange)}
@@ -788,8 +788,8 @@ a.pdet-row{text-decoration:none;color:inherit}
 .srt-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px}
 /* Showroom-Anfrage */
 .modal.modal-sm{width:min(560px,calc(100% - 32px))}
-.sr-form .sr-top{background:var(--blue-ink);color:#fff;padding:30px 32px 26px;border-top:4px solid var(--orange)}
-.sr-form .sr-top .eyebrow{color:#9FE0FC;display:flex;align-items:center;gap:12px;letter-spacing:.14em;margin-bottom:8px}
+.sr-form .sr-top{background:var(--sec);color:#fff;padding:30px 32px 26px;border-top:4px solid var(--orange)}
+.sr-form .sr-top .eyebrow{color:#E1F4FF;display:flex;align-items:center;gap:12px;letter-spacing:.14em;margin-bottom:8px}
 .sr-form .sr-top .eyebrow::before{content:"";width:28px;height:2px;background:var(--orange)}
 .sr-form .sr-top h2{color:#fff;font-size:26px}
 .sr-form .sr-top p{color:rgba(255,255,255,.82);margin-top:8px;font-size:15px}
@@ -799,7 +799,7 @@ a.pdet-row{text-decoration:none;color:inherit}
 .sr-pick label{position:relative}
 .sr-pick input{position:absolute;opacity:0}
 .sr-pick span{display:block;padding:9px 18px;border:1.5px solid var(--line);border-radius:3px;font-weight:700;font-size:14px;color:var(--blue-ink);cursor:pointer}
-.sr-pick input:checked+span{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
+.sr-pick input:checked+span{background:var(--sec);border-color:var(--blue-ink);color:#fff}
 .sr-pick input:focus-visible+span{outline:3px solid var(--orange);outline-offset:2px}
 .sr-form .opt{font-weight:400;color:var(--muted);font-size:13px}
 .sr-check{font-weight:500}
@@ -852,7 +852,7 @@ a.pdet-row{text-decoration:none;color:inherit}
 .gj-vids{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .gj-vid{display:flex;flex-direction:column;gap:8px}
 .gj-vid iframe,.gj-play{width:100%;aspect-ratio:16/9;border:0;border-radius:6px}
-.gj-play{position:relative;cursor:pointer;background:radial-gradient(circle at 30% 20%,#0A6896,var(--blue-ink));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:inherit}
+.gj-play{position:relative;cursor:pointer;background:radial-gradient(circle at 30% 20%,#085F8A,var(--blue-ink));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:inherit}
 .gj-pbtn{width:60px;height:60px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .2s}
 .gj-pbtn svg{width:24px;height:24px;margin-left:3px}
 .gj-play:hover .gj-pbtn{transform:scale(1.08)}
@@ -908,7 +908,7 @@ section.block.gj-intro{background:var(--bg);padding-top:8px}
 .gj-hero .mech-claim,.gj-hero .mech-claim.claim-fx{color:var(--blue-ink);border-left:0;padding-left:0}
 .gj-hero .mech-claim.claim-fx::before{display:none}
 .gj-hero .pact{justify-content:center}
-.gj-stats-band.s-sec-dark{border-bottom:0;background:var(--blue-ink)}
+.gj-stats-band.s-sec-dark{border-bottom:0;background:var(--sec)}
 .gj-word{max-width:920px}
 .gj-feats-band .gj-feat:last-child:nth-child(odd){grid-column:1/-1}
 /* TAPEJET-Schriftzug: Buchstaben aus Klebebandstreifen, vom Auftragskopf mit Rolle gelegt */
@@ -929,8 +929,8 @@ section.block.gj-intro{background:var(--bg);padding-top:8px}
 .pl-hl b{display:block;color:var(--blue-ink);font-size:18px}
 .pl-hl span{font-size:15px;color:var(--muted)}.pl-hl strong{color:var(--blue-ink)}
 .pl-hero .pact{margin-top:24px}
-.pl-video{padding:0;min-height:0;display:block;position:relative;background:var(--blue-ink)}
-.pl-video .pl-vid{display:block;width:100%;height:100vh;min-height:320px;object-fit:cover;background:var(--blue-ink)}
+.pl-video{padding:0;min-height:0;display:block;position:relative;background:var(--sec)}
+.pl-video .pl-vid{display:block;width:100%;height:100vh;min-height:320px;object-fit:cover;background:var(--sec)}
 /* Übersicht Klebeplotter: Video reicht bis ganz oben, Kopfleiste erscheint erst beim Scrollen */
 body.hdr-auto header.site{position:fixed;left:0;right:0;top:0;background:rgba(243,247,250,var(--hb,0));box-shadow:0 4px 14px rgba(0,90,136,calc(var(--hb,0)*.12))}
 body.hdr-auto header.site::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,90,136,.55),rgba(0,90,136,0));opacity:calc(1 - var(--hb,0))}
@@ -964,10 +964,10 @@ body.hdr-auto header.site nav.main > a,body.hdr-auto header.site nav.main > .dd 
 .vt-pin:focus-visible{outline:none}.vt-pin:focus-visible .vt-lbl{outline:3px solid var(--orange);outline-offset:2px}
 .vt-hq{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28);z-index:3}
 .vt-hq span{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.5)}
-.vt-rhead{background:var(--blue-ink);border-bottom:0;padding:clamp(36px,4vw,56px) 0 clamp(32px,4vw,48px)}
-.vt-rhead .vt-back{display:inline-block;margin-bottom:16px;font-weight:700;color:#9FE0FC;text-decoration:none}
+.vt-rhead{background:var(--sec);border-bottom:0;padding:clamp(36px,4vw,56px) 0 clamp(32px,4vw,48px)}
+.vt-rhead .vt-back{display:inline-block;margin-bottom:16px;font-weight:700;color:#E1F4FF;text-decoration:none}
 .vt-rhead .vt-back:hover{color:#fff}
-.vt-rhead .eyebrow{color:#9FE0FC}
+.vt-rhead .eyebrow{color:#E1F4FF}
 .vt-rhead h2{color:#fff;font-size:clamp(28px,3.2vw,42px)}
 .vt-rhead p{color:rgba(255,255,255,.8)}
 section.block.vt-rband{padding-top:clamp(32px,4vw,56px)}
@@ -1015,7 +1015,7 @@ section.block.vt-list{background:var(--bg)}
 @media (max-width:860px){.svc-grid{grid-template-columns:1fr}}
 @media (max-width:520px){.svc-grid .svc-items{grid-template-columns:1fr}}
 @media (max-width:860px){.pl-hero-grid{grid-template-columns:1fr}}
-section.block.pl-band{background:var(--bg)}section.block.pl-band.s-sec-dark{background:var(--blue-ink)}
+section.block.pl-band{background:var(--bg)}section.block.pl-band.s-sec-dark{background:var(--sec)}
 .pl-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
 .pl-row.rev .pl-img{order:2}
 .pl-photo img{max-height:none;object-fit:cover;aspect-ratio:3/2;border-radius:6px;box-shadow:0 24px 44px -24px rgba(0,0,0,.6)}
@@ -1051,8 +1051,8 @@ section.block.pl-band{background:var(--bg)}section.block.pl-band.s-sec-dark{back
 .gj-stats-band.s-sec-dark b{color:#fff}
 .gj-stats-band.s-sec-dark span{color:rgba(255,255,255,.78)}
 section.block.plist-band{background:var(--bg)}
-section.block.gj-pros{background:var(--blue-ink)}
-section.block.gj-feats-band{background:var(--blue-ink)}
+section.block.gj-pros{background:var(--sec)}
+section.block.gj-feats-band{background:var(--sec)}
 .gj-feats-band .gj-feat{box-shadow:0 20px 40px -24px rgba(0,0,0,.55)}.gj-pros .gj-cover img{box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
 .gj-pros .gj-doc:hover .gj-cover img{box-shadow:0 24px 40px -12px rgba(0,0,0,.7)}
 .gj-play:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
@@ -1070,7 +1070,7 @@ a.gj-play{text-decoration:none}
 /* Klebeplotter-Übersicht: Video links, rechts wechseln GLUEJET und TAPEJET */
 .pl-vhero{background:var(--bg);min-height:calc(100vh - 90px);display:grid;align-content:center;padding-block:clamp(28px,4vw,56px)}
 .pl-vgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center;max-width:1400px}
-.pl-vbox{border-radius:8px;overflow:hidden;box-shadow:0 30px 50px -28px rgba(0,90,136,.55);background:var(--blue-ink)}
+.pl-vbox{border-radius:8px;overflow:hidden;box-shadow:0 30px 50px -28px rgba(0,90,136,.55);background:var(--sec)}
 .pl-vbox .pl-vid{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .pl-vhero .pl-slide{margin:0;transform:scale(.96);transition:opacity .9s ease,transform 1.2s cubic-bezier(.2,.7,.2,1),visibility .9s}
 .pl-vhero .pl-slide.on{transform:none}
@@ -1113,7 +1113,7 @@ footer.site::before{content:"";position:absolute;left:0;top:0;height:6px;width:m
 .pl-card-links a{font-weight:700;color:var(--orange);text-decoration:none}.pl-card-links a::after{content:" →"}
 @media (max-width:860px){.pl-vgrid2{grid-template-columns:1fr}.pl-card{margin:-40px 16px 0}}/* Klebeplotter-Übersicht: Produkte als Split-Sektionen, Foto randabfallend */
 .pl-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(640px,calc(100vh - 80px));background:#fff}
-.pl-split.s-sec-dark{background:var(--blue-ink)}
+.pl-split.s-sec-dark{background:var(--sec)}
 .pl-split.rev .pl-media{order:2}
 .pl-media{position:relative;display:block;overflow:hidden;min-height:340px}
 .pl-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
@@ -1156,7 +1156,7 @@ footer.site::before{content:"";position:absolute;left:0;top:0;height:6px;width:m
 .pl-pick-go{margin-top:8px;font-weight:700;color:var(--orange);display:inline-flex;align-items:center;gap:6px}
 .pl-media .pl-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media (max-width:760px){.pl-picks{grid-template-columns:1fr}}/* Klebeplotter-Übersicht: Film oben, Produkte als klassische Tafeln */
-.pl-film{max-width:1100px;margin:0 auto;border-radius:4px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,90,136,.55);border:1px solid var(--line);background:var(--blue-ink)}
+.pl-film{max-width:1100px;margin:0 auto;border-radius:4px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,90,136,.55);border:1px solid var(--line);background:var(--sec)}
 .pl-film .pl-vid{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 section.pl-range{background:#fff;padding-block:clamp(48px,6vw,96px);border-top:1px solid var(--line)}
 .pl-range .wrap{display:grid;gap:clamp(36px,5vw,64px);max-width:1200px}
@@ -1198,10 +1198,10 @@ section.pl-range{background:linear-gradient(180deg,#fff 0,var(--bg) 100%)}
 .pl-pimg::before{content:"";position:absolute;inset:22px -22px -22px 22px;border:3px solid var(--orange);border-radius:4px;z-index:-1}
 .pl-panel.rev .pl-pimg::before{inset:22px 22px -22px -22px}
 .pl-pimg img{border-radius:4px;box-shadow:0 30px 50px -30px rgba(0,60,100,.55)}
-.pl-pname{position:absolute;left:0;bottom:0;background:var(--blue-ink);color:#fff;font-weight:800;font-size:clamp(18px,1.6vw,22px);padding:10px 18px;border-radius:0 4px 0 4px}
+.pl-pname{position:absolute;left:0;bottom:0;background:var(--sec);color:#fff;font-weight:800;font-size:clamp(18px,1.6vw,22px);padding:10px 18px;border-radius:0 4px 0 4px}
 .pl-pbody{background:#fff;border-radius:4px;box-shadow:0 24px 48px -30px rgba(0,60,100,.4);margin-left:-40px;position:relative;z-index:2}
 .pl-panel.rev .pl-pbody{margin-left:0;margin-right:-40px}
-.pl-panel.dark .pl-pbody{background:var(--blue-ink)}
+.pl-panel.dark .pl-pbody{background:var(--sec)}
 .pl-panel.dark .pl-pbody h2,.pl-panel.dark .pl-claim{color:#fff}
 .pl-panel.dark .pl-text{color:rgba(255,255,255,.78)}.pl-panel.dark .pl-text strong{color:#fff}
 .pl-panel.dark .pl-claim{border-color:rgba(255,255,255,.18)}
@@ -1228,10 +1228,10 @@ section.pl-range{background:linear-gradient(180deg,#fff 0,var(--bg) 100%)}
 .kt-note{font-size:12px;color:var(--muted);margin-top:6px}
 .kt-map.preview .kt-load,.kt-map.preview .kt-note{display:none}
 .kt-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}/* Seitenköpfe mit hellblauem Grund jetzt im dunklen Bickers-Blau */
-body:not(.grp-kleb) .page-head:not(.gj-head){background:var(--blue-ink);border-bottom:0}
+body:not(.grp-kleb) .page-head:not(.gj-head){background:var(--sec);border-bottom:0}
 body:not(.grp-kleb) .page-head:not(.gj-head) h1,body:not(.grp-kleb) .page-head:not(.gj-head) h2{color:#fff}
 body:not(.grp-kleb) .page-head:not(.gj-head) p{color:rgba(255,255,255,.82)}
-body:not(.grp-kleb) .page-head:not(.gj-head) .eyebrow{color:#9FE0FC}
+body:not(.grp-kleb) .page-head:not(.gj-head) .eyebrow{color:#E1F4FF}
 body:not(.grp-kleb) .page-head:not(.gj-head) strong{color:#fff}/* Getauscht: Video groß rechts, wechselnde Maschine kleiner links */
 .pl-stage .pl-stage-copy .pl-show{max-width:560px}
 .pl-stage .pl-stage-copy .pl-slide img{max-height:300px}
@@ -1265,6 +1265,11 @@ body:not(.grp-kleb) .page-head:not(.gj-head) strong{color:#fff}/* Getauscht: Vid
 @supports (height:100svh){.s-hero{min-height:calc(100svh - var(--hdr,66px) + 2px)!important}}
 /* Startseite: GLUEJET vollständig sichtbar, rechts Platz für die Kennzahlen */
 @media (min-width:901px){.s-hero .s-hero-bg{top:20px;bottom:14px;left:clamp(200px,18vw,320px);right:clamp(210px,15vw,280px);justify-content:center}}
+/* Abschnittsblau aus dem unteren Teil des G-Logos (#0194DC) */
+:root{--sec:#0B6E9F}
+.field .hint{font-size:12px;color:var(--muted);margin-top:4px;display:block}
+.field input[type=file]{padding:10px;background:#fff;border:1.5px dashed var(--line);border-radius:6px;width:100%;font:inherit;font-size:14px}
+.job-btns{display:flex;flex-wrap:wrap;gap:8px}
 </style>
 
 
@@ -1383,7 +1388,7 @@ const MAT_ICONS = {
   kunststoffe:'<path d="M50 22l24 14v28L50 78 26 64V36z" fill="#7CC8F0"/><path d="M50 22v56M26 36l48 28M74 36L26 64" stroke="#fff" stroke-width="2" opacity=".7"/>',
   styropor:'<rect x="24" y="28" width="52" height="44" fill="#fff" stroke="#C9D3DB" stroke-width="2"/><g fill="#E3E9EE"><circle cx="34" cy="38" r="4"/><circle cx="46" cy="36" r="3"/><circle cx="60" cy="40" r="4"/><circle cx="38" cy="52" r="3"/><circle cx="52" cy="50" r="4"/><circle cx="66" cy="56" r="3"/><circle cx="44" cy="64" r="4"/><circle cx="58" cy="64" r="3"/></g>',
   textilien:'<path d="M24 30h52v40H24z" fill="#E86E6E"/><path d="M24 38h52M24 46h52M24 54h52M24 62h52M32 30v40M40 30v40M48 30v40M56 30v40M64 30v40M72 30v40" stroke="#C94E4E" stroke-width="1.5"/>',
-  andere:'<text x="50" y="64" text-anchor="middle" font-family="Open Sans,Arial" font-size="40" font-weight="700" fill="#9FE0FC">?</text>'
+  andere:'<text x="50" y="64" text-anchor="middle" font-family="Open Sans,Arial" font-size="40" font-weight="700" fill="#E1F4FF">?</text>'
 };
 function matIcon(name){ const k=name.toLowerCase(); const body=MAT_ICONS[k]||MAT_ICONS.andere; return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#fff"/>${body}</svg>`; }
 
@@ -1503,12 +1508,14 @@ function pic(icon,cls=''){ return `<div class="pimg ${cls}">${ICONS[icon]}</div>
 function ask(name,label='Anfragen'){ return `<button class="btn btn-ghost btn-sm" type="button" data-inquiry="${esc(name)}">${label}</button>`; }
 function sheet(name){ return ''; }
 const FACTS={"Bickers Exakt K1-LCD": ["Druckluft-Dosiergerät für hoch- und niedrigviskose Schmelzklebstoffe.", ["Temperatur 100–235 °C, elektronisch geregelt", "Für Granulat oder Patronen", "Ablageplatte mit Manometer und Druckregelung", "Auch als PU-Version für Kartuschen"]], "Bickers Exakt HMS-LCD": ["Heißsprühsystem für Haft- und Schmelzklebstoffe, ohne Lösungsmittel.", ["Klebepunkte ab 0,1 g, Raupen bis 100 m × 150 mm", "Temperatur 100–230 °C", "Druck fein einstellbar von 0,15 bis 7 bar", "Manometer und Druckregelung im Ablagestativ"]], "Bickers Mikrodosiergerät": ["Reproduzierbares Dosieren vom Mikrotropfen bis zum Vergießen.", ["Dosierzeit 0,01 bis 31 Sekunden", "Vakuum-Rückhaltesystem gegen Nachtropfen", "Für Medien unterschiedlicher Viskosität", "Mit allen Anschlussleitungen, in Minuten einsatzbereit"]], "Klebesticks": ["Schmelzklebstoff-Sticks für nahezu jede Anwendung.", ["Verschiedene Durchmesser und Längen", "Viele Farben und Klebeeigenschaften", "Von universell bis spezialisiert"]], "Klebegranulate": ["Für die industrielle Massenproduktion.", ["Feine Körnung, präzise dosierbar", "Für Aufschmelzeinheiten jeder Bauart", "Effizient, sauber und wirtschaftlich"]], "Haftschmelzklebstoff": ["Klebekraft entsteht erst beim Zusammenfügen.", ["Keine sofortige Verklebung nötig", "Für Pappe, Holz, Leder, Gewebe, Kunststoff, Aluminium und Stahl", "Individuelle Beratung zur Auswahl"]], "Spezialschmelzklebstoffe": ["Individuelle Lösungen für anspruchsvolle Klebeaufgaben.", ["Auf Ihre Anwendung zugeschnitten"]], "Bickers Magnolit": ["Cyanacrylat-Klebstoffe, bekannt als Sekundenkleber.", ["Verklebt in Sekunden", "Varianten für unterschiedliche Werkstoffe und Oberflächen", "Schnell, zuverlässig und dauerhaft"]], "Bickers MS-Polymer": ["Kleb- und Dichtstoff auf MS-Polymer-Basis.", ["Frei von Isocyanat und Silikon", "Dauerelastisch und beständig", "Für Industrie und Handwerk"]], "Elcoleit 342": ["Elektrisch leitfähiges Beschichtungsmittel mit Silberfüllung.", ["Haftet auf Metall, Keramik, Glas, Gummi und Kunststoff", "Auftrag per Pinsel, Dispenser oder Nadeltransfer", "Ideal für Kontaktierungen, z. B. Heckscheibenheizungen", "Vor der Verarbeitung homogenisieren"]], "Repair Sticks": ["Lösemittelfreie 2-K-Reparaturmasse.", ["Temperaturbeständig −50 bis +120 °C, kurzzeitig 150 °C", "Beständig gegen Öle, Salzwasser, Laugen und verdünnte Säuren", "Härtet schrumpffrei, bohr-, fräs- und lackierbar"]], "RK 1300": ["Klarer, schnellhärtender 2-K-Klebstoff auf Acrylbasis.", ["Verbindet Metall, Glas, Stein, Keramik, Holz und viele Kunststoffe"]], "Epoxyd Minutenkleber": ["Transparenter, schnellhärtender 2-K-Epoxydharzklebstoff.", ["Hohe Zug- und Schlagfestigkeit, restelastisch", "Für Metall, Glas, Stein, Keramik, Holz und Kunststoff", "Ideal für Montage, Reparatur und Fertigung"]], "Bickers Magnolit Klebstoffentferner": ["Entfernt Klebstoffreste schonend.", ["Für Hände, Polster, Kunststoffe und viele Materialien", "Greift Oberflächen nicht an", "Bewährt in Elektro-, Automobil- und Möbelindustrie"]], "HM 48": ["Kaltreiniger auf Basis nachwachsender Rohstoffe.", ["Für Maschinen, Auftragsgeräte und Anlagen", "Entfernt unvernetzte und haftklebrige Klebstoffreste"]], "HM BLUE": ["Reinigungsgranulat, zur Kontrolle blau eingefärbt.", ["Sehr gute Reinigungs- und Benetzungswirkung", "Verarbeitung bei Klebstofftemperatur", "Für Tankschmelzanlagen, Schläuche und Auftragsköpfe"]], "HM MEC": ["Heißreiniger für hartnäckige Rückstände.", ["Entfernt gecrackte und angekokelte Klebstoffreste"]]};
+const PROSPEKTE={'Bickers Exakt VE-212':'Prospekt-Exakt-VE-212.pdf','Bickers Super-306':'Prospekt-Exakt-Super-306.pdf','Bickers Exakt K1-LCD':'Prospekt-K1-Druckluft-Dosiergeraete.pdf','Bickers Exakt HMS-LCD':'Prospekt-HMS-Spruehgeraete.pdf','Bickers Magnolit':'Prospekt-Kaltklebe-Set.pdf','Elcoleit 342':'Prospekt-Kaltklebe-Set.pdf','RK 1300':'Prospekt-Kaltklebe-Set.pdf','Tankschmelzgerät':'Prospekt-DuraBlue-4L.pdf'};
+const pdfBtn=f=>`<a class="btn s-btn-out" href="pdf/${f}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Prospekt (PDF)</a>`;
 function prowx(icon,title,body,actions='',link=''){
   const fx=FACTS[title]; if(fx){ const more=`<details class="pinfo-more"><summary>Mehr erfahren</summary><div class="pinfo-more-in">${body}</div></details>`; body=`<p class="pinfo-lead">${fx[0]}</p><ul class="pinfo-facts">${fx[1].map(x=>`<li>${x}</li>`).join('')}</ul>${more}`; }
   const media=IMG[icon]?`<img src="${IMG[icon]}" alt="${title}" loading="lazy">`:ICONS[icon];
   if(/>Anfragen</.test(actions)) actions='';
-  if(/^(mech|pn)/.test(icon)) actions+=`<button class="btn s-btn-out" type="button" data-dl="Prospekt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Prospekt (PDF)</button>`;
-  if(/^(sch|kalt)/.test(icon)){ actions=''; } if(false){ actions=[['Technisches Datenblatt','Technisches Datenblatt'],['Sicherheitsdatenblatt','Sicherheitsdatenblatt']].map(([n,l])=>`<button class="btn s-btn-out" type="button" data-dl="${n}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>${l}</button>`).join(''); }
+  { const pf=PROSPEKTE[title]; if(pf) actions+=pdfBtn(pf); }
+  if(/^(sch|kalt)/.test(icon)){ actions=PROSPEKTE[title]?pdfBtn(PROSPEKTE[title]):''; } if(false){ actions=[['Technisches Datenblatt','Technisches Datenblatt'],['Sicherheitsdatenblatt','Sicherheitsdatenblatt']].map(([n,l])=>`<button class="btn s-btn-out" type="button" data-dl="${n}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>${l}</button>`).join(''); }
   const act=`<button class="btn btn-primary" type="button" data-inquiry="${esc(title)}">Anfragen</button>${actions}`;
   return `<div class="pdet">${link?`<a class="pdet-row" href="${link}">`:`<button type="button" class="pdet-row" data-pinfo aria-haspopup="dialog">`}<span class="pimg pphoto ph-${icon}${IMG[icon]?'':' pph-ph'}">${media}</span><span class="pdet-head"><h3>${title}</h3>${fx?`<span class="pdet-sub">${fx[0]}</span>`:''}</span><span class="pdet-chev" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>${link?'</a>':'</button>'}
     <template><div class="pinfo"><div class="pinfo-img${IMG[icon]?'':' pph-ph'}">${media}</div><div class="pinfo-body"><span class="eyebrow">Produktinformation</span><h2>${title}</h2><div class="prose">${body}</div><div class="pact">${act}</div><p class="pinfo-call"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>Fragen zum passenden Produkt? Wir beraten Sie gern telefonisch unter <a href="tel:${esc(CONTENT.kontakt.tel.replace(/\s/g,''))}">${esc(CONTENT.kontakt.tel)}</a>.</span></p></div></div></template></div>`; }
@@ -1709,7 +1716,7 @@ function viewFolgt(cur){
   const top=cur==='zubehoer'?`<figure class="zb-hero"><img src="${IMG.duesen}" alt="Bickers Wechseldüsen 1 bis 9 für Klebepistolen" width="2000" height="755"><figcaption>Wechseldüsen für Bickers Klebepistolen</figcaption></figure>`:'';
   return `${subHead(cur,m[0],'')}
   <section class="block plist-band"><div class="wrap">${top}<div class="plist">
-    ${prow(m[1],m[0],`<p>${m[2]}</p><p class="note">Die ausführlichen Inhalte dieser Seite folgen in Kürze.</p>`,ask(m[0]))}
+    ${prow(m[1],m[0],`<p>${m[2]}</p><p class="note">Die ausführlichen Inhalte dieser Seite folgen in Kürze.</p>`,ask(m[0])+(PROSPEKTE[m[0]]?pdfBtn(PROSPEKTE[m[0]]):''))}
   </div>${cur==='tank'?`<div class="tk-acc"><div><b>Zubehör für Tankschmelzgeräte</b><p>Schläuche, Auftragspistolen und Ersatzteile passend zu Ihrem Bickers Tankschmelzgerät.</p></div><a class="btn btn-primary" href="#zubehoer">Zum Zubehör</a></div>`:''}</div></section>`;
 }
 
@@ -1734,10 +1741,10 @@ function viewMaschinen(){
     <figure class="pl-film"><video class="pl-vid" autoplay muted loop playsinline preload="auto" poster="img/plotter-video-poster.webp" aria-label="GLUEJET Klebeplotter im Einsatz" width="1280" height="720"><source src="img/plotter-video.webm" type="video/webm"></video><figcaption>Im Einsatz</figcaption></figure>
   </div></section>  ${row({id:'gluejet',dark:true,img:'img/gluejet-halle.jpg',w:1920,h:1235,photo:true,eye:'Leim- und Klebstoffauftrag',name:'GLUEJET®',claim:'Jeder Tropfen genau dort, wo er gebraucht wird.',
     text:'Vollautomatischer XY-Klebeplotter für <strong>Punkte, Linien und Flächen</strong> mit Heiß- und Kaltleim. Er verkürzt Produktionszeiten, spart Material und ist für den <strong>Dauerbetrieb</strong> gebaut, von Displays und Verpackungen bis zum Möbelbau.',
-    facts:[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','mit TRIPLE-Smart-Head'],['995','speicherbare Programme'],['bis 2.000 × 3.000 mm','Anlagenformat']]})}
+    facts:[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','mit TRIPLE-Smart-Head'],['Unbegrenzt','Programme, mit DXF-Import'],['bis 2.000 × 3.000 mm','Anlagenformat, Sondergrößen möglich']]})}
   ${row({id:'tapejet',rev:true,img:'img/tapejet-halle.jpg',w:1920,h:1440,photo:true,eye:'Klebebandauftrag',name:'TAPEJET®',claim:'Klebeband automatisch, präzise und ohne Ausschuss.',
     text:'XY-Klebebandplotter für das <strong>exakte Aufbringen von Klebebändern</strong> auf Karton, Wellpappe und Druckbögen. <strong>Pick &amp; Place</strong> mit zwei Hubtischen und Kamerakontrolle entlasten Ihre Mitarbeitenden und sichern gleichbleibende Qualität.',
-    facts:[['bis 1,0 m/s','Geschwindigkeit'],['8–29 mm','Klebebandbreite'],['±20 mm','Korrektur per Kamera'],['2.100 × 1.600 mm','Format']]})}`;
+    facts:[['bis 1,0 m/s','Geschwindigkeit'],['8–29 mm','Klebebandbreite'],['±0,5 mm','Präzision'],['2.100 × 1.600 mm','Format, Sondergrößen möglich']]})}`;
 }
 
 IMG.proPAi='img/pro-pai.webp';
@@ -1746,10 +1753,10 @@ IMG.proTriple='img/pro-triple.webp';
 function viewGluejet(){
   const ic={speed:'<path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1 1 17.4 0"/>',prec:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',mod:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',safe:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'};
   const feat=[['speed','Hohe Geschwindigkeit, präziser Klebstoffauftrag','Mit einer Verfahrgeschwindigkeit von bis zu <strong>2,0 m/s</strong> sorgt der GLUEJET® für kurze Taktzeiten und eine konstant hohe Fertigungsqualität. Durch die dreifach parallele Applikation von Heiß- und Kaltleimauftrag mit dem optionalen <strong>TRIPLE-Smart-Head</strong> ergibt sich eine effektive Geschwindigkeit bis zu <strong>6,0 m/s</strong>, die der neue <strong>GLUEJET G²</strong> mit zwei TRIPLE-Smart-Heads noch einmal verdoppeln kann. <strong>Raupen- oder Sprühauftrag</strong> ermöglichen es, unterschiedlichste Klebstoffe optimal zu applizieren und nahezu jede geometrische Form exakt nachzubilden.'],
-    ['prec','Präzise. Reproduzierbar. Einfach zu bedienen.','Die komfortable Programmierung über <strong>Joystick, Laser und Kamerasystem</strong> ermöglicht eine schnelle und präzise Einrichtung. Bis zu <strong>995 Programme</strong> können gespeichert werden, für reproduzierbare Abläufe und gleichbleibende Qualität bei wiederkehrenden Aufträgen. Optional lassen sich <strong>CAD- und DXF-Dateien</strong> direkt übernehmen.'],
+    ['prec','Präzise. Reproduzierbar. Einfach zu bedienen.','Die komfortable Programmierung über <strong>Joystick, Laser und Kamerasystem</strong> ermöglicht eine schnelle und präzise Einrichtung. Es lassen sich <strong>unbegrenzt viele Programme</strong> speichern, für reproduzierbare Abläufe und gleichbleibende Qualität bei wiederkehrenden Aufträgen. Optional lassen sich <strong>CAD- und DXF-Dateien</strong> direkt übernehmen.'],
     ['mod','Modular und flexibel','Je nach Einsatzbereich sind die Hubtische <strong>hydraulisch oder elektromechanisch</strong> verfügbar. Die automatische Höhenverstellung sowie <strong>Stapelhöhen von 350 mm oder 800 mm</strong> ermöglichen eine ergonomische Materialhandhabung. Mit <strong>vier unabhängig programmierbaren Arbeitsplätzen</strong> lassen sich unterschiedliche Aufträge parallel verwalten.'],
     ['safe','Weniger Stillstand. Weniger Wartung. Mehr Produktionssicherheit.','Der GLUEJET® ist für den zuverlässigen <strong>Dauerbetrieb</strong> in anspruchsvollen industriellen Produktionsumgebungen entwickelt. Die integrierte <strong>Fernwartung</strong> ermöglicht eine schnelle Diagnose und effiziente Unterstützung und hält Ausfallzeiten auf einem Minimum.']];
-  const stats=[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','effektiv mit TRIPLE-Smart-Head'],['995','speicherbare Programme'],['bis 2.000 × 3.000 mm','Anlagenformat, Sondergrößen möglich']];
+  const stats=[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','effektiv mit TRIPLE-Smart-Head'],['Unbegrenzt','Programme, mit DXF-Import'],['bis 2.000 × 3.000 mm','Anlagenformat, Sondergrößen möglich']];
   const base='pdf/';
   const pros=[['GLUEJET Prospekt PAi','GLUEJET-PAi.pdf','proPAi'],['GLUEJET Prospekt PI','GLUEJET-PI.pdf','proPI'],['TRIPLE-Smart-Head','GLUEJET-TRIPLE-Smart-Head.pdf','proTriple']];
   const vids=['s7QX7q-W_Z8','ZKirTVMN6Do','wIqLA1dPIUw'];
@@ -1784,7 +1791,7 @@ function viewTapejet(){
     ['prec','Präziser Klebebandauftrag. Zuverlässig reproduzierbar.','Die <strong>Bogenfixierung über den Vakuumtisch</strong> gewährleistet eine sichere und präzise Positionierung. Ein integriertes <strong>Kamerasystem</strong> kontrolliert die Position und <strong>passt den Klebebandauftrag automatisch um ±20 mm</strong> an. Der Auftragskopf verarbeitet Klebebänder mit <strong>8 bis 29 mm Breite</strong> ab <strong>25 mm Auftragslänge</strong>, Rollen bis <strong>400 mm Durchmesser</strong> mit 76 mm Kern und gleicht <strong>Unebenheiten bis ±5 mm</strong> aus.'],
     ['mod','Nahtlos in Ihre Konstruktion und Fertigung integriert.','Die Programmierung erfolgt komfortabel über <strong>CAD- und DXF-Dateien</strong> sowie über <strong>Joystick, Laser und Kamerasystem</strong>. So lassen sich auch komplexe Klebebandverläufe präzise programmieren und bei wiederkehrenden Aufträgen zuverlässig reproduzieren. Ausgelegt für ein <strong>Format von 2.100 × 1.600 mm</strong>, <strong>Sondergrößen</strong> auf Anfrage.'],
     ['safe','Weniger Stillstand. Mehr Produktionssicherheit.','Der TAPEJET® ist für anspruchsvolle industrielle Produktionsumgebungen entwickelt. Die integrierte <strong>Fernwartung über Modem</strong> ermöglicht eine <strong>schnelle Diagnose und effizienten technischen Support</strong>. So werden Servicezeiten verkürzt und Ausfallzeiten auf ein Minimum reduziert.']];
-  const stats=[['bis 1,0 m/s','Geschwindigkeit, stufenlos wählbar'],['8–29 mm','Klebebandbreite'],['±20 mm','automatische Korrektur per Kamera'],['2.100 × 1.600 mm','Format, Sondergrößen möglich']];
+  const stats=[['bis 1,0 m/s','Geschwindigkeit, stufenlos wählbar'],['8–29 mm','Klebebandbreite'],['±0,5 mm','Präzision'],['2.100 × 1.600 mm','Format, Sondergrößen möglich']];
   const svg=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
   const pros=[['TAPEJET Prospekt (Deutsch)','TAPEJET-DE.pdf','pro-tj-de.webp'],['TAPEJET Brochure (English)','TAPEJET-EN.pdf','pro-tj-en.webp']];
   const vids=['f3afXgblL6w','jdLRzi-fvcI','4KSiTW3oD4E'];
@@ -1918,7 +1925,8 @@ function viewUnternehmen(){
       <p>Technische Innovation ist für uns kein Selbstzweck. Wir verbinden Innovation mit bewährter <strong>Technik, Präzision mit Robustheit und Automatisierung mit Prozesssicherheit</strong>. Das Ergebnis ist Klebetechnik, auf die sich unsere Kunden verlassen können.</p></div>
     <div class="panel ab-jobs"><h3>Stellenanzeigen</h3>
       ${U.jobs.length?`<div class="kv">${U.jobs.map(j=>`<div><span style="color:var(--ink);font-weight:600">${esc(j.t)}</span><span style="font-weight:500;color:var(--muted)">${esc(j.ort)}</span></div>`).join('')}</div>`:'<p style="color:var(--muted)">Aktuell keine offenen Stellen.</p>'}
-      <a class="btn btn-primary" href="#kontakt" style="align-self:flex-start">Initiativ bewerben</a></div>
+      ${U.jobs.length?`<div class="job-btns">${U.jobs.map(j=>`<button class="btn s-btn-out btn-sm" type="button" data-job="${esc(j.t)}">Auf „${esc(j.t.replace(/^Beispielstelle:\s*/,''))}“ bewerben</button>`).join('')}</div>`:''}
+      <button class="btn btn-primary" type="button" data-job="Initiativbewerbung" style="align-self:flex-start">Initiativ bewerben</button></div>
   </div></section>
   <section class="block s-sec-dark ab-end"><div class="wrap"><p class="ab-big">45+ Jahre Bickers Klebetechnik.</p><p class="ab-sub">Gebaut für Jahrzehnte. Entwickelt für höchste Zuverlässigkeit.</p></div></section>`;
 }
@@ -1974,6 +1982,7 @@ function viewFaq(){
           <div class="field"><label for="cf-topic">Worum geht es? *</label><select id="cf-topic" required><option value="" selected disabled>Bitte Anliegen wählen</option><option>Klebstoffberatung</option><option>Klebepistolen und Zubehör</option><option>Industriemaschinen (GLUEJET / TAPEJET)</option><option>Ersatzteile und Reparaturen</option><option>Bestellung und Lieferung</option><option>Allgemeine Anfrage</option></select><span class="err">Bitte Anliegen wählen.</span></div>
           <div class="field full"><label for="cf-subject">Betreff *</label><input id="cf-subject" required placeholder="Wird nach Wahl des Anliegens vorausgefüllt"><span class="err">Bitte Betreff angeben.</span></div>
           <div class="field full"><label for="cf-msg">Ihre Nachricht *</label><textarea id="cf-msg" rows="6" required></textarea><span class="err">Bitte Nachricht eingeben.</span></div>
+          ${fileField('cf-files','Dokumente anhängen')}
         </div>
         <button class="btn btn-primary" type="submit" style="align-self:flex-start">Nachricht senden</button>
       </form>
@@ -1994,10 +2003,11 @@ function openInquiry(name){
       <div class="field"><label for="iq-teil">Bauteil / Material</label><input id="iq-teil" placeholder="z. B. Faltschachtel, Karton 400 g/m²"></div>
       <div class="field"><label for="iq-menge">Stückzahl pro Tag</label><input id="iq-menge" inputmode="numeric" placeholder="z. B. 2.000"></div>
       <div class="field full"><label for="iq-msg">Ihre Anwendung</label><textarea id="iq-msg" rows="3" required></textarea><span class="err">Bitte beschreiben Sie kurz Ihre Anwendung.</span></div>
+      ${fileField('iq-files','Zeichnungen, Fotos oder DXF anhängen')}
     </div>
     <button class="btn btn-primary" type="submit" style="align-self:flex-start">Anfrage senden</button>
   </form>`);
-  $('#inqForm').onsubmit=e=>{ e.preventDefault(); if(!validate('#inqForm')) return; const s=$('#iq-subject').value; closeAll(); toast('Gesendet (Demo). Betreff: '+s); };
+  $('#inqForm').onsubmit=e=>{ e.preventDefault(); if(!validate('#inqForm')||!filesOk('#iq-files')) return; const s=$('#iq-subject').value; closeAll(); toast('Gesendet an '+angebotTo(s)+' (Demo). Betreff: '+s); };
 }
 
 function openShowroom(){
@@ -2012,12 +2022,38 @@ function openShowroom(){
         <div class="field"><label for="sr-mail">E-Mail</label><input id="sr-mail" type="email" autocomplete="email" required><span class="err">Bitte gültige E-Mail angeben.</span></div>
         <div class="field"><label for="sr-pers">Personen</label><select id="sr-pers"><option>1</option><option selected>2</option><option>3</option><option>4 oder mehr</option></select></div>
         <div class="field full"><label for="sr-msg">Ihre Nachricht <span class="opt">optional</span></label><textarea id="sr-msg" rows="3" placeholder="z. B. Wir möchten Schaumstoff großflächig auf Holzplatten (1.200 × 800 mm) verkleben und den Auftrag am GLUEJET testen."></textarea></div>
+        ${fileField('sr-files','Fotos oder Zeichnungen Ihrer Teile')}
       </div>
       <label class="check-inline sr-check"><input type="checkbox" id="sr-muster"> Ich bringe Musterteile zum Testen mit</label>
       <div class="sr-foot"><button class="btn btn-primary" type="submit">Anfrage senden</button><span>Wir melden uns innerhalb eines Werktags mit einem Terminvorschlag.</span></div>
     </div></form>`);
   $('#modal').classList.add('modal-sm');
-  $('#srForm').onsubmit=e=>{ e.preventDefault(); if(!validate('#srForm')) return; const s=$('#sr-subject').value; closeAll(); toast('Gesendet (Demo). Betreff: '+s); };
+  $('#srForm').onsubmit=e=>{ e.preventDefault(); if(!validate('#srForm')||!filesOk('#sr-files')) return; const s=$('#sr-subject').value; closeAll(); toast('Gesendet an '+FORM_TO.showroom+' (Demo). Betreff: '+s); };
+}
+/* Empfänger je Formular – vor Livegang prüfen */
+const FORM_TO={kontakt:'sales@bickers.de',angebot:'sales@bickers.de',angebotPlotter:'sales@gluejet.com',showroom:'sales@gluejet.com',bewerbung:'info@bickers.de'};
+const KONTAKT_TO={'Klebstoffberatung':'sales@bickers.de','Klebepistolen und Zubehör':'sales@bickers.de','Industriemaschinen (GLUEJET / TAPEJET)':'sales@gluejet.com','Ersatzteile und Reparaturen':'sales@bickers.de','Bestellung und Lieferung':'sales@bickers.de','Allgemeine Anfrage':'sales@bickers.de'};
+const angebotTo=name=>/GLUEJET|TAPEJET/i.test(name)?FORM_TO.angebotPlotter:FORM_TO.angebot;
+function fileField(id,label,req){ return `<div class="field full"><label for="${id}">${label} ${req?'*':'<span class="opt">optional</span>'}</label><input id="${id}" type="file" multiple ${req?'required':''} accept=".pdf,.jpg,.jpeg,.png,.webp,.dxf,.dwg,.doc,.docx,.xls,.xlsx,.zip"><span class="hint">PDF, Bilder, DXF/DWG, Word, Excel oder ZIP · max. 10 MB je Datei</span>${req?'<span class="err">Bitte Unterlagen anhängen.</span>':''}</div>`; }
+function filesOk(sel){ const f=$(sel); if(!f||!f.files) return true; const big=[...f.files].find(x=>x.size>10*1024*1024); if(big){ toast('„'+big.name+'“ ist größer als 10 MB.'); return false; } return true; }
+function openJob(stelle){
+  const init=stelle==='Initiativbewerbung', name=stelle.replace(/^Beispielstelle:\s*/,'');
+  openModal(`<form id="jobForm" novalidate style="padding:32px;display:flex;flex-direction:column;gap:16px">
+    <span class="eyebrow" style="margin:0">Bewerbung</span><h2 style="font-size:28px">${init?'Initiativbewerbung':esc(name)}</h2>
+    <p style="color:var(--muted)">Wir freuen uns auf Ihre Bewerbung. Ihre Unterlagen behandeln wir vertraulich.</p>
+    <div class="form-grid">
+      <div class="field"><label for="jb-name">Name *</label><input id="jb-name" autocomplete="name" required><span class="err">Bitte Namen angeben.</span></div>
+      <div class="field"><label for="jb-mail">E-Mail *</label><input id="jb-mail" type="email" autocomplete="email" required><span class="err">Bitte gültige E-Mail angeben.</span></div>
+      <div class="field"><label for="jb-tel">Telefon</label><input id="jb-tel" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="jb-start">Frühester Eintritt</label><input id="jb-start" placeholder="z. B. 01.03.2027 oder sofort"></div>
+      ${init?'<div class="field full"><label for="jb-bereich">Gewünschter Bereich</label><input id="jb-bereich" placeholder="z. B. Vertrieb, Technik, Lager"></div>':''}
+      <div class="field full"><label for="jb-msg">Kurzes Anschreiben</label><textarea id="jb-msg" rows="4"></textarea></div>
+      ${fileField('jb-files','Lebenslauf und Unterlagen',true)}
+    </div>
+    <label class="check-inline"><input type="checkbox" id="jb-ds" required> Ich bin mit der Verarbeitung meiner Daten zum Zweck der Bewerbung einverstanden. *</label>
+    <button class="btn btn-primary" type="submit" style="align-self:flex-start">Bewerbung senden</button>
+  </form>`);
+  $('#jobForm').onsubmit=e=>{ e.preventDefault(); if(!validate('#jobForm')||!filesOk('#jb-files')) return; if(!$('#jb-ds').checked){ toast('Bitte Einverständnis bestätigen.'); return; } closeAll(); toast('Gesendet an '+FORM_TO.bewerbung+' (Demo). Betreff: Bewerbung: '+(init?'Initiativbewerbung':name)); };
 }
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2600); }
 function validate(sel){
@@ -2276,7 +2312,7 @@ function route(){
   if(v==='start' && !FX_REDUCED) document.querySelectorAll('#app .s-hero [data-count]').forEach(el=>{ el.textContent='0'; setTimeout(()=>countUp(el),800); });
   window.__fxReq && window.__fxReq();
   if(v==='kontakt'){ const m=$('#ktMap'), inPreview=(()=>{ try{ return window.self!==window.top; }catch(_){ return true; } })(); if(m){ m.classList.toggle('preview',inPreview); const b=$('#ktLoad'); if(b) b.onclick=()=>{ const f=document.createElement('iframe'); f.title='Karte: Bickers GmbH, Leopoldstraße 15, Essen'; f.loading='lazy'; f.referrerPolicy='no-referrer-when-downgrade'; f.src='https://www.google.com/maps?q=Leopoldstra%C3%9Fe+15,+45139+Essen&output=embed'; m.querySelector('.kt-map-ph').replaceWith(f); m.querySelector('.kt-map-card').remove(); }; } }
-  if(v==='kontakt') $('#contactForm').onsubmit=e=>{e.preventDefault(); if(validate('#contactForm')){ const s=$('#cf-subject').value; e.target.reset(); toast('Gesendet an sales@bickers.de (Demo). Betreff: '+s);}}; if(v==='kontakt'){ const tp=$('#cf-topic'), sj=$('#cf-subject'); let auto=true; sj.oninput=()=>{ auto=!sj.value; }; tp.onchange=()=>{ if(auto||!sj.value){ sj.value='Kontaktanfrage: '+tp.value; auto=true; } }; }
+  if(v==='kontakt') $('#contactForm').onsubmit=e=>{e.preventDefault(); if(validate('#contactForm')&&filesOk('#cf-files')){ const s=$('#cf-subject').value, to=KONTAKT_TO[$('#cf-topic').value]||FORM_TO.kontakt; e.target.reset(); toast('Gesendet an '+to+' (Demo). Betreff: '+s);}}; if(v==='kontakt'){ const tp=$('#cf-topic'), sj=$('#cf-subject'); let auto=true; sj.oninput=()=>{ auto=!sj.value; }; tp.onchange=()=>{ if(auto||!sj.value){ sj.value='Kontaktanfrage: '+tp.value; auto=true; } }; }
 }
 document.addEventListener('click',e=>{
   const pi=e.target.closest('[data-pinfo]'); if(pi){ openModal(pi.parentElement.querySelector('template').innerHTML); return; }
@@ -2285,6 +2321,8 @@ document.addEventListener('click',e=>{
   const dl=e.target.closest('[data-dl]'); if(dl){ const n=document.createElement('span'); n.className='dl-soon'; n.setAttribute('role','status');
     n.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>'+esc(dl.dataset.dl||'Prospekt')+' in Vorbereitung</b>In Kürze hier als PDF-Download verfügbar.</span>';
     dl.replaceWith(n); return; }
+  const jb=e.target.closest('[data-job]'); if(jb){ openJob(jb.dataset.job); return; }
+  const ddl=e.target.closest('.dd-menu a'); if(ddl){ const dd=ddl.closest('.dd'); dd.classList.add('dd-closed'); if(document.activeElement) document.activeElement.blur(); dd.addEventListener('mouseleave',()=>dd.classList.remove('dd-closed'),{once:true}); }
   const t=e.target.closest('[data-inquiry]'); if(t) openInquiry(t.dataset.inquiry);
 });
 document.addEventListener('mouseover',e=>{ const el=e.target.closest('.zb-n,.zb-list li'); if(!document.querySelector('#app .zb-noz')) return; const n=el?el.dataset.n:null; document.querySelectorAll('#app .zb-n,#app .zb-list li').forEach(x=>x.classList.toggle('on',n!==null&&x.dataset.n===n)); });

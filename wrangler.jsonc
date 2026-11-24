@@ -1,0 +1,32 @@
+// Cloudflare-Konfiguration der Bickers Website
+// Bei vorhandener Datei lautet der Bereitstellungsbefehl in Cloudflare nur noch:  npx wrangler deploy
+{
+  "name": "bickers-website",
+  "main": "worker/formular.js",
+  "compatibility_date": "2026-11-24",
+
+  // Website-Dateien (index.html, img/, pdf/) aus dem Hauptordner ausliefern.
+  // Was NICHT öffentlich sein soll, steht in .assetsignore.
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS"
+  },
+
+  // E-Mail-Versand über Cloudflare Email Routing.
+  // Nur diese Adressen dürfen Empfänger sein; jede muss in Cloudflare bestätigt sein.
+  "send_email": [
+    {
+      "name": "FORMULAR",
+      "allowed_destination_addresses": [
+        "sales@bickers.de",
+        "sales@gluejet.com",
+        "info@bickers.de"
+      ]
+    }
+  ],
+
+  // Fehlerprotokolle in Cloudflare sichtbar machen (Workers → bickers-website → Logs)
+  "observability": {
+    "enabled": true
+  }
+}
