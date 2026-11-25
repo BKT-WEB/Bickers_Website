@@ -1554,12 +1554,92 @@ section.block.why-band.lp-band{background:var(--bg)}
 .ck-box h3{color:var(--blue-ink);margin-bottom:8px}
 .ck-box p,.ck-box li{color:var(--ink);font-size:15px}
 .ck-box ul{margin:8px 0 0;padding-left:18px}.ck-box li+li{margin-top:6px}
+/* ===== v.4: Umsetzung der Analyse „Entwurf V3 im Wettbewerbsvergleich“ ===== */
+/* Klebeplotter als gruppiertes Mega-Menü (vorher elf Einträge untereinander) */
+@media (min-width:961px){
+  /* Alle Dropdowns: immer gerendert, Ein- und Ausblenden über Sichtbarkeit. Beim Verlassen bleibt das Menü 0,25 s bedienbar, damit es bei schrägen Mausbewegungen nicht zuklappt. */
+  nav.main .dd > .dd-menu{display:flex;flex-direction:column;visibility:hidden;opacity:0;translate:0 -6px;transition:opacity .16s ease .08s,translate .16s ease .08s,visibility 0s linear .25s;border-top:3px solid var(--orange);border-radius:0 0 6px 6px}
+  nav.main .dd:hover > .dd-menu,nav.main .dd:focus-within > .dd-menu{visibility:visible;opacity:1;translate:0 0;transition-delay:0s;z-index:51}
+  nav.main .dd.dd-closed > .dd-menu{display:none}
+  nav.main .dd > a::after{transition:transform .2s ease}
+  nav.main .dd:hover > a::after,nav.main .dd:focus-within > a::after{transform:rotate(180deg) translateY(4px)}
+  /* Mega-Menüs: an der Unterkante der Kopfleiste, mittig */
+  .dd-mega{position:static}
+  nav.main .dd-mega > .dd-menu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));left:50%;transform:translateX(-50%);top:100%;width:min(940px,calc(100vw - 48px));padding:22px 24px 24px;gap:0}
+  nav.main .dd-mega-3 > .dd-menu{grid-template-columns:repeat(3,minmax(0,1fr));width:min(780px,calc(100vw - 48px))}
+  .dd-mega .mm-col{display:flex;flex-direction:column;gap:2px;padding:0 16px;border-left:1px solid var(--line);min-width:0}
+  .dd-mega .mm-col:first-child{border-left:0;padding-left:0}
+  .dd-mega .mm-col a{white-space:normal;padding:7px 10px;margin-left:-10px}
+  /* Unsichtbare Brücke: füllt genau den Streifen zwischen Menüleiste und Mega-Menü über die ganze Menübreite. Die Höhe misst ein Skript (--dd-gap). */
+  nav.main .dd-mega > .dd-menu::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:calc(var(--dd-gap,24px) + 2px)}
+}
+@media (min-width:961px) and (prefers-reduced-motion:reduce){nav.main .dd > .dd-menu{translate:none;transition:visibility 0s linear .25s}}
+/* Handy: Menü scrollt in sich, Untermenüs als Akkordeon über einen Pfeil-Button */
+.dd-tog{display:none}
+.dd-menu a.dd-over{display:none}
+@media (max-width:960px){.dd-menu a.dd-over{display:block;font-weight:700;color:var(--blue-ink)}.dd-mega .dd-menu a.dd-over{padding-left:12px}}
+@media (max-width:960px){
+  nav.main.open{flex-wrap:nowrap;justify-content:flex-start;max-height:calc(100vh - 76px);max-height:calc(100svh - 76px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  nav.main .dd{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+  nav.main .dd > a::after{display:none}
+  .dd-tog{display:grid;place-items:center;width:44px;height:40px;border:0;border-radius:4px;background:none;color:var(--blue-ink);cursor:pointer}
+  .dd-tog svg{transition:transform .2s ease}
+  .dd.open > .dd-tog svg{transform:rotate(180deg)}
+  nav.main .dd > .dd-menu{display:none!important;grid-column:1/-1}
+  nav.main .dd.open > .dd-menu{display:flex!important;animation:ddIn .18s ease-out}
+  nav.main .dd-mega.open > .dd-menu{padding-bottom:6px}
+}
+@keyframes ddIn{from{opacity:0;translate:0 -6px}to{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){.dd .dd-menu{animation:none!important}}
+.mm-h{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:2px 0 8px}
+.dd-mega .mm-col a.mm-cta{color:var(--orange-deep);font-weight:700}
+@media (max-width:960px){.dd-mega .mm-col{display:flex;flex-direction:column;padding:4px 0 8px}.mm-h{padding:8px 12px 2px}}
+/* Weitere Anwendungen */
+.wa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.wa-card{background:#fff;border-radius:6px;padding:22px;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.wa-card .wa-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wa-card .ai{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--orange)}
+.wa-card .ai svg{width:22px;height:22px}
+.wa-card b{color:var(--blue-ink);font-size:17px}
+.wa-card p{color:var(--muted);font-size:14.5px;flex:1}
+.wa-card .kw{font-size:13px;color:var(--blue-ink)}
+.wa-card .kw code{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;background:var(--bg);padding:1px 5px;border-radius:3px}
+.wa-card .btn{align-self:flex-start;margin-top:4px}
+a.wa-card{text-decoration:none;color:var(--ink);transition:border-color .2s,transform .2s,box-shadow .2s}
+a.wa-card:hover{border-color:var(--orange);transform:translateY(-3px);box-shadow:0 18px 30px -18px rgba(0,90,136,.45)}
+.wa-state{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.wa-state.on{background:#E3F4EA;color:var(--ok)}.wa-state.check{background:#FFF0E3;color:var(--orange-deep)}
+/* TRIPLE-Smart-Head: Erklärung der Auftragsleistung */
+.tr-fig{background:#fff;border-radius:6px;padding:22px 24px;box-shadow:0 2px 4px rgba(0,0,0,.1);min-width:0}
+.tr-fig svg{display:block;width:100%;height:auto}
+.tr-fig figcaption{font-size:14px;color:var(--muted);margin-top:10px}
+.tr-cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.tr-cmp div{border-left:2px solid var(--orange);padding:2px 0 2px 12px}
+.tr-cmp b{display:block;color:var(--blue-ink);font-size:20px;font-variant-numeric:tabular-nums}
+.tr-cmp span{font-size:13.5px;color:var(--muted)}
+/* Referenzvorlagen */
+.lp-ref .ref-goal{font-size:14px;color:var(--blue-ink);background:var(--bg);border-radius:4px;padding:8px 10px}
+/* Analyse-Tabellen in der Checkliste */
+.lp-cmp.ana td{font-weight:400!important;background:none!important;color:var(--ink)!important}
+.lp-cmp.ana td.v-good{color:var(--ok)!important;font-weight:700!important}
+.lp-cmp.ana td.v-warn{color:var(--orange-deep)!important;font-weight:700!important}
+.lp-cmp.ana td.v-open{color:var(--muted)!important;font-style:italic}
+.ck-group{margin:22px 0 8px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ck-group:first-of-type{margin-top:0}
+.pri.p2{background:#F1EEF6;color:#5B4A86}
+.ref-soon{background:#fff;border-radius:6px;border-left:4px solid var(--orange);box-shadow:0 2px 4px rgba(0,0,0,.1);padding:clamp(26px,4vw,44px) clamp(22px,4vw,48px);max-width:820px}
+.ref-soon h2{color:var(--blue-ink);font-size:clamp(24px,2.6vw,32px);margin:4px 0 10px}
+.ref-soon p{color:var(--muted)}
+.ref-next{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between}
+.ref-next p{flex:1 1 320px;min-width:0;color:var(--ink)}
+.ck-pre{margin:10px 0 0;background:var(--bg);border-radius:4px;padding:12px 14px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.5;color:var(--blue-ink);overflow:auto;max-height:280px;white-space:pre}
+#ckList .ck-list+.ck-group{margin-top:22px}
 </style>
 
 
 
 <div class="demo-bar" id="demoBar"><div class="wrap">
-  <span><b>Entwurf v.3</b> <span class="sep">·</span> Umsetzung der Wettbewerbsanalyse vom 25.11.2026</span>
+  <span><b>Entwurf v.4</b> <span class="sep">·</span> Umsetzung der Analyse „Entwurf V3 im Wettbewerbsvergleich“ vom 25.11.2026</span>
   <span class="db-url">Geplante URL: <code id="dbUrl">bickers.de/de/</code></span>
   <span><a href="#livegang-checkliste">Livegang-Checkliste</a> <span class="sep">·</span> <button type="button" id="dnToggle">Entwurfshinweise ausblenden</button></span>
 </div></div>
@@ -1578,19 +1658,19 @@ section.block.why-band.lp-band{background:var(--bg)}
     </div>
     <nav class="main" id="mainNav">
       <a href="#start" data-nav="start">Start</a>
-      <div class="dd"><a href="#klebstoffe" data-nav="klebstoffe">Pistolen und Klebstoffe</a>
+      <div class="dd dd-mega dd-mega-3"><a href="#klebstoffe" data-nav="klebstoffe">Pistolen und Klebstoffe</a>
         <div class="dd-menu">
-          <a href="#mechanische">Mechanische Klebepistolen</a>
-          <a href="#pneumatische">Pneumatische Klebepistolen</a>
-          <a href="#tank">Tankschmelzgerät</a>
-          <a href="#zubehoer">Zubehör</a>
-          <a href="#schmelzklebstoffe">Schmelzklebstoffe</a>
-          <a href="#kaltklebstoffe">Kaltklebstoffe</a>
-          <a href="#klebstoffentferner">Klebstoffentferner und Reinigungsmittel</a>
-          <a href="#bio-schmelzklebstoffe">Biologisch abbaubare Schmelzklebstoffe</a>
+          <div class="mm-col"><span class="mm-h">Geräte</span><a href="#mechanische">Mechanische Klebepistolen</a><a href="#pneumatische">Pneumatische Klebepistolen</a><a href="#tank">Tankschmelzgerät</a><a href="#zubehoer">Zubehör</a></div>
+          <div class="mm-col"><span class="mm-h">Klebstoffe</span><a href="#schmelzklebstoffe">Schmelzklebstoffe</a><a href="#kaltklebstoffe">Kaltklebstoffe</a><a href="#bio-schmelzklebstoffe">Biologisch abbaubare Schmelzklebstoffe</a></div>
+          <div class="mm-col"><span class="mm-h">Reinigung und Beratung</span><a href="#klebstoffentferner">Klebstoffentferner und Reinigungsmittel</a><a href="#kontakt" class="mm-cta">Produktempfehlung anfragen</a></div>
         </div></div>
-      <div class="dd"><a href="#maschinen" data-nav="maschinen">Klebeplotter</a>
-        <div class="dd-menu"><a href="#gluejet">GLUEJET</a><a href="#tapejet">TAPEJET</a><a href="#gluejet-oder-tapejet">GLUEJET oder TAPEJET?</a><a href="#klebeplotter-verpackungen">Für Verpackungen</a><a href="#klebeplotter-wellpappe">Für Wellpappe</a><a href="#klebeplotter-pos-displays">Für POS-Displays</a><a href="#software-bedienung">Software und Bedienung</a><a href="#wirtschaftlichkeitsrechner">Wirtschaftlichkeitsrechner</a><a href="#lebenszykluskosten">Lebenszykluskosten</a><a href="#referenzen">Referenzen</a><a href="#musterverklebung">Musterverklebung anfragen</a></div></div>
+      <div class="dd dd-mega"><a href="#maschinen" data-nav="maschinen">Klebeplotter</a>
+        <div class="dd-menu">
+          <div class="mm-col"><span class="mm-h">Maschinen</span><a href="#gluejet">GLUEJET®</a><a href="#tapejet">TAPEJET®</a><a href="#gluejet-oder-tapejet">Maschinenvergleich</a><a href="#software-bedienung">Software und Bedienung</a></div>
+          <div class="mm-col"><span class="mm-h">Anwendungen</span><a href="#klebeplotter-pos-displays">POS-Displays</a><a href="#klebeplotter-verpackungen">Verpackungen</a><a href="#klebeplotter-wellpappe">Wellpappe</a><a href="#weitere-anwendungen">Weitere Anwendungen</a></div>
+          <div class="mm-col"><span class="mm-h">Investitionsplanung</span><a href="#wirtschaftlichkeitsrechner">Wirtschaftlichkeitsrechner</a><a href="#lebenszykluskosten">Lebenszykluskosten</a><a href="#referenzen">Kundenreferenzen</a></div>
+          <div class="mm-col"><span class="mm-h">Service und Beratung</span><a href="#service">Service und Ersatzteile</a><a href="#musterverklebung" data-sample="Individuelle Anwendung prüfen lassen (Menü)">Individuelle Anwendung prüfen lassen</a><a href="#musterverklebung" class="mm-cta">Musterverklebung anfragen</a></div>
+        </div></div>
       <a href="#service" data-nav="service">Service</a>
       <a href="#faq" data-nav="faq">FAQ</a>
       <div class="dd"><a href="#news" data-nav="news">News</a>
@@ -1620,6 +1700,7 @@ section.block.why-band.lp-band{background:var(--bg)}
         <a href="#klebeplotter-verpackungen">Klebeplotter für Verpackungen</a>
         <a href="#klebeplotter-wellpappe">Klebeplotter für Wellpappe</a>
         <a href="#klebeplotter-pos-displays">Klebeplotter für POS-Displays</a>
+        <a href="#weitere-anwendungen">Weitere Anwendungen</a>
         <a href="#wirtschaftlichkeitsrechner">Wirtschaftlichkeitsrechner</a>
         <a href="#lebenszykluskosten">Lebenszykluskosten</a>
         <a href="#software-bedienung">Software und Bedienung</a>
@@ -1647,7 +1728,7 @@ section.block.why-band.lp-band{background:var(--bg)}
 <div class="modal" id="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modalClose" type="button" aria-label="Schließen">×</button><div id="modalBody"></div></div>
 <div class="toast" id="toast" role="status"></div>
 
-<script type="application/json" id="siteContent">{"rev":32,"colors":{"orange":"#EC6500","orangeDeep":"#C85600","blue":"#00A6EB","blueInk":"#005A88","bg":"#F3F7FA"},"announce":{"on":false,"text":"Unsere neue Website ist online."},"intro":{"title":"BICKERS KLEBETECHNIK","sub":"Prozesssicher kleben. Wirtschaftlich produzieren. Gebaut für Jahrzehnte."},"gj":{"t":"Klebeplotter GLUEJET / TAPEJET","x":"Seit Jahrzehnten steht Bickers für Qualität, Erfahrung und konstante Entwicklung. Der führende Anbieter von XY-Klebeplottern. Bewährte Technik. Für anspruchsvolle Prozesse.","btn":"Mehr erfahren"},"kp":{"t":"Klebepistolen & Klebstoffe","x":"Leistung. Präzision. Verlässlichkeit. Heißklebepistolen und Zubehör sind aufeinander abgestimmt. Für sauberes, effizientes und dauerhaftes Verkleben.","btn":"Mehr erfahren"},"order":["materialien","partner","cta"],"hidden":[],"materialien":{"title":"Für viele Materialien","text":"Holz. Papier. Kunststoff. Schaumstoff. Styropor. Textilien. Wellpappe. Auch individuelle Substrate. Unsere Klebstoffe verbinden sicher. Auf vielen Oberflächen.","hintTitle":"Sie sind sich nicht sicher, welcher Klebstoff der richtige ist? Kein Problem!","hint":"Einfach das Kontaktformular nutzen. Nennen Sie die Materialien, die Sie verbinden möchten. Auf Wunsch erhalten Sie sofort eine persönliche Produktempfehlung. Passend zum Material. Passend zur Anwendung.","items":["Wellpappe","Papier","Holz","Schaumstoffe","Kunststoffe","Styropor","Textilien","Andere"]},"partner":{"title":"Unsere geschätzten Partner","items":[{"n":"JMP","u":"https://www.linkedin.com/company/jmp-gluejet/posts/?feedView=all"},{"n":"Lamina","u":"https://www.linkedin.com/company/lamina-system/"},{"n":"Nordson","u":"https://www.linkedin.com/company/nordson-corporation/"},{"n":"Meler","u":"https://www.linkedin.com/company/fockemeler/"}]},"cta":{"text":"Ihre passende Verbindung beginnt hier.","btn":"Kontakt aufnehmen"},"maschinen":{"eyebrow":"Klebeplotter","title":"Automatisiert kleben mit GLUEJET und TAPEJET","gj":{"t":"XY-Klebeplotter GLUEJET","x":"Automatisierter, reproduzierbarer Klebstoffauftrag, abgestimmt auf Ihr Bauteil und Ihren Klebstoff."},"tj":{"t":"Klebebandapplikator TAPEJET","x":"Klebeband exakt, schnell und ohne Handarbeit aufbringen. Als Einzelgerät oder in der Linie."}},"unternehmen":{"title":"Über uns","intro":"Seit Jahrzehnten steht Bickers für Qualität, Erfahrung und konstante Entwicklung. Wir liefern Klebstoffe, Auftragsgeräte und automatisierte Anlagen für Industrie und Handwerk, mit Produktanpassungen und Sonderlösungen, wenn der Standard nicht passt.","what":"Heißklebepistolen, Schmelz- und Kaltklebstoffe, Dichtstoffe sowie XY-Klebeplotter und Auftragssysteme unter den Namen GLUEJET und TAPEJET. Alles aus einer Hand, vom Klebstoff bis zur Anlage.","jobs":[{"t":"Beispielstelle: Kaufmann/-frau im Vertriebsinnendienst (m/w/d)","ort":"Essen · Vollzeit"},{"t":"Beispielstelle: Servicetechniker Klebeanlagen (m/w/d)","ort":"Essen · Außendienst"}]},"kontakt":{"intro":"Fragen zu Produkten, Ihrem Kundenkonto oder einer Anlage? Wir melden uns in der Regel am selben Werktag.","firma":"Bickers Klebetechnik GmbH","strasse":"Leopoldstraße 15","ort":"45139 Essen","tel":"+49 201 27 25 53","fax":"+49 201 27 49 12","mail":"sales@bickers.de"},"footer":{"claim":"Your gluing expert. Klebepistolen, Klebstoffe und XY-Klebeplotter aus Essen."}}</script>
+<script type="application/json" id="siteContent">{"rev":32,"colors":{"orange":"#EC6500","orangeDeep":"#C85600","blue":"#00A6EB","blueInk":"#005A88","bg":"#F3F7FA"},"announce":{"on":false,"text":"Unsere neue Website ist online."},"intro":{"title":"BICKERS KLEBETECHNIK","sub":"Prozesssicher kleben. Wirtschaftlich produzieren. Gebaut für Jahrzehnte."},"gj":{"t":"Klebeplotter GLUEJET / TAPEJET","x":"Seit Jahrzehnten steht Bickers für Qualität, Erfahrung und konstante Entwicklung. Der führende Anbieter von XY-Klebeplottern. Bewährte Technik. Für anspruchsvolle Prozesse.","btn":"Mehr erfahren"},"kp":{"t":"Klebepistolen & Klebstoffe","x":"Leistung. Präzision. Verlässlichkeit. Heißklebepistolen und Zubehör sind aufeinander abgestimmt. Für sauberes, effizientes und dauerhaftes Verkleben.","btn":"Mehr erfahren"},"order":["materialien","partner","cta"],"hidden":[],"materialien":{"title":"Für viele Materialien","text":"Holz. Papier. Kunststoff. Schaumstoff. Styropor. Displays. Wellpappe. Auch individuelle Substrate. Unsere Klebstoffe verbinden sicher. Auf vielen Oberflächen.","hintTitle":"Sie sind sich nicht sicher, welcher Klebstoff der richtige ist? Kein Problem!","hint":"Einfach das Kontaktformular nutzen. Nennen Sie die Materialien, die Sie verbinden möchten. Auf Wunsch erhalten Sie sofort eine persönliche Produktempfehlung. Passend zum Material. Passend zur Anwendung.","items":["Wellpappe","Papier","Holz","Schaumstoffe","Kunststoffe","Styropor","Displays","Andere"]},"partner":{"title":"Unsere geschätzten Partner","items":[{"n":"JMP","u":"https://www.linkedin.com/company/jmp-gluejet/posts/?feedView=all"},{"n":"Lamina","u":"https://www.linkedin.com/company/lamina-system/"},{"n":"Nordson","u":"https://www.linkedin.com/company/nordson-corporation/"},{"n":"Meler","u":"https://www.linkedin.com/company/fockemeler/"}]},"cta":{"text":"Ihre passende Verbindung beginnt hier.","btn":"Kontakt aufnehmen"},"maschinen":{"eyebrow":"Klebeplotter","title":"Automatisiert kleben mit GLUEJET und TAPEJET","gj":{"t":"XY-Klebeplotter GLUEJET","x":"Automatisierter, reproduzierbarer Klebstoffauftrag, abgestimmt auf Ihr Bauteil und Ihren Klebstoff."},"tj":{"t":"Klebebandapplikator TAPEJET","x":"Klebeband exakt, schnell und ohne Handarbeit aufbringen. Als Einzelgerät oder in der Linie."}},"unternehmen":{"title":"Über uns","intro":"Seit Jahrzehnten steht Bickers für Qualität, Erfahrung und konstante Entwicklung. Wir liefern Klebstoffe, Auftragsgeräte und automatisierte Anlagen für Industrie und Handwerk, mit Produktanpassungen und Sonderlösungen, wenn der Standard nicht passt.","what":"Heißklebepistolen, Schmelz- und Kaltklebstoffe, Dichtstoffe sowie XY-Klebeplotter und Auftragssysteme unter den Namen GLUEJET und TAPEJET. Alles aus einer Hand, vom Klebstoff bis zur Anlage.","jobs":[{"t":"Beispielstelle: Kaufmann/-frau im Vertriebsinnendienst (m/w/d)","ort":"Essen · Vollzeit"},{"t":"Beispielstelle: Servicetechniker Klebeanlagen (m/w/d)","ort":"Essen · Außendienst"}]},"kontakt":{"intro":"Fragen zu Produkten, Ihrem Kundenkonto oder einer Anlage? Wir melden uns in der Regel am selben Werktag.","firma":"Bickers Klebetechnik GmbH","strasse":"Leopoldstraße 15","ort":"45139 Essen","tel":"+49 201 27 25 53","fax":"+49 201 27 49 12","mail":"sales@bickers.de"},"footer":{"claim":"Your gluing expert. Klebepistolen, Klebstoffe und XY-Klebeplotter aus Essen."}}</script>
 <script>
 const CONTENT = JSON.parse(document.getElementById('siteContent').textContent);
 
@@ -1693,6 +1774,7 @@ const MAT_ICONS = {
   kunststoffe:'<path d="M50 22l24 14v28L50 78 26 64V36z" fill="#7CC8F0"/><path d="M50 22v56M26 36l48 28M74 36L26 64" stroke="#fff" stroke-width="2" opacity=".7"/>',
   styropor:'<rect x="24" y="28" width="52" height="44" fill="#fff" stroke="#C9D3DB" stroke-width="2"/><g fill="#E3E9EE"><circle cx="34" cy="38" r="4"/><circle cx="46" cy="36" r="3"/><circle cx="60" cy="40" r="4"/><circle cx="38" cy="52" r="3"/><circle cx="52" cy="50" r="4"/><circle cx="66" cy="56" r="3"/><circle cx="44" cy="64" r="4"/><circle cx="58" cy="64" r="3"/></g>',
   textilien:'<path d="M24 30h52v40H24z" fill="#E86E6E"/><path d="M24 38h52M24 46h52M24 54h52M24 62h52M32 30v40M40 30v40M48 30v40M56 30v40M64 30v40M72 30v40" stroke="#C94E4E" stroke-width="1.5"/>',
+  displays:'<path d="M32 74l4-50h28l4 50z" fill="#E8F3FA" stroke="#005A88" stroke-width="2.5" stroke-linejoin="round"/><path d="M34.5 42h31M33 58h34" stroke="#005A88" stroke-width="2.5"/><rect x="38" y="30" width="24" height="9" rx="1.5" fill="#EC6500"/><rect x="40" y="46" width="8" height="9" rx="1" fill="#9FB3C8"/><rect x="51" y="46" width="8" height="9" rx="1" fill="#9FB3C8"/><rect x="39" y="62" width="9" height="9" rx="1" fill="#9FB3C8"/><rect x="52" y="62" width="9" height="9" rx="1" fill="#9FB3C8"/>',
   andere:'<text x="50" y="64" text-anchor="middle" font-family="Open Sans,Arial" font-size="40" font-weight="700" fill="#E1F4FF">?</text>'
 };
 function matIcon(name){ const k=name.toLowerCase(); const body=MAT_ICONS[k]||MAT_ICONS.andere; return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#fff"/>${body}</svg>`; }
@@ -2057,7 +2139,7 @@ function viewMaschinen(){
       <ul class="pl-facts">${o.facts.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
       <div class="pact"><a class="btn btn-primary" href="#${o.id}">Mehr erfahren ${arrow}</a><button class="btn ${o.dark?'s-btn-out-light':'s-btn-out'}" type="button" data-inquiry="${o.name.replace('®','')}">Angebot anfragen</button></div></div>
   </div></section>`;
-  const R=[['gluejet','GLUEJET®','Leim- und Klebstoffauftrag','Punkte, Linien und Flächen mit Heiß- und Kaltleim, bis 6,0 m/s mit TRIPLE-Smart-Head.'],['tapejet','TAPEJET®','Klebebandauftrag','Klebebänder automatisch, präzise und ohne Ausschuss auftragen, mit Pick &amp; Place und Kamera.']];
+  const R=[['gluejet','GLUEJET®','Leim- und Klebstoffauftrag','Punkte, Linien und Flächen mit Heiß- und Kaltleim. Mit TRIPLE-Smart-Head bis 6,0 m/s Auftragsleistung durch drei parallele Köpfe.'],['tapejet','TAPEJET®','Klebebandauftrag','Klebebänder automatisch, präzise und ohne Ausschuss auftragen, mit Pick &amp; Place und Kamera.']];
   return `<section class="pl-stage"><h1 class="sr">XY-Klebeplotter für Verpackungen, Wellpappe und Displays: GLUEJET® und TAPEJET®</h1><div class="wrap pl-stage-grid">
     <div class="pl-stage-copy"><span class="eyebrow">Klebeplotter · Präzision auf ganzer Fläche</span>
       <div class="pl-rots">${R.map(([id,n,s,x],i)=>`<div class="pl-rt${i?'':' on'}" data-i="${i}"><p class="pl-rt-name">${n}</p><p class="pl-rt-sub">${s}</p><p class="pl-rt-x">${x}</p><a class="btn btn-primary" href="#${id}">Zum ${n} ${arrow}</a></div>`).join('')}</div>
@@ -2070,7 +2152,7 @@ function viewMaschinen(){
     <figure class="pl-film"><video class="pl-vid" autoplay muted loop playsinline preload="auto" poster="img/plotter-video-poster.webp" aria-label="GLUEJET Klebeplotter im Einsatz" width="1280" height="720"><source src="img/plotter-video.mp4" type="video/mp4"><source src="img/plotter-video.webm" type="video/webm"></video><figcaption>Im Einsatz</figcaption></figure>
   </div></section>  ${row({id:'gluejet',dark:true,img:'img/gluejet-halle.jpg',w:1920,h:1235,photo:true,eye:'Leim- und Klebstoffauftrag',name:'GLUEJET®',claim:'Jeder Tropfen genau dort, wo er gebraucht wird.',
     text:'Vollautomatischer XY-Klebeplotter für <strong>Punkte, Linien und Flächen</strong> mit Heiß- und Kaltleim. Er verkürzt Produktionszeiten, spart Material und ist für den <strong>Dauerbetrieb</strong> gebaut, von Displays und Verpackungen bis zum Möbelbau.',
-    facts:[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','mit TRIPLE-Smart-Head'],['Unbegrenzt','Programme, mit DXF-Import'],['bis 2.000 × 3.000 mm','Sondergrößen möglich']]})}
+    facts:[['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','Auftragsleistung mit TRIPLE-Smart-Head'],['Unbegrenzt','Programme, mit DXF-Import'],['bis 2.000 × 3.000 mm','Sondergrößen möglich']]})}
   ${row({id:'tapejet',rev:true,img:'img/tapejet-halle.jpg',w:1920,h:1440,photo:true,eye:'Klebebandauftrag',name:'TAPEJET®',claim:'Klebeband automatisch, präzise und ohne Ausschuss.',
     text:'XY-Klebebandplotter für das <strong>exakte Aufbringen von Klebebändern</strong> auf Karton, Wellpappe und Druckbögen. <strong>Pick &amp; Place</strong> mit zwei Hubtischen und Kamerakontrolle entlasten Ihre Mitarbeitenden und sichern gleichbleibende Qualität.',
     facts:[['bis 1,0 m/s','Geschwindigkeit'],['8–29 mm','Klebebandbreite'],['±0,5 mm','Präzision'],['2.100 × 1.600 mm','Format, Sondergrößen möglich']]})}
@@ -2084,11 +2166,11 @@ IMG.proPI='img/pro-pi.webp';
 IMG.proTriple='img/pro-triple.webp';
 function viewGluejet(){
   const ic={speed:'<path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1 1 17.4 0"/>',prec:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',mod:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',safe:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'};
-  const feat=[['speed','Hohe Geschwindigkeit, präziser Klebstoffauftrag','Mit einer Verfahrgeschwindigkeit von bis zu <strong>2,0 m/s</strong> sorgt der GLUEJET® für kurze Taktzeiten und eine konstant hohe Fertigungsqualität. Durch die dreifach parallele Applikation von Heiß- und Kaltleimauftrag mit dem optionalen <strong>TRIPLE-Smart-Head</strong> ergibt sich eine effektive Geschwindigkeit bis zu <strong>6,0 m/s</strong>, die der neue <strong>GLUEJET G²</strong> mit zwei TRIPLE-Smart-Heads noch einmal verdoppeln kann. <strong>Raupen- oder Sprühauftrag</strong> ermöglichen es, unterschiedlichste Klebstoffe optimal zu applizieren und nahezu jede geometrische Form exakt nachzubilden.'],
+  const feat=[['speed','Hohe Geschwindigkeit, präziser Klebstoffauftrag','Mit einer Verfahrgeschwindigkeit von bis zu <strong>2,0 m/s</strong> sorgt der GLUEJET® für kurze Taktzeiten und eine konstant hohe Fertigungsqualität. Der optionale <strong>TRIPLE-Smart-Head</strong> trägt mit drei Köpfen parallel auf. So entstehen bei 2,0 m/s Verfahrgeschwindigkeit drei Klebelinien gleichzeitig, eine <strong>Auftragsleistung von bis zu 6,0 m/s</strong> (<a href="#gluejet/triple">was das bedeutet</a>). Diese Leistung kann der neue <strong>GLUEJET G²</strong> mit zwei TRIPLE-Smart-Heads noch einmal verdoppeln kann. <strong>Raupen- oder Sprühauftrag</strong> ermöglichen es, unterschiedlichste Klebstoffe optimal zu applizieren und nahezu jede geometrische Form exakt nachzubilden.'],
     ['prec','Präzise. Reproduzierbar. Einfach zu bedienen.','Die komfortable Programmierung über <strong>Joystick, Laser und Kamerasystem</strong> ermöglicht eine schnelle und präzise Einrichtung. Es lassen sich <strong>unbegrenzt viele Programme</strong> speichern, für reproduzierbare Abläufe und gleichbleibende Qualität bei wiederkehrenden Aufträgen. Optional lassen sich <strong>CAD- und DXF-Dateien</strong> direkt übernehmen.'],
     ['mod','Modular und flexibel','Je nach Einsatzbereich sind die Hubtische <strong>hydraulisch oder elektromechanisch</strong> verfügbar. Die automatische Höhenverstellung sowie <strong>Stapelhöhen von 350 mm oder 800 mm</strong> ermöglichen eine ergonomische Materialhandhabung. Mit <strong>vier unabhängig programmierbaren Arbeitsplätzen</strong> lassen sich unterschiedliche Aufträge parallel verwalten.'],
     ['safe','Weniger Stillstand. Weniger Wartung. Mehr Produktionssicherheit.','Der GLUEJET® ist für den zuverlässigen <strong>Dauerbetrieb</strong> in anspruchsvollen industriellen Produktionsumgebungen entwickelt. Die integrierte <strong>Fernwartung</strong> ermöglicht eine schnelle Diagnose und effiziente Unterstützung und hält Ausfallzeiten auf einem Minimum.']];
-  const stats=[['500+','installierte Maschinen weltweit'],['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','effektiv mit TRIPLE-Smart-Head'],['bis 3.000 mm','Arbeitslänge, Sondergrößen möglich']];
+  const stats=[['500+','installierte Maschinen weltweit'],['bis 2,0 m/s','Verfahrgeschwindigkeit'],['bis 6,0 m/s','Auftragsleistung mit TRIPLE-Smart-Head'],['bis 3.000 mm','Arbeitslänge, Sondergrößen möglich']];
   const base='pdf/';
   const pros=[['GLUEJET Prospekt PAi','GLUEJET-PAi.pdf','proPAi'],['GLUEJET Prospekt PI','GLUEJET-PI.pdf','proPI'],['TRIPLE-Smart-Head','GLUEJET-TRIPLE-Smart-Head.pdf','proTriple']];
   const vids=['s7QX7q-W_Z8','ZKirTVMN6Do','wIqLA1dPIUw'];
@@ -2113,6 +2195,7 @@ function viewGluejet(){
   <section class="block s-sec-dark gj-feats-band"><div class="wrap">
     <div class="gj-feats">${feat.map(([k,t,x])=>`<article class="gj-feat"><span class="gj-ic">${svg(ic[k])}</span><h3>${t}</h3><p>${x}</p></article>`).join('')}</div>
   </div></section>
+  ${tripleHTML()}
   ${whyHTML('')}
   <section class="block lp-band"><div class="wrap">
     <div class="k-sec-head"><span class="eyebrow">Maschinenvarianten</span><h2>Technische Daten und Ausstattung</h2><p>Die wichtigsten Daten im Überblick. Programmierung und Bedienung zeigen wir auf einer eigenen Seite.</p></div>
@@ -2135,7 +2218,7 @@ function viewGluejet(){
       <article class="opt-card"><h3>Musterverklebung</h3><p>Wir verkleben Ihre Musterteile mit passendem Klebstoff, per Einsendung, im Showroom oder als Online-Vorführung.</p><button class="btn btn-primary" type="button" data-sample="GLUEJET® Musterverklebung">Muster anfragen</button></article>
     </div>
   </div></section>
-  <section class="s-cta"><div class="wrap s-cta-in"><div><h2>Testen Sie den GLUEJET® mit Ihrem Material</h2><p>Bringen Sie Ihre Teile zum Showroom-Termin in Essen mit oder schicken Sie sie uns. Wir melden uns innerhalb eines Werktags.</p></div><div class="pact" style="margin:0"><button class="btn btn-primary" type="button" data-sample="GLUEJET® Musterverklebung">Musterverklebung anfragen</button><a class="btn s-btn-out-light" href="#kontakt" data-showroom>Showroom-Termin</a></div></div></section>`;
+  <section class="s-cta"><div class="wrap s-cta-in"><div><h2>Testen Sie den GLUEJET® mit Ihrem Material</h2><p>Bringen Sie Ihre Teile zum Showroom-Termin mit oder schicken Sie sie uns. Wir melden uns innerhalb eines Werktags.</p></div><div class="pact" style="margin:0"><button class="btn btn-primary" type="button" data-sample="GLUEJET® Musterverklebung">Musterverklebung anfragen</button><a class="btn s-btn-out-light" href="#kontakt" data-showroom>Showroom-Termin</a></div></div></section>`;
 }
 
 function viewTapejet(){
@@ -2250,7 +2333,7 @@ function viewVertreter(){
   const row=(e,p)=>`<div class="event${p?' past':''}"><div class="ev-date num">${e[2]}</div><div><h3>${e[0]}</h3><p>${e[1]}</p></div><div class="ev-stand">${p?'Rückblick':e[3]}</div></div>`;
   return `<div class="page-head"><div class="wrap"><span class="eyebrow">News</span><h2>Lernen Sie uns kennen</h2><p>Messetermine und Neuigkeiten rund um Bickers, GLUEJET® und TAPEJET®.</p></div></div>
   <section class="block"><div class="wrap">
-    <div class="ev-group"><h3>Kommende Messen</h3>${up.length?`<div class="events">${up.map(e=>row(e,false)).join('')}</div>`:`<div class="ev-empty"><b>Die Messetermine 2027 werden in Kürze veröffentlicht.</b><p>Sie möchten den GLUEJET® schon vorher live erleben? Besuchen Sie unseren Showroom in Essen.</p><div class="pact"><a class="btn btn-primary" href="#kontakt" data-showroom>Showroom-Termin anfragen</a></div></div>`}</div>
+    <div class="ev-group"><h3>Kommende Messen</h3>${up.length?`<div class="events">${up.map(e=>row(e,false)).join('')}</div>`:`<div class="ev-empty"><b>Die Messetermine 2027 werden in Kürze veröffentlicht.</b><p>Sie möchten den GLUEJET® schon vorher live erleben? Besuchen Sie unseren Showroom.</p><div class="pact"><a class="btn btn-primary" href="#kontakt" data-showroom>Showroom-Termin anfragen</a></div></div>`}</div>
     ${past.length?`<div class="ev-group"><h3>Rückblick</h3><div class="events">${past.map(e=>row(e,true)).join('')}</div></div>`:''}
   </div></section>`;
 }
@@ -2301,7 +2384,7 @@ function viewFaq(){
       ['Lohnt sich ein Klebeplotter für meine Verpackungsproduktion?','Das hängt vor allem von Stückzahl, heutigem Handaufwand und Personalkosten ab. Mit unserem <a href="#wirtschaftlichkeitsrechner">Wirtschaftlichkeitsrechner</a> spielen Sie Ihre eigenen Werte durch. Typische Anwendungen zeigen wir auf den Seiten <a href="#klebeplotter-verpackungen">Klebeplotter für Verpackungen</a>, <a href="#klebeplotter-wellpappe">Wellpappe</a> und <a href="#klebeplotter-pos-displays">POS-Displays</a>.'],
       ['Liefert Bickers auch international?','Ja. Neben dem deutschen Markt beliefert Bickers Kunden weltweit und arbeitet mit internationalen Partnern und Vertriebspartnern zusammen. <a href="#vertreter">Zu unseren Vertretern</a>']]],
     ['Musterverklebung, Kosten und Bedienung',[
-      ['Kann ich den GLUEJET® mit meinem eigenen Material testen?','Ja. Schicken Sie uns Musterteile, bringen Sie sie zu einem Termin im Showroom in Essen mit oder vereinbaren Sie eine Online-Vorführung. <a href="#musterverklebung">Zur Musterverklebung</a>'],
+      ['Kann ich den GLUEJET® mit meinem eigenen Material testen?','Ja. Schicken Sie uns Musterteile, bringen Sie sie zu einem Termin im Showroom mit oder vereinbaren Sie eine Online-Vorführung. <a href="#musterverklebung">Zur Musterverklebung</a>'],
       ['Was kostet ein Klebeplotter über seine gesamte Lebensdauer?','Neben dem Anschaffungspreis zählen Wartung, Ersatzteile, Energie und Stillstände. Mit dem Vergleich der <a href="#lebenszykluskosten">Lebenszykluskosten</a> rechnen Sie das mit Ihren eigenen Werten durch.'],
       ['Wie wird der GLUEJET® programmiert?','Über Joystick, Laser und Kamerasystem oder direkt per CAD- und DXF-Import. Es lassen sich unbegrenzt viele Programme speichern. <a href="#software-bedienung">Mehr zu Software und Bedienung</a>'],
       ['Wie erhalte ich Service und Ersatzteile?','Die integrierte Fernwartung ermöglicht eine schnelle Diagnose. Service und Ersatzteile koordinieren wir aus Essen und über unsere Vertreter in 68 Ländern. <a href="#service">Zum Service</a>']]],
@@ -2670,8 +2753,8 @@ function drawGlueWord(h){
 /* ---------- v.3 SEO: Anwendungsseiten, Wirtschaftlichkeitsrechner, Seitentitel ---------- */
 const svgI=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
 const ARR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-const APP_IC={box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',flute:'<path d="M3 6h18M3 18h18"/><path d="M3 12c1.5-4 3-4 4.5 0s3 4 4.5 0 3-4 4.5 0 3 4 4.5 0"/>',display:'<path d="M6 3h12v14H6z"/><path d="M6 8h12M6 13h12M9 17l-2 4M15 17l2 4"/>',calc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v7"/>'};
-const APPS=[['klebeplotter-verpackungen','box','Klebeplotter für Verpackungen','Faltschachteln, Versandverpackungen und Zuschnitte automatisch verkleben.'],['klebeplotter-wellpappe','flute','Klebeplotter für Wellpappe','Kalt- und Heißleim auf Wellpappe, auch im Großformat bis 2.000 × 3.000 mm.'],['klebeplotter-pos-displays','display','Klebeplotter für POS-Displays','Displays und Aufsteller in Kleinserie, Serie und Musterbau.'],['wirtschaftlichkeitsrechner','calc','Wirtschaftlichkeitsrechner','Einsparpotenzial und Amortisation Ihres Klebeprozesses berechnen.']];
+const APP_IC={box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',flute:'<path d="M3 6h18M3 18h18"/><path d="M3 12c1.5-4 3-4 4.5 0s3 4 4.5 0 3-4 4.5 0 3 4 4.5 0"/>',display:'<path d="M6 3h12v14H6z"/><path d="M6 8h12M6 13h12M9 17l-2 4M15 17l2 4"/>',calc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M16 11v7"/>',more:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v7M14 17.5h7"/>',heavy:'<path d="M3 9l9-5 9 5v10l-9 4-9-4z"/><path d="M3 9l9 5 9-5M12 14v9M7.5 6.5l9 5"/>',series:'<rect x="3" y="14" width="5" height="7" rx="1"/><rect x="10" y="9" width="5" height="12" rx="1"/><path d="M17 4h4v4M21 4l-6 6"/>',special:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 8v8M8 12h8"/>',honey:'<path d="M7 3l4 2.3v4.6L7 12.2 3 9.9V5.3zM17 3l4 2.3v4.6l-4 2.3-4-2.3V5.3zM12 11.8l4 2.3v4.6L12 21l-4-2.3v-4.6z"/>',foam:'<rect x="3" y="6" width="18" height="12" rx="3"/><circle cx="8" cy="11" r="1.2"/><circle cx="13" cy="13.5" r="1.6"/><circle cx="17" cy="10" r="1"/>',grid:'<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>',proto:'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>'};
+const APPS=[['klebeplotter-verpackungen','box','Klebeplotter für Verpackungen','Faltschachteln, Versandverpackungen und Zuschnitte automatisch verkleben.'],['klebeplotter-wellpappe','flute','Klebeplotter für Wellpappe','Kalt- und Heißleim auf Wellpappe, auch im Großformat bis 2.000 × 3.000 mm.'],['klebeplotter-pos-displays','display','Klebeplotter für POS-Displays','Displays und Aufsteller in Kleinserie, Serie und Musterbau.'],['weitere-anwendungen','more','Weitere Anwendungen','Sonderverpackungen, Schwerlastverpackungen, Kleinserien, Wabenplatten und mehr.'],['wirtschaftlichkeitsrechner','calc','Wirtschaftlichkeitsrechner','Einsparpotenzial und Amortisation Ihres Klebeprozesses berechnen.']];
 function appCards(skip){ return `<div class="app-cards">${APPS.filter(a=>a[0]!==skip).map(([id,ic,t,x])=>`<a class="app-card" href="#${id}"><span class="ai">${svgI(APP_IC[ic])}</span><b>${t}</b><span>${x}</span><em>Mehr erfahren →</em></a>`).join('')}</div>`; }
 const GJ_VIDS=['s7QX7q-W_Z8','ZKirTVMN6Do','wIqLA1dPIUw'];
 const vidsHTML=(vids,name)=>`<div class="gj-vids">${vids.map((v,i)=>`<div class="gj-vid"><a class="gj-play" href="https://www.youtube.com/watch?v=${v}" target="_blank" rel="noopener" aria-label="${name} Video ${i+1} auf YouTube ansehen"><img class="gj-poster" src="${IMG.plotter}" alt=""><img src="https://i.ytimg.com/vi/${v}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="gj-pbtn">${svgI('<path d="M8 5v14l11-7z" fill="currentColor"/>')}</span></a></div>`).join('')}</div>`;
@@ -2713,7 +2796,7 @@ function calcInquiry(){
 }
 
 /* Inhalte der Anwendungsseiten: jede Seite behandelt ein eigenes Kundenproblem, keine Textdubletten */
-const GJ_SPEC=[['Arbeitsformate','1.300 × 1.800 bis 2.000 × 3.000 mm, Sondergrößen möglich'],['Verfahrgeschwindigkeit','bis 2,0 m/s'],['Effektiv mit TRIPLE-Smart-Head','bis 6,0 m/s, mit GLUEJET G² verdoppelt'],['Klebstoffe','Heißleim und Kaltleim'],['Auftragsart','Raupen- oder Sprühauftrag: Punkte, Linien, Flächen'],['Programmierung','Joystick, Laser, Kamera, CAD- und DXF-Import'],['Programmspeicher','unbegrenzt'],['Hubtische','hydraulisch oder elektromechanisch, Stapelhöhe 350 oder 800 mm'],['Arbeitsplätze','bis zu 4, unabhängig programmierbar'],['Service','integrierte Fernwartung']];
+const GJ_SPEC=[['Arbeitsformate','1.300 × 1.800 bis 2.000 × 3.000 mm, Sondergrößen möglich'],['Verfahrgeschwindigkeit','bis 2,0 m/s'],['Auftragsleistung mit TRIPLE-Smart-Head','bis 6,0 m/s: drei Köpfe parallel bei bis zu 2,0 m/s, mit GLUEJET G² verdoppelt'],['Klebstoffe','Heißleim und Kaltleim'],['Auftragsart','Raupen- oder Sprühauftrag: Punkte, Linien, Flächen'],['Programmierung','Joystick, Laser, Kamera, CAD- und DXF-Import'],['Programmspeicher','unbegrenzt'],['Hubtische','hydraulisch oder elektromechanisch, Stapelhöhe 350 oder 800 mm'],['Arbeitsplätze','bis zu 4, unabhängig programmierbar'],['Service','integrierte Fernwartung']];
 const GJ_VARS=[['GLUEJET PAi','Prospekt als PDF','GLUEJET-PAi.pdf','proPAi'],['GLUEJET PI','Prospekt als PDF','GLUEJET-PI.pdf','proPI'],['TRIPLE-Smart-Head','Dreifach paralleler Auftrag','GLUEJET-TRIPLE-Smart-Head.pdf','proTriple']];
 const LP={
   'klebeplotter-verpackungen':{
@@ -2725,9 +2808,9 @@ const LP={
     intro:['Mit den <strong>GLUEJET® XY-Klebeplottern</strong> von Bickers automatisieren Sie den Klebstoffauftrag bei der Herstellung von <strong>Verpackungen, Kartonagen und Wellpappenprodukten</strong>.',
       'Ob individuelle Verpackungslösungen, Kleinserien oder industrielle Serienfertigung: GLUEJET® ermöglicht einen <strong>präzisen und reproduzierbaren Auftrag von Heißleim und Kaltleim</strong> auf unterschiedlichsten Materialien und Verpackungsformaten.',
       'Reduzieren Sie den manuellen Arbeitsaufwand, optimieren Sie Ihren Klebstoffverbrauch und steigern Sie Ihre Produktionskapazität bei gleichbleibender Qualität. Mit Arbeitsformaten bis <strong>2.000 × 3.000 mm</strong> lassen sich auch komplexe Klebemuster wirtschaftlich realisieren.'],
-    kpis:[['bis 2.000 × 3.000 mm','Arbeitsformat'],['Heiß- & Kaltleim','Raupen- oder Sprühauftrag'],['bis 6,0 m/s','effektiv mit TRIPLE-Smart-Head']],
+    kpis:[['bis 2.000 × 3.000 mm','Arbeitsformat'],['Heiß- & Kaltleim','Raupen- oder Sprühauftrag'],['bis 6,0 m/s','Auftragsleistung mit TRIPLE-Smart-Head']],
     inq:'GLUEJET® Musterverklebung Verpackungen',
-    apps:{eye:'Anwendungen',h:'Typische Verpackungsanwendungen',p:'Überall dort, wo Zuschnitte heute von Hand verleimt werden, übernimmt der GLUEJET® den Klebstoffauftrag.',items:[['Faltschachteln und Sonderformate','Laschen, Böden und Seitennähte bei wechselnden Formaten, für die sich keine eigene Faltschachtelklebemaschine lohnt.'],['Versand- und Transportverpackungen','Raupen und Punkte auf Wellpappe für stabile Verbindungen im E-Commerce- und Industrieversand.'],['Inlays und Polster','Einlagen, Stege und Gefache präzise auf Position verkleben.'],['Kaschierte Verpackungen','Flächiger Sprühauftrag für das Kaschieren von Bögen und Zuschnitten.'],['Kleinserien und Muster','Neue Verpackungen ohne Werkzeug: Klebebild per DXF übernehmen und sofort produzieren.']]},
+    apps:{eye:'Anwendungen',h:'Typische Verpackungsanwendungen',p:'Überall dort, wo Zuschnitte heute von Hand verleimt werden, übernimmt der GLUEJET® den Klebstoffauftrag.',items:[['Faltschachteln und Sonderformate','Laschen, Böden und Seitennähte bei wechselnden Formaten, für die sich keine eigene Faltschachtelklebemaschine lohnt.'],['Versand- und Transportverpackungen','Raupen und Punkte auf Wellpappe für stabile Verbindungen im E-Commerce- und Industrieversand.'],['Einlagen und Polster','Einlagen, Stege und Polster präzise auf Position verkleben.'],['Kaschierte Verpackungen','Flächiger Sprühauftrag für das Kaschieren von Bögen und Zuschnitten.'],['Kleinserien und Muster','Neue Verpackungen ohne Werkzeug: Klebebild per DXF übernehmen und sofort produzieren.']]},
     cmp:{eye:'Vergleich',h:'Manueller und automatisierter Klebstoffauftrag',p:'Wo der Unterschied im Alltag Ihrer Verpackungsfertigung liegt.',cols:['','Manuell mit Klebepistole','Automatisiert mit GLUEJET®'],rows:[['Genauigkeit','abhängig von Person, Erfahrung und Tagesform','programmgesteuert und reproduzierbar'],['Klebstoffverbrauch','schwankend, häufig überdosiert','definierte Raupen, Punkte und Flächen'],['Wiederholaufträge','neu einrichten und anlernen','gespeichertes Programm abrufen, unbegrenzt viele Programme'],['Formatwechsel','Schablonen und Einweisung','DXF-Import, Joystick, Laser und Kamera'],['Personal','bindet Mitarbeitende dauerhaft am Klebetisch','Bedienung beschränkt sich auf Auflegen und Entnehmen'],['Qualität','schwer nachweisbar','gleichbleibend, Serie für Serie']]},
     refs:true, vids:true, calc:true,
     faq:[['Welche Verpackungen lassen sich mit dem GLUEJET® verkleben?','Typisch sind Zuschnitte aus Karton und Wellpappe, Faltschachteln in Sonderformaten, Versandverpackungen, Inlays und kaschierte Bögen. Ob Ihr Material geeignet ist, klären wir am schnellsten mit einer Musterverklebung im Showroom.'],
@@ -2773,11 +2856,11 @@ function viewLanding(key){
   const sec=(cls,head,body)=>`<section class="block ${cls}"><div class="wrap">${head?`<div class="k-sec-head"><span class="eyebrow">${head[0]}</span><h2>${head[1]}</h2>${head[2]?`<p>${head[2]}</p>`:''}</div>`:''}${body}</div></section>`;
   const parts=[];
   parts.push(`<section class="lp-hero"><div class="wrap lp-grid">
-    <div><nav class="lp-crumb" aria-label="Brotkrumen"><a href="#start">Start</a><span aria-hidden="true">›</span><a href="#maschinen">Klebeplotter</a><span aria-hidden="true">›</span><span aria-current="page">${L.crumb}</span></nav>
+    <div><nav class="lp-crumb" aria-label="Brotkrumen"><a href="#start">Start</a><span aria-hidden="true">›</span><a href="#maschinen">Klebeplotter</a><span aria-hidden="true">›</span>${L.more?'<a href="#weitere-anwendungen">Weitere Anwendungen</a><span aria-hidden="true">›</span>':''}<span aria-current="page">${L.crumb}</span></nav>
       <span class="s-eyebrow">${L.eyebrow}</span><h1>${L.h1}</h1>
       <div class="prose">${L.intro.map(p=>`<p>${p}</p>`).join('')}</div>
       <ul class="lp-kpis">${L.kpis.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
-      <div class="pact"><button class="btn btn-primary" type="button" data-sample="${esc(L.inq)}">Musterverklebung anfragen</button><a class="btn s-btn-out" href="#${L.calc?key+'/lp-rechner':'wirtschaftlichkeitsrechner'}">Wirtschaftlichkeit berechnen</a></div></div>
+      <div class="pact"><button class="btn btn-primary" type="button" data-sample="${esc(L.inq)}">Musterverklebung anfragen</button><a class="btn s-btn-out" href="#${L.calc?key+'/lp-rechner':'wirtschaftlichkeitsrechner'}">Wirtschaftlichkeit berechnen</a></div>${L.note?`<span class="dn">${L.note}</span>`:''}</div>
     <figure class="lp-media${L.contain?' contain':''}" style="margin:0"><img src="${L.img}" alt="${L.alt}" width="${L.imgW}" height="${L.imgH}"></figure>
   </div></section>`);
   parts.push(sec('s-sec-dark',[L.apps.eye,L.apps.h,L.apps.p],`<div class="lp-apps">${L.apps.items.map(([t,x])=>`<article class="lp-app"><h3>${t}</h3><p>${x}</p></article>`).join('')}</div>`));
@@ -2787,9 +2870,9 @@ function viewLanding(key){
     <div class="lp-vars">${GJ_VARS.map(([t,s,u,im])=>`<a class="lp-var" href="pdf/${u}" target="_blank" rel="noopener"><img src="${IMG[im]}" alt="" loading="lazy"><span><b>${t}</b><span>${s}</span></span></a>`).join('')}<a class="btn btn-primary" href="#gluejet" style="justify-self:start;margin-top:6px">Zum GLUEJET® ${ARR}</a></div></div>`));
   parts.push(whyHTML('lp-white'));
   if(L.calc) parts.push(`<section class="block s-sec-dark" id="lp-rechner"><div class="wrap"><div class="k-sec-head"><span class="eyebrow">Wirtschaftlichkeit</span><h2>Was bringt die Automatisierung Ihres Klebeprozesses?</h2><p>Geben Sie Ihre eigenen Werte ein. Das Ergebnis aktualisiert sich sofort.</p></div>${calcHTML()}</div></section>`);
-  if(L.refs) parts.push(sec('lp-band',['Praxis','Kundenanwendungen aus der Praxis','Reale Projekte zeigen am besten, was der GLUEJET® leistet.'],`${refCards(2)}<div class="pact" style="margin-top:22px"><a class="btn s-btn-out" href="#referenzen">Alle Referenzen ${ARR}</a></div>`));
+  /* Referenzbereich auf den Anwendungsseiten entfällt, bis freigegebene Kundenprojekte vorliegen (Seite „Referenzen“ zeigt den Hinweis). */
   if(L.vids) parts.push(sec('lp-white',['Videos','Reale Produktionsprozesse mit dem GLUEJET®'],vidsHTML(GJ_VIDS,'GLUEJET')));
-  parts.push(`<section class="s-cta"><div class="wrap s-cta-in"><div><h2>Testen Sie den GLUEJET® mit Ihrem Material</h2><p>Wir verkleben Ihre Musterteile mit passendem Klebstoff, bei Ihnen per Einsendung oder live in unserem Showroom in Essen.</p></div><div class="pact" style="margin:0"><button class="btn btn-primary" type="button" data-sample="${esc(L.inq)}">Musterverklebung anfragen</button><a class="btn s-btn-out-light" href="#kontakt" data-showroom>Showroom-Termin</a></div></div></section>`);
+  parts.push(`<section class="s-cta"><div class="wrap s-cta-in"><div><h2>Testen Sie den GLUEJET® mit Ihrem Material</h2><p>Wir verkleben Ihre Musterteile mit passendem Klebstoff, bei Ihnen per Einsendung oder live in unserem Showroom.</p></div><div class="pact" style="margin:0"><button class="btn btn-primary" type="button" data-sample="${esc(L.inq)}">Musterverklebung anfragen</button><a class="btn s-btn-out-light" href="#kontakt" data-showroom>Showroom-Termin</a></div></div></section>`);
   parts.push(sec('lp-band',['Fragen und Antworten','Häufige Fragen'],`<div class="vt-acc" style="max-width:900px">${L.faq.map(([q,a])=>`<details class="vt-item"><summary>${q}</summary><div class="faq-a">${a}</div></details>`).join('')}</div>`));
   parts.push(sec('lp-white',['Weitere Anwendungen','Der GLUEJET® in anderen Bereichen'],appCards(key)));
   return parts.join('');
@@ -2803,10 +2886,10 @@ function viewRechner(){
   <section class="block lp-band"><div class="wrap"><div class="k-sec-head"><span class="eyebrow">Anwendungen</span><h2>Klebeplotter nach Anwendung</h2></div>${appCards('wirtschaftlichkeitsrechner')}</div></section>`;
 }
 const TITLES={start:'Bickers Klebetechnik | Klebeplotter, Klebepistolen und Klebstoffe',maschinen:'XY-Klebeplotter GLUEJET® und TAPEJET® | Bickers',gluejet:'GLUEJET® XY-Klebeplotter für Heiß- und Kaltleim | Bickers',tapejet:'TAPEJET® Klebebandplotter | Bickers',klebstoffe:'Klebepistolen und Industrieklebstoffe | Bickers',wirtschaftlichkeitsrechner:'Wirtschaftlichkeitsrechner Klebeplotter: Amortisation berechnen | Bickers',faq:'FAQ Klebstoffe und Klebeplotter | Bickers',news:'Messen und News | Bickers',kontakt:'Kontakt | Bickers Klebetechnik Essen',unternehmen:'Über uns | Bickers Klebetechnik',vertreter:'Vertreter weltweit | Bickers'};
-const DESCS={start:'Bickers Klebetechnik aus Essen: XY-Klebeplotter GLUEJET® und TAPEJET®, Klebepistolen, Schmelz- und Kaltklebstoffe. Über 500 installierte Maschinen weltweit.',maschinen:'XY-Klebeplotter für Verpackungen, Wellpappe und POS-Displays: GLUEJET® für Heiß- und Kaltleim, TAPEJET® für Klebeband.',gluejet:'GLUEJET® XY-Klebeplotter: bis 2,0 m/s, effektiv bis 6,0 m/s mit TRIPLE-Smart-Head, Formate bis 2.000 × 3.000 mm, Heiß- und Kaltleim.',wirtschaftlichkeitsrechner:'Berechnen Sie Arbeitszeitersparnis, Personalkostenpotenzial und Amortisation eines automatisierten Klebstoffauftrags.'};
+const DESCS={start:'Bickers Klebetechnik aus Essen: XY-Klebeplotter GLUEJET® und TAPEJET®, Klebepistolen, Schmelz- und Kaltklebstoffe. Über 500 installierte Maschinen weltweit.',maschinen:'XY-Klebeplotter für Verpackungen, Wellpappe und POS-Displays: GLUEJET® für Heiß- und Kaltleim, TAPEJET® für Klebeband.',gluejet:'GLUEJET® XY-Klebeplotter: bis 2,0 m/s, mit TRIPLE-Smart-Head bis 6,0 m/s Auftragsleistung, Formate bis 2.000 × 3.000 mm, Heiß- und Kaltleim.',wirtschaftlichkeitsrechner:'Berechnen Sie Arbeitszeitersparnis, Personalkostenpotenzial und Amortisation eines automatisierten Klebstoffauftrags.'};
 /* v.3: eigener Titel und eigene Description für jede Seite (keine Dubletten) */
 Object.assign(TITLES,{tapejet:'TAPEJET® XY-Klebebandplotter für Klebeband | Bickers',mechanische:'Mechanische Klebepistolen Exakt® | Bickers',pneumatische:'Pneumatische Klebepistolen und Dosiergeräte | Bickers',tank:'Tankschmelzgerät DuraBlue™ 4L | Bickers',zubehoer:'Wechseldüsen und Zubehör für Klebepistolen | Bickers',schmelzklebstoffe:'Schmelzklebstoffe: Sticks, Granulat, Spezialkleber | Bickers',kaltklebstoffe:'Kaltklebstoffe und 2K-Klebstoffe | Bickers',klebstoffentferner:'Klebstoffentferner und Reinigungsmittel | Bickers','bio-schmelzklebstoffe':'Biologisch abbaubare Schmelzklebstoffe | Bickers','gluejet-oder-tapejet':'GLUEJET® oder TAPEJET®? Leim oder Klebeband | Bickers','software-bedienung':'Klebeplotter Software und Bedienung | GLUEJET® Bickers',lebenszykluskosten:'Lebenszykluskosten Klebeplotter berechnen | Bickers',musterverklebung:'Musterverklebung und Produktvorführung | GLUEJET® Bickers',referenzen:'Referenzen und Kundenanwendungen | Bickers',service:'Service, Ersatzteile und Fernwartung | Bickers',ratgeber:'Ratgeber Klebetechnik und Klebeplotter | Bickers','livegang-checkliste':'Livegang-Checkliste (intern) | Bickers'});
-Object.assign(DESCS,{tapejet:'TAPEJET® XY-Klebebandplotter: Klebebänder 8–29 mm automatisch aufbringen, bis 1,0 m/s, ±0,5 mm, Kamerakorrektur und Pick & Place.',klebstoffe:'Mechanische und pneumatische Klebepistolen, Tankschmelzgeräte sowie Schmelz- und Kaltklebstoffe von Bickers aus Essen.',mechanische:'Bickers Exakt® Klebepistolen für 11,3- und 18,3-mm-Sticks: von der handlichen VE-192 bis zur 600-W-Industriepistole Super-306.',pneumatische:'Druckluft-Dosiergeräte, Heißsprühsysteme und Mikrodosiertechnik für reproduzierbaren Klebstoffauftrag von 50 bis 210 °C.',tank:'Vollelektrisches Tankschmelzgerät DuraBlue™ 4L: 4,7 kg/h Schmelzleistung, fünf Heizzonen, ohne Druckluft betreibbar.',zubehoer:'Kegel-, Fein-, Lang- und Winkeldüsen sowie Zubehör für Bickers Klebepistolen und Tankschmelzgeräte.',schmelzklebstoffe:'Klebesticks, Klebegranulate, Haft- und Spezialschmelzklebstoffe für Handwerk und Industrie, abgestimmt auf Ihre Anwendung.',kaltklebstoffe:'Cyanacrylat, MS-Polymer, leitfähige Kleber und 2K-Klebstoffe von Bickers für Anwendungen jenseits des Standards.',klebstoffentferner:'Klebstoffentferner, Kaltreiniger und Reinigungsgranulat für Hände, Oberflächen, Tankschmelzanlagen und Auftragsköpfe.','bio-schmelzklebstoffe':'Biologisch abbaubare Schmelzklebstoffe für Verpackungen: verarbeitbar mit Klebepistole, Tankschmelzgerät und GLUEJET® Klebeplotter.','gluejet-oder-tapejet':'Leimauftrag oder Klebebandauftrag? GLUEJET® und TAPEJET® im direkten Vergleich: Geschwindigkeit, Formate, Präzision und Anwendungen.','software-bedienung':'So programmieren Sie den GLUEJET®: CAD- und DXF-Import, Joystick, Laser und Kamera, unbegrenzte Programme und Fernwartung.',lebenszykluskosten:'Was kostet ein Klebeplotter über 10 bis 20 Jahre? Vergleichen Sie Anschaffung, Wartung, Ersatzteile, Energie und Stillstand.',musterverklebung:'Testen Sie den GLUEJET® mit Ihrem Material: Musterverklebung per Einsendung, live im Showroom Essen oder als Online-Vorführung.',referenzen:'Kundenanwendungen mit GLUEJET® und TAPEJET®: Branchen, Materialien und messbare Ergebnisse aus der Praxis.',service:'Installation, Einweisung, Fernwartung, Wartung und Ersatzteile für Klebepistolen, Tankschmelzgeräte und Klebeplotter.',faq:'Antworten zu Klebstoffen, Klebepistolen, Klebeplottern, Musterverklebung, Lebenszykluskosten und Service von Bickers.',news:'Messetermine und Neuigkeiten von Bickers: GLUEJET® und TAPEJET® live erleben, auf Messen und im Showroom in Essen.',ratgeber:'Fachartikel zu Klebeplottern und Klebstoffen: Wirtschaftlichkeit, Heiß- oder Kaltleim, Klebeband oder Leim.',unternehmen:'Bickers Klebetechnik aus Essen: seit 45 Jahren Klebstoffe, Klebepistolen und Klebeplotter. Werte, Sortiment und Stellenangebote.',kontakt:'Kontakt zu Bickers Klebetechnik in Essen: Telefon, E-Mail, Anfahrt und Kontaktformular für Klebstoffe und Klebeplotter.',vertreter:'Bickers Vertreter in 68 Ländern und 6 Regionen: Ansprechpartner für Klebepistolen, Klebstoffe und Klebeplotter weltweit.'});
+Object.assign(DESCS,{tapejet:'TAPEJET® XY-Klebebandplotter: Klebebänder 8–29 mm automatisch aufbringen, bis 1,0 m/s, ±0,5 mm, Kamerakorrektur und Pick & Place.',klebstoffe:'Mechanische und pneumatische Klebepistolen, Tankschmelzgeräte sowie Schmelz- und Kaltklebstoffe von Bickers aus Essen.',mechanische:'Bickers Exakt® Klebepistolen für 11,3- und 18,3-mm-Sticks: von der handlichen VE-192 bis zur 600-W-Industriepistole Super-306.',pneumatische:'Druckluft-Dosiergeräte, Heißsprühsysteme und Mikrodosiertechnik für reproduzierbaren Klebstoffauftrag von 50 bis 210 °C.',tank:'Vollelektrisches Tankschmelzgerät DuraBlue™ 4L: 4,7 kg/h Schmelzleistung, fünf Heizzonen, ohne Druckluft betreibbar.',zubehoer:'Kegel-, Fein-, Lang- und Winkeldüsen sowie Zubehör für Bickers Klebepistolen und Tankschmelzgeräte.',schmelzklebstoffe:'Klebesticks, Klebegranulate, Haft- und Spezialschmelzklebstoffe für Handwerk und Industrie, abgestimmt auf Ihre Anwendung.',kaltklebstoffe:'Cyanacrylat, MS-Polymer, leitfähige Kleber und 2K-Klebstoffe von Bickers für Anwendungen jenseits des Standards.',klebstoffentferner:'Klebstoffentferner, Kaltreiniger und Reinigungsgranulat für Hände, Oberflächen, Tankschmelzanlagen und Auftragsköpfe.','bio-schmelzklebstoffe':'Biologisch abbaubare Schmelzklebstoffe für Verpackungen: verarbeitbar mit Klebepistole, Tankschmelzgerät und GLUEJET® Klebeplotter.','gluejet-oder-tapejet':'Leimauftrag oder Klebebandauftrag? GLUEJET® und TAPEJET® im direkten Vergleich: Geschwindigkeit, Formate, Präzision und Anwendungen.','software-bedienung':'So programmieren Sie den GLUEJET®: CAD- und DXF-Import, Joystick, Laser und Kamera, unbegrenzte Programme und Fernwartung.',lebenszykluskosten:'Was kostet ein Klebeplotter über 10 bis 20 Jahre? Vergleichen Sie Anschaffung, Wartung, Ersatzteile, Energie und Stillstand.',musterverklebung:'Testen Sie den GLUEJET® mit Ihrem Material: Musterverklebung per Einsendung, live im Showroom oder als Online-Vorführung.',referenzen:'Kundenanwendungen mit GLUEJET® und TAPEJET®: Branchen, Materialien und messbare Ergebnisse aus der Praxis.',service:'Installation, Einweisung, Fernwartung, Wartung und Ersatzteile für Klebepistolen, Tankschmelzgeräte und Klebeplotter.',faq:'Antworten zu Klebstoffen, Klebepistolen, Klebeplottern, Musterverklebung, Lebenszykluskosten und Service von Bickers.',news:'Messetermine und Neuigkeiten von Bickers: GLUEJET® und TAPEJET® live erleben, auf Messen und im Showroom.',ratgeber:'Fachartikel zu Klebeplottern und Klebstoffen: Wirtschaftlichkeit, Heiß- oder Kaltleim, Klebeband oder Leim.',unternehmen:'Bickers Klebetechnik aus Essen: seit 45 Jahren Klebstoffe, Klebepistolen und Klebeplotter. Werte, Sortiment und Stellenangebote.',kontakt:'Kontakt zu Bickers Klebetechnik in Essen: Telefon, E-Mail, Anfahrt und Kontaktformular für Klebstoffe und Klebeplotter.',vertreter:'Bickers Vertreter in 68 Ländern und 6 Regionen: Ansprechpartner für Klebepistolen, Klebstoffe und Klebeplotter weltweit.'});
 function setMeta(v){
   const L=LP[v], sub=SUBS.find(s=>s[0]===v), R=(typeof RG!=='undefined')&&RG.find(a=>'ratgeber-'+a.id===v), reg=v.startsWith('vertreter-')&&VT_R[v.slice(10)];
   const t=(L&&L.title)||(R&&R.t+' | Bickers Ratgeber')||(reg&&'Vertreter '+reg.n+' | Bickers')||TITLES[v]||(sub?sub[1]+' | Bickers':'Bickers Klebetechnik');
@@ -2832,7 +2915,8 @@ function route(){
   postRender(window.__view);
   document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.nav===(NAV_GROUP[v]||v)));
   if(target){ const el=document.getElementById(target); if(el && el.tagName==='DETAILS'){ el.open=true; setTimeout(()=>{ const y=el.getBoundingClientRect().top+window.scrollY-140; window.scrollTo(0,Math.max(0,y)); },150); } else if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth',block:'start'})); }
-  $('#mainNav').classList.remove('open');
+  $('#mainNav').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded','false');
+  document.querySelectorAll('nav.main .dd').forEach(dd=>{ dd.classList.remove('open'); const t=dd.querySelector('.dd-tog'); if(t) t.setAttribute('aria-expanded','false'); });
   document.body.classList.toggle('grp-kleb', v==='klebstoffe' || NAV_GROUP[v]==='klebstoffe');
   document.body.classList.toggle('kleb-sub', NAV_GROUP[v]==='klebstoffe' && v!=='klebstoffe');
   document.body.classList.toggle('hdr-auto', false); { const hb=Math.max(0,Math.min(1,window.scrollY/Math.max(200,innerHeight*.6))); document.body.style.setProperty('--hb',hb.toFixed(3)); document.body.classList.toggle('hdr-show', hb>.55); }
@@ -2866,15 +2950,43 @@ document.addEventListener('click',e=>{
     dl.replaceWith(n); return; }
   const jb=e.target.closest('[data-job]'); if(jb){ openJob(jb.dataset.job); return; }
   if(e.target.closest('[data-calc-inq]')){ calcInquiry(); return; }
-  const ddl=e.target.closest('.dd-menu a'); if(ddl){ const dd=ddl.closest('.dd'); dd.classList.add('dd-closed'); if(document.activeElement) document.activeElement.blur(); dd.addEventListener('mouseleave',()=>dd.classList.remove('dd-closed'),{once:true}); }
+  /* Jeder Klick im Menü schließt es: Einträge im Dropdown und der Menüpunkt selbst (Übersicht). Im Klapp-Menü klappt der Menüpunkt nur auf (defaultPrevented). */
+  const ddl=e.target.closest('nav.main .dd-menu a, nav.main .dd > a'); if(ddl && !e.defaultPrevented){ const dd=ddl.closest('.dd'); if(document.activeElement) document.activeElement.blur();
+    if(dd.matches(':hover')){ dd.classList.add('dd-closed'); dd.addEventListener('mouseleave',()=>dd.classList.remove('dd-closed'),{once:true}); } }
   const t=e.target.closest('[data-inquiry]'); if(t) openInquiry(t.dataset.inquiry);
 });
 document.addEventListener('mouseover',e=>{ const el=e.target.closest('.zb-n,.zb-list li'); if(!document.querySelector('#app .zb-noz')) return; const n=el?el.dataset.n:null; document.querySelectorAll('#app .zb-n,#app .zb-list li').forEach(x=>x.classList.toggle('on',n!==null&&x.dataset.n===n)); });
 document.addEventListener('input',e=>{ const rk=e.target.dataset&&e.target.dataset.rc; if(rk){ document.querySelectorAll('[data-rc="'+rk+'"]').forEach(x=>{ if(x!==e.target) x.value=e.target.value; }); calcUpdate(); return; } if(e.target.id==='vtFind'){ vtFindRender(e.target.value); return; } if(e.target.id!=='vtSearch') return; const q=e.target.value.trim().toLowerCase(); let n=0; document.querySelectorAll('#vtAcc .vt-item').forEach(d=>{ const ok=!q||d.dataset.q.includes(q); d.hidden=!ok; if(ok) n++; }); const em=document.querySelector('#vtAcc .vt-empty'); if(em) em.hidden=n>0; });
-$('#menuBtn').onclick=()=>$('#mainNav').classList.toggle('open');
+$('#menuBtn').onclick=()=>{ const o=$('#mainNav').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded',o);
+  /* Kopfleiste beim Öffnen an den oberen Rand holen, damit das ganze Menü in den Bildschirm passt */
+  if(o){ const hd=document.querySelector('header.site'), top=hd.getBoundingClientRect().top; if(top>1) window.scrollBy({top:top,behavior:FX_REDUCED?'auto':'smooth'}); } };
+$('#menuBtn').setAttribute('aria-controls','mainNav'); $('#menuBtn').setAttribute('aria-expanded','false');
+const NARROW=window.matchMedia('(max-width:960px)'), FINE=window.matchMedia('(hover:hover) and (pointer:fine)');
+/* Abstand zwischen Menüpunkt und Unterkante der Kopfleiste messen: so hoch wird die unsichtbare Brücke zum Mega-Menü */
+function setDdGap(){ const hd=document.querySelector('header.site'), a=document.querySelector('nav.main .dd > a'); if(!hd||!a||NARROW.matches) return; hd.style.setProperty('--dd-gap',Math.max(0,Math.ceil(hd.getBoundingClientRect().bottom-a.getBoundingClientRect().bottom))+'px'); }
+document.querySelectorAll('nav.main .dd').forEach(dd=>dd.addEventListener('mouseenter',setDdGap));
+window.addEventListener('resize',setDdGap); window.addEventListener('scroll',setDdGap,{passive:true}); setDdGap();
+/* Handy: Pfeil-Button je Untermenü (auf dem Desktop ausgeblendet, dort öffnet Hover oder Fokus) */
+document.querySelectorAll('nav.main .dd').forEach((dd,i)=>{ const a=dd.querySelector(':scope > a'), m=dd.querySelector('.dd-menu'); m.id=m.id||'ddm-'+i;
+  const b=document.createElement('button'); b.type='button'; b.className='dd-tog'; b.setAttribute('aria-expanded','false'); b.setAttribute('aria-controls',m.id); b.setAttribute('aria-label',a.textContent.trim()+': Untermenü öffnen');
+  b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  const setOpen=o=>{ document.querySelectorAll('nav.main .dd.open').forEach(x=>{ if(x!==dd){ x.classList.remove('open'); x.querySelector('.dd-tog').setAttribute('aria-expanded','false'); } }); dd.classList.toggle('open',o); dd.classList.remove('dd-closed'); b.setAttribute('aria-expanded',o); };
+  b.onclick=()=>setOpen(!dd.classList.contains('open'));
+  /* Erster Eintrag im Klapp-Menü: die Übersichtsseite, weil ein Klick auf den Menüpunkt dort das Untermenü öffnet */
+  const ov=document.createElement('a'); ov.href=a.getAttribute('href'); ov.className='dd-over'; ov.textContent='Übersicht: '+a.textContent.trim(); m.prepend(ov);
+  /* Klapp-Menü (bis 960 px): Klick auf den Menüpunkt klappt auf statt die Übersicht zu laden; mit Maus öffnet schon das Drüberfahren */
+  a.addEventListener('click',e=>{ if(NARROW.matches){ e.preventDefault(); setOpen(!dd.classList.contains('open')); } });
+  let ht=null;
+  dd.addEventListener('mouseenter',()=>{ if(!NARROW.matches||!FINE.matches||dd.classList.contains('open')) return; clearTimeout(ht); ht=setTimeout(()=>setOpen(true),120); });
+  dd.addEventListener('mouseleave',()=>clearTimeout(ht));
+  a.after(b); });
 $('#langBtn').onclick=()=>toast('Englische Version folgt (Demo).');
 $('#overlay').onclick=closeAll; $('#modalClose').onclick=closeAll;
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
+document.addEventListener('keydown',e=>{ if(e.key!=='Escape') return; closeAll();
+  /* Escape schließt auch ein offenes Dropdown: Fokus zurück auf den Menüpunkt, Menü zu, bis Maus oder Fokus es wieder verlassen */
+  const dd=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('nav.main .dd');
+  if(dd){ dd.classList.add('dd-closed'); dd.querySelector(':scope > a').focus(); const reopen=()=>dd.classList.remove('dd-closed'); dd.addEventListener('mouseleave',reopen,{once:true}); dd.addEventListener('focusout',ev=>{ if(!dd.contains(ev.relatedTarget)) reopen(); },{once:true}); dd.querySelector(':scope > a').addEventListener('keydown',ev=>{ if(ev.key==='ArrowDown'||ev.key==='Tab'){ reopen(); } },{once:true}); }
+});
 window.addEventListener('resize',()=>{ const hd=document.querySelector('header.site'); if(hd && window.scrollY<10) document.documentElement.style.setProperty('--hdr',hd.getBoundingClientRect().height+'px'); });
 window.addEventListener('hashchange',()=>{ if(!location.hash.includes('/')) window.scrollTo(0,0); route(); });
 
@@ -2897,7 +3009,12 @@ function whyHTML(cls){ return `<section class="block why-band ${cls}"><div class
   <div class="why-foot"><p>Vergleichen Sie Anschaffung, Wartung, Ersatzteile und Stillstand über die Nutzungsdauer.</p><div class="pact"><a class="btn btn-primary" href="#lebenszykluskosten">Lebenszykluskosten berechnen ${ARR}</a><a class="btn s-btn-out" href="#referenzen">Referenzen ansehen</a></div></div>
   <span class="dn">Jede Aussage braucht vor Livegang einen Nachweis: aktuelle Installationszahl, Referenzmaschinen mit Baujahr, Ersatzteildaten. Übersicht in der <a href="#livegang-checkliste">Livegang-Checkliste</a>.</span>
 </div></section>`; }
-function refCards(n){ return `<div class="lp-refs">${Array.from({length:n},(_,i)=>`<article class="lp-ref"><span class="tag">Platzhalter · Kundenanwendung ${i+1}</span><h3>Hier erscheint eine reale Anwendung mit Foto und Ergebnis</h3><p>Vor dem Livegang durch ein freigegebenes Kundenprojekt ersetzen.</p><dl><dt>Branche</dt><dd>nach Freigabe</dd><dt>Aufgabe</dt><dd>nach Freigabe</dd><dt>Material, Klebstoff</dt><dd>nach Freigabe</dd><dt>Ergebnis</dt><dd>messbar, z. B. Sekunden je Stück vorher und nachher</dd><dt>Amortisation</dt><dd>nach Freigabe</dd></dl></article>`).join('')}</div>`; }
+/* v.4: drei konkrete Referenzprojekte als Vorlage (Empfehlung der Analyse), statt allgemeiner Platzhalter */
+const REF_TPL=[
+ {h:'GLUEJET® seit mehr als zehn Jahren im Dauerbetrieb',p:'Wie sich eine Anlage nach vielen Betriebsjahren im Schichtbetrieb bewährt: Laufzeit, Wartung und Ersatzteile.',goal:'Nachweis: Baujahr, Betriebsjahre, Schichtmodell, Wartungsaufwand aus der Servicehistorie.',dl:['Kunde und Branche','In Betrieb seit','Schichten pro Tag','Wartung und Ersatzteile']},
+ {h:'Mehr Produktivität in der Verpackungsfertigung',p:'Was die Automatisierung des Klebstoffauftrags bei einem Verpackungshersteller verändert hat, mit Zahlen vorher und nachher.',goal:'Nachweis: Zeit je Stück vorher und nachher, Klebstoffverbrauch, Amortisation.',dl:['Anwendung','Zeit je Stück vorher und nachher','Klebstoffverbrauch','Amortisation']},
+ {h:'Displayhersteller mit mehreren GLUEJET®',p:'Warum ein Hersteller von Displays nach der ersten Anlage weitere GLUEJET® angeschafft hat.',goal:'Nachweis: Anzahl Anlagen, Jahr der ersten und letzten Anschaffung, Einsatzzweck, Zitat.',dl:['Anzahl GLUEJET®','Erste und letzte Anlage','Produkte','Stimme des Kunden']}];
+function refCards(n){ return `<div class="lp-refs">${REF_TPL.slice(0,Math.min(n,REF_TPL.length)).map(r=>`<article class="lp-ref"><span class="tag">Bald verfügbar</span><h3>${r.h}</h3><p>${r.p}</p><dl>${r.dl.map(a=>`<dt>${a}</dt><dd>bald verfügbar</dd>`).join('')}</dl><span class="dn">${r.goal}</span></article>`).join('')}</div>`; }
 const headDark=(eye,h,p,act)=>`<div class="page-head"><div class="wrap"><span class="eyebrow">${eye}</span><h2>${h}</h2>${p?`<p>${p}</p>`:''}${act?`<div class="pact" style="margin-top:22px">${act}</div>`:''}</div></div>`;
 const secH=(eye,h,p)=>`<div class="k-sec-head"><span class="eyebrow">${eye}</span><h2>${h}</h2>${p?`<p>${p}</p>`:''}</div>`;
 const SAMPLE_BTN=(ctx,label='Musterverklebung anfragen',cls='btn-primary')=>`<button class="btn ${cls}" type="button" data-sample="${esc(ctx)}">${label}</button>`;
@@ -2912,13 +3029,13 @@ function openSample(ctx){
     <div class="sr-top"><span class="eyebrow">Musterverklebung</span><h2>Ihr Material, unser Klebeplotter</h2><p>Wir verkleben Ihre Musterteile mit passendem Klebstoff und besprechen das Ergebnis mit Ihnen. Wir melden uns innerhalb eines Werktags.</p></div>
     <input type="hidden" id="sm-subject" value="Musterverklebung: ${esc(ctx)}">
     <div class="sr-body">
-      <fieldset class="sr-pick"><legend>Wie möchten Sie testen?</legend>${pick('sm-how',['Muster einsenden','Live im Showroom Essen','Online-Vorführung per Video'],how)}</fieldset>
+      <fieldset class="sr-pick"><legend>Wie möchten Sie testen?</legend>${pick('sm-how',['Muster einsenden','Live im Showroom','Online-Vorführung per Video'],how)}</fieldset>
       <div class="form-grid">
         <div class="field"><label for="sm-firma">Unternehmen *</label><input id="sm-firma" autocomplete="organization" required><span class="err">Bitte Unternehmen angeben.</span></div>
         <div class="field"><label for="sm-name">Name *</label><input id="sm-name" autocomplete="name" required><span class="err">Bitte Namen angeben.</span></div>
         <div class="field"><label for="sm-mail">E-Mail *</label><input id="sm-mail" type="email" autocomplete="email" required><span class="err">Bitte gültige E-Mail angeben.</span></div>
         <div class="field"><label for="sm-tel">Telefon <span class="opt">optional</span></label><input id="sm-tel" type="tel" autocomplete="tel"></div>
-        ${sel('sm-app','Anwendung',['Verpackungen','Wellpappe','POS-Displays','Möbel und Holz','Andere Anwendung'])}
+        ${sel('sm-app','Anwendung',['Verpackungen','Wellpappe','POS-Displays','Sonderverpackungen','Schwerlastverpackungen','Kleinserien und Muster','Gefache und Inlays','Wabenplatten','Schaumstoffeinlagen','Industrie- und Automobilverpackungen','Möbel und Holz','Andere Anwendung'])}
         ${sel('sm-kleb','Klebstoff',['Heißleim','Kaltleim','Klebeband','Noch offen, bitte beraten'])}
         <div class="field"><label for="sm-mat">Material</label><input id="sm-mat" placeholder="z. B. Wellpappe, B-Welle, bedruckt"></div>
         <div class="field"><label for="sm-menge">Stückzahl pro Tag</label><input id="sm-menge" inputmode="numeric" placeholder="z. B. 2.000"></div>
@@ -2941,7 +3058,7 @@ function viewMuster(){
   <section class="block lp-band"><div class="wrap">${secH('Drei Wege','So testen Sie mit Ihrem Material')}
     <div class="opt-cards">
       <article class="opt-card"><h3>Muster einsenden</h3><p>Sie schicken uns Zuschnitte oder Bauteile. Wir verkleben sie und senden Ihnen die Muster mit unserer Einschätzung zurück.</p>${SAMPLE_BTN('Musterverklebung per Einsendung','Einsendung anmelden')}</article>
-      <article class="opt-card"><h3>Live im Showroom Essen</h3><p>Sie bringen Ihr Material mit und sehen den Klebstoffauftrag direkt an der Maschine. Programm, Klebstoff und Taktzeit besprechen wir vor Ort.</p>${SAMPLE_BTN('Musterverklebung im Showroom','Termin anfragen','s-btn-out')}</article>
+      <article class="opt-card"><h3>Live im Showroom</h3><p>Sie bringen Ihr Material mit und sehen den Klebstoffauftrag direkt an der Maschine. Programm, Klebstoff und Taktzeit besprechen wir vor Ort.</p>${SAMPLE_BTN('Musterverklebung im Showroom','Termin anfragen','s-btn-out')}</article>
       <article class="opt-card"><h3>Online-Vorführung</h3><p>Wir zeigen Ihnen den GLUEJET® per Video live aus dem Showroom, gern mit Ihrem eingesandten Material.</p>${SAMPLE_BTN('Online-Vorführung','Vorführung anfragen','s-btn-out')}</article>
     </div>
     <span class="dn">Ablauf, Dauer und eventuelle Kosten der Musterverklebung mit dem Vertrieb festlegen. Die Online-Vorführung nur anbieten, wenn sie organisatorisch abgesichert ist.</span>
@@ -2955,7 +3072,7 @@ function viewMuster(){
 
 /* ---------- Seite: GLUEJET oder TAPEJET ---------- */
 function viewVergleich(){
-  const rows=[['Auftrag','Heiß- und Kaltleim als Raupe, Punkt oder Fläche (Sprühauftrag)','Klebebänder von 8 bis 29 mm Breite, ab 25 mm Länge'],['Geschwindigkeit','bis 2,0 m/s, effektiv bis 6,0 m/s mit TRIPLE-Smart-Head','bis 1,0 m/s, stufenlos wählbar'],['Format','1.300 × 1.800 bis 2.000 × 3.000 mm, Sondergrößen möglich','2.100 × 1.600 mm, Sondergrößen auf Anfrage'],['Präzision','programmgesteuert und reproduzierbar','±0,5 mm, Kamera korrigiert den Auftrag um bis zu ±20 mm'],['Programmierung','Joystick, Laser, Kamera, CAD- und DXF-Import','Joystick, Laser, Kamera, CAD- und DXF-Import'],['Materialhandling','Hubtische hydraulisch oder elektromechanisch, Stapelhöhe 350 oder 800 mm','zwei hydraulische Hubtische mit Pick & Place'],['Arbeitsplätze','bis zu 4, unabhängig programmierbar','bis zu 4, unabhängig nutzbar'],['Typisch für','Kaschieren, Verpackungen, Wellpappe, Displays, Möbelbau','doppelseitige Klebebänder an Displays, Druckbögen, Karton und Wellpappe']];
+  const rows=[['Auftrag','Heiß- und Kaltleim als Raupe, Punkt oder Fläche (Sprühauftrag)','Klebebänder von 8 bis 29 mm Breite, ab 25 mm Länge'],['Geschwindigkeit','Verfahrgeschwindigkeit bis 2,0 m/s; mit TRIPLE-Smart-Head bis 6,0 m/s Auftragsleistung (drei Köpfe parallel)','bis 1,0 m/s, stufenlos wählbar'],['Format','1.300 × 1.800 bis 2.000 × 3.000 mm, Sondergrößen möglich','2.100 × 1.600 mm, Sondergrößen auf Anfrage'],['Präzision','programmgesteuert und reproduzierbar','±0,5 mm, Kamera korrigiert den Auftrag um bis zu ±20 mm'],['Programmierung','Joystick, Laser, Kamera, CAD- und DXF-Import','Joystick, Laser, Kamera, CAD- und DXF-Import'],['Materialhandling','Hubtische hydraulisch oder elektromechanisch, Stapelhöhe 350 oder 800 mm','zwei hydraulische Hubtische mit Pick & Place'],['Arbeitsplätze','bis zu 4, unabhängig programmierbar','bis zu 4, unabhängig nutzbar'],['Typisch für','Kaschieren, Verpackungen, Wellpappe, Displays, Möbelbau','doppelseitige Klebebänder an Displays, Druckbögen, Karton und Wellpappe']];
   const pick=(id,img,w,h,name,sub,x)=>`<a class="pl-pick" href="#${id}"><span class="pl-pick-img"><img src="${img}" alt="${name}" width="${w}" height="${h}" loading="lazy"></span><span class="pl-pick-body"><span class="eyebrow">${sub}</span><b>${name}</b><span>${x}</span><span class="pl-pick-go">Zum ${name} ${ARR}</span></span></a>`;
   return `${headDark('Klebeplotter · Vergleich','GLUEJET® oder TAPEJET®?','Beide Anlagen sind XY-Plotter von Bickers. Der GLUEJET® trägt Leim auf, der TAPEJET® Klebeband. Welche passt, hängt davon ab, wie Ihre Teile verbunden werden sollen.')}
   <section class="block lp-band"><div class="wrap"><div class="pl-picks">
@@ -2981,7 +3098,7 @@ function viewSoftware(){
   <section class="block s-sec-dark"><div class="wrap">${secH('Im Produktionsalltag','Was die Bedienung im Alltag leichter macht')}
     <ul class="why-grid">${daily.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul></div></section>
   <section class="block lp-white"><div class="wrap">${secH('Einblick','Bedienoberfläche und Video')}
-    <div class="lp-refs"><article class="lp-ref"><span class="tag">Platzhalter · Screenshot</span><h3>Bedienoberfläche des GLUEJET®</h3><p>Hier erscheinen zwei bis drei Bildschirmfotos: Programmliste, Klebebild nach DXF-Import, Arbeitsplatzauswahl.</p></article><article class="lp-ref"><span class="tag">Platzhalter · Video</span><h3>Vom DXF zum Klebebild in zwei Minuten</h3><p>Kurzes Video: Datei laden, Klebstoff und Auftragsart wählen, erstes Teil kleben.</p></article></div>
+    <div class="lp-refs"><article class="lp-ref"><span class="tag">Bald verfügbar</span><h3>Bedienoberfläche des GLUEJET®</h3><p>Bildschirmfotos von Programmliste, Klebebild nach DXF-Import und Arbeitsplatzauswahl.</p></article><article class="lp-ref"><span class="tag">Bald verfügbar</span><h3>Vom DXF zum Klebebild in zwei Minuten</h3><p>Kurzes Video: Datei laden, Klebstoff und Auftragsart wählen, erstes Teil kleben.</p></article></div>
     <span class="dn">Screenshots und ein kurzes Bedienvideo liefern. Der Wettbewerb präsentiert Software ausführlich; hier besteht noch Nachholbedarf.</span></div></section>
   <section class="s-cta"><div class="wrap s-cta-in"><div><h2>Sehen Sie die Bedienung live</h2><p>In einer Online-Vorführung zeigen wir Ihnen die Programmierung an einem Beispiel aus Ihrer Fertigung.</p></div><div class="pact" style="margin:0">${SAMPLE_BTN('Online-Vorführung Software','Online-Vorführung anfragen')}<a class="btn s-btn-out-light" href="#gluejet">Zum GLUEJET®</a></div></div></section>`;
 }
@@ -3023,11 +3140,10 @@ document.addEventListener('input',e=>{ if(e.target.dataset && 'tco' in e.target.
 /* ---------- Seite: Referenzen ---------- */
 function viewReferenzen(){
   return `${headDark('Praxis','Referenzen und Kundenanwendungen','Wie GLUEJET® und TAPEJET® in der Produktion unserer Kunden arbeiten: mit Branche, Aufgabe und messbarem Ergebnis.',SAMPLE_BTN('Referenzen','Eigene Anwendung testen'))}
-  <section class="block lp-band"><div class="wrap">${secH('Kundenanwendungen','Ergebnisse aus der Praxis')}${refCards(4)}
-    <span class="dn">Mindestens drei freigegebene Kundenprojekte mit Foto und Kennzahlen (Zeit je Stück vorher und nachher, Klebstoffverbrauch, Amortisation) einholen.</span></div></section>
-  <section class="block lp-white"><div class="wrap">${secH('Langlebigkeit','Referenzanlagen mit Baujahr','Anlagen, die seit vielen Jahren im Einsatz sind, belegen die Lebensdauer besser als jede Beschreibung.')}
-    <div class="lp-cmp-wrap"><table class="lp-cmp even"><thead><tr><th scope="col">Baujahr</th><th scope="col">Branche</th><th scope="col">Anwendung</th><th scope="col">Status</th></tr></thead><tbody>${[1,2,3].map(()=>`<tr><th scope="row">nach Freigabe</th><td>nach Freigabe</td><td>nach Freigabe</td><td>in Betrieb</td></tr>`).join('')}</tbody></table></div>
-    <span class="dn">Aus der Installationsliste die ältesten noch laufenden GLUEJET® heraussuchen und Kunden um Freigabe bitten.</span></div></section>
+  <section class="block lp-band"><div class="wrap">
+    <div class="ref-soon"><span class="eyebrow">Kundenreferenzen</span><h2>Kundenreferenzen bald verfügbar.</h2><p>Hier stellen wir in Kürze ausgewählte Projekte unserer Kunden mit GLUEJET® und TAPEJET® vor.</p>
+      <div class="ref-next"><p>Bis dahin finden Sie alle Informationen zu unseren XY-Klebeplottern, ihren Einsatzbereichen und technischen Daten in der Übersicht.</p><a class="btn btn-primary" href="#maschinen">Zu GLUEJET® und TAPEJET® ${ARR}</a></div></div>
+    <span class="dn">Vorgesehen sind drei freigegebene Projekte mit Foto und Kennzahlen: eine Anlage mit mehr als zehn Jahren Laufzeit, ein Verpackungshersteller mit Zahlen vorher und nachher, ein Displayhersteller mit mehreren GLUEJET®. Dazu eine Liste der ältesten noch laufenden Anlagen mit Baujahr. Die rund 500 installierten Maschinen sind keine Zahl von Kundenunternehmen.</span></div></section>
   ${sectionHTML('partner')}
   <section class="s-cta"><div class="wrap s-cta-in"><div><h2>Wird Ihre Anwendung die nächste Referenz?</h2><p>Wir testen Ihre Teile mit passendem Klebstoff und zeigen Ihnen das Ergebnis.</p></div><div class="pact" style="margin:0">${SAMPLE_BTN('Referenzen CTA')}</div></div></section>`;
 }
@@ -3065,7 +3181,7 @@ const RG=[
  {id:'heissleim-oder-kaltleim',t:'Heißleim oder Kaltleim: Was passt zu Ihrer Verpackung?',d:'Abbindezeit, Flächenauftrag, saugfähige Oberflächen: die Unterschiede zwischen Schmelzklebstoff und Dispersionsleim in der Verpackungsfertigung.',key:['Heißleim bindet in Sekunden ab und eignet sich für Raupen und Punkte.','Kaltleim ist stark beim großflächigen Kaschieren.','Der GLUEJET® verarbeitet beides.'],
   body:`<h2>Heißleim: schnell und sofort belastbar</h2><p>Schmelzklebstoffe werden aufgeschmolzen aufgetragen und binden beim Abkühlen in Sekunden ab. Die Teile lassen sich sofort weiterverarbeiten. Typisch sind Raupen und Punkte auf Laschen, Stegen und Einlagen.</p><h2>Kaltleim: stark in der Fläche</h2><p>Dispersionsleime binden langsamer ab, dafür dringen sie in saugfähige Deckpapiere ein und verankern sich dort. Für das Kaschieren, Laminieren und Verstärken großer Flächen sind sie oft die bessere Wahl. Die Presszeit muss eingeplant werden.</p><h2>Entscheidungshilfe</h2><ul><li><strong>Taktzeit kritisch, Teile sofort stapeln:</strong> eher Heißleim</li><li><strong>Großflächiger Auftrag, Kaschieren:</strong> eher Kaltleim</li><li><strong>Sehr saugfähige Oberflächen:</strong> Kaltleim verankert sich, Heißleim haftet sofort an der Oberfläche</li><li><strong>Recycling und Nachhaltigkeit:</strong> fragen Sie nach <a href="#bio-schmelzklebstoffe">biologisch abbaubaren Schmelzklebstoffen</a></li></ul><h2>Beides mit einer Anlage</h2><p>Der <a href="#gluejet">GLUEJET®</a> trägt Heiß- und Kaltleim auf, als Raupe, Punkt oder Sprühbild. Die passenden <a href="#schmelzklebstoffe">Schmelzklebstoffe</a> und <a href="#kaltklebstoffe">Kaltklebstoffe</a> kommen aus dem Bickers-Sortiment. Welcher Klebstoff zu Ihrer Verpackung passt, testen wir in einer <a href="#musterverklebung">Musterverklebung</a>.</p>`},
  {id:'klebeplotter-oder-faltschachtelklebemaschine',t:'Klebeplotter oder Faltschachtelklebemaschine?',d:'Hohe Stückzahlen standardisierter Faltschachteln oder viele wechselnde Formate: wann welche Maschine die richtige ist.',key:['Für sehr hohe Stückzahlen gleicher Faltschachteln bleibt die Faltschachtelklebemaschine erste Wahl.','Bei Sonderformaten, Kleinserien und Flächenauftrag ist der Klebeplotter im Vorteil.','Beide Maschinen ergänzen sich häufig.'],
-  body:`<h2>Zwei Maschinen, zwei Aufgaben</h2><p>Eine Faltschachtelklebemaschine ist auf hohe Geschwindigkeit bei gleichbleibenden Formaten ausgelegt. Ein XY-Klebeplotter wie der GLUEJET® fährt dagegen jedes beliebige Klebebild ab: Raupen, Punkte und Flächen an jeder Stelle des Zuschnitts.</p><h2>Wo der Klebeplotter seine Stärken hat</h2><ul><li>Sonderformate und Zuschnitte, für die sich keine eigene Faltschachtelklebemaschine lohnt</li><li>Kleinserien und Muster: Klebebild per DXF übernehmen und sofort produzieren</li><li>Flächiger Sprühauftrag für das Kaschieren von Bögen</li><li>Einlagen, Stege und Gefache, die an beliebiger Position verklebt werden</li><li>großformatige Bögen bis 2.000 × 3.000 mm</li></ul><h2>Ergänzen statt ersetzen</h2><p>In vielen Betrieben laufen beide Maschinen nebeneinander. Die Faltschachtelklebemaschine übernimmt die Serie, der Klebeplotter alles, was heute noch von Hand geklebt wird. Typische Anwendungen zeigen wir auf der Seite <a href="#klebeplotter-verpackungen">Klebeplotter für Verpackungen</a>.</p>`},
+  body:`<h2>Zwei Maschinen, zwei Aufgaben</h2><p>Eine Faltschachtelklebemaschine ist auf hohe Geschwindigkeit bei gleichbleibenden Formaten ausgelegt. Ein XY-Klebeplotter wie der GLUEJET® fährt dagegen jedes beliebige Klebebild ab: Raupen, Punkte und Flächen an jeder Stelle des Zuschnitts.</p><h2>Wo der Klebeplotter seine Stärken hat</h2><ul><li>Sonderformate und Zuschnitte, für die sich keine eigene Faltschachtelklebemaschine lohnt</li><li>Kleinserien und Muster: Klebebild per DXF übernehmen und sofort produzieren</li><li>Flächiger Sprühauftrag für das Kaschieren von Bögen</li><li>Einlagen und Stege, die an beliebiger Position verklebt werden</li><li>großformatige Bögen bis 2.000 × 3.000 mm</li></ul><h2>Ergänzen statt ersetzen</h2><p>In vielen Betrieben laufen beide Maschinen nebeneinander. Die Faltschachtelklebemaschine übernimmt die Serie, der Klebeplotter alles, was heute noch von Hand geklebt wird. Typische Anwendungen zeigen wir auf der Seite <a href="#klebeplotter-verpackungen">Klebeplotter für Verpackungen</a>.</p>`},
  {id:'klebeband-oder-leim',t:'Klebeband oder Leim: GLUEJET® oder TAPEJET®?',d:'Wann Leimauftrag, wann doppelseitiges Klebeband die bessere Verbindung ist, und wie sich GLUEJET® und TAPEJET® ergänzen.',key:['Leim für feste, dauerhafte Konstruktionen.','Klebeband, wenn der Kunde später selbst montiert.','Beide Anlagen nutzen dieselben Konstruktionsdaten.'],
   body:`<h2>Leim: die Konstruktion zusammenhalten</h2><p>Für feste, dauerhafte Verbindungen in Verpackung, Display und Möbelbau ist Leim die erste Wahl. Der <a href="#gluejet">GLUEJET®</a> trägt Heiß- und Kaltleim programmgesteuert auf.</p><h2>Klebeband: vorbereiten für später</h2><p>Doppelseitiges Klebeband kommt dort zum Einsatz, wo die Verbindung erst beim Kunden geschlossen wird, etwa beim Aufbau eines Displays am Point of Sale. Der <a href="#tapejet">TAPEJET®</a> bringt Klebebänder von 8 bis 29 mm automatisch auf, mit Kamerakontrolle und ±0,5 mm Präzision.</p><h2>Beides kombinieren</h2><p>Viele Displays brauchen beides. Weil GLUEJET® und TAPEJET® mit denselben Konstruktionsdaten arbeiten, bleibt das Klebebild in beiden Schritten deckungsgleich. Den direkten Vergleich finden Sie unter <a href="#gluejet-oder-tapejet">GLUEJET® oder TAPEJET®?</a></p>`}
 ];
@@ -3130,8 +3246,8 @@ function viewCheckliste(){
 }
 function ckInit(){
   const list=document.getElementById('ckList'); if(!list) return;
-  let saved=[]; try{ saved=JSON.parse(localStorage.getItem('bickers-ck')||'[]'); }catch(_){}
-  const upd=()=>{ const cbs=[...list.querySelectorAll('input')], done=cbs.filter(c=>c.checked).length; cbs.forEach(c=>c.closest('li').classList.toggle('done',c.checked)); $('#ckCount').textContent=done+'/'+cbs.length; $('#ckProg').style.width=(done/cbs.length*100)+'%'; try{ localStorage.setItem('bickers-ck',JSON.stringify(cbs.map((c,i)=>c.checked?i:-1).filter(i=>i>=0))); }catch(_){} };
+  let saved=[]; try{ saved=JSON.parse(localStorage.getItem('bickers-ck-v4')||'[]'); }catch(_){}
+  const upd=()=>{ const cbs=[...list.querySelectorAll('input')], done=cbs.filter(c=>c.checked).length; cbs.forEach(c=>c.closest('li').classList.toggle('done',c.checked)); $('#ckCount').textContent=done+'/'+cbs.length; $('#ckProg').style.width=(done/cbs.length*100)+'%'; try{ localStorage.setItem('bickers-ck-v4',JSON.stringify(cbs.map((c,i)=>c.checked?i:-1).filter(i=>i>=0))); }catch(_){} };
   list.querySelectorAll('input').forEach((c,i)=>{ c.checked=saved.includes(i); c.onchange=upd; }); upd();
   $('#ckCopy').onclick=()=>{ const txt=MEASURES.map(([p,t,e,s],i)=>($('#ck-'+i).checked?'[x] ':'[ ] ')+p+' '+t+' | Aufwand: '+e+' | '+ST_L[s]).join('\n');
     const ok=()=>toast('Maßnahmenliste kopiert.');
@@ -3175,6 +3291,181 @@ document.addEventListener('click',e=>{ const s=e.target.closest('[data-sample]')
   const apply=()=>{ document.body.classList.toggle('no-dn',off); t.textContent=off?'Entwurfshinweise einblenden':'Entwurfshinweise ausblenden'; };
   t.onclick=()=>{ off=!off; try{ localStorage.setItem('bickers-dn',off?'off':'on'); }catch(_){} apply(); }; apply();
 })();
+
+/* =====================================================================
+   v.4: Umsetzung der Analyse „Bickers-Webseitenentwurf V3 im Wettbewerbsvergleich“ (25.11.2026)
+   Mega-Menü, weitere Anwendungsseiten, TRIPLE-Kommunikation, Referenzvorlagen, Checkliste mit 15 Punkten
+   ===================================================================== */
+
+/* ---------- GLUEJET: Was „bis 6,0 m/s“ bedeutet ---------- */
+function tripleHTML(){
+  const line=(x,y,w,d)=>`<path d="M${x} ${y}h${w}" stroke="var(--orange)" stroke-width="5" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${d}"/>`;
+  return `<section class="block lp-white" id="triple"><div class="wrap ab-two">
+    <div class="prose">${secH('TRIPLE-Smart-Head','Was „bis 6,0 m/s“ beim GLUEJET® bedeutet')}
+      <p>Der TRIPLE-Smart-Head trägt mit <strong>drei Köpfen gleichzeitig</strong> auf. Die Achsen fahren dabei mit bis zu <strong>2,0 m/s</strong>. In derselben Zeit, in der ein einzelner Kopf eine Klebelinie zieht, entstehen drei.</p>
+      <p>Daraus ergibt sich eine <strong>Auftragsleistung von bis zu 6,0 m/s</strong> Klebelinie. Die Verfahrgeschwindigkeit der Maschine bleibt bei bis zu 2,0 m/s.</p>
+      <p>Wie viel davon in Ihrer Produktion ankommt, hängt vom Klebebild ab. Parallel laufende Linien nutzen alle drei Köpfe. Einzelne Punkte oder unregelmäßige Konturen nutzen weniger davon. In einer <a href="#musterverklebung">Musterverklebung</a> messen wir den Durchsatz für Ihre Teile.</p>
+      <span class="dn">Nicht mit der Verfahrgeschwindigkeit eines Wettbewerbers vergleichen (F-Service nennt für den Phoenix 2 m/s). Vor Livegang ein Produktionsvideo und den gemessenen Durchsatz bei einer realen Kundenanwendung ergänzen.</span></div>
+    <figure class="tr-fig" style="margin:0"><svg viewBox="0 0 520 220" role="img" aria-label="Ein Kopf zieht eine Klebelinie, der TRIPLE-Smart-Head in derselben Zeit drei">
+      <text x="10" y="22" font-size="14" font-weight="700" fill="var(--blue-ink)">Ein Kopf</text>
+      <text x="275" y="22" font-size="14" font-weight="700" fill="var(--blue-ink)">TRIPLE-Smart-Head</text>
+      <rect x="10" y="36" width="230" height="150" rx="4" fill="var(--bg)"/><rect x="275" y="36" width="235" height="150" rx="4" fill="var(--bg)"/>
+      ${line(28,111,180,0)}<rect x="204" y="98" width="18" height="26" rx="3" fill="var(--blue-ink)"/>
+      ${line(293,71,180,0)}${line(293,111,180,0)}${line(293,151,180,0)}
+      <rect x="468" y="58" width="18" height="106" rx="3" fill="var(--blue-ink)" opacity=".18"/><rect x="469" y="58" width="16" height="26" rx="3" fill="var(--blue-ink)"/><rect x="469" y="98" width="16" height="26" rx="3" fill="var(--blue-ink)"/><rect x="469" y="138" width="16" height="26" rx="3" fill="var(--blue-ink)"/>
+      <text x="10" y="210" font-size="13" fill="var(--muted)">1 Linie bei 2,0 m/s</text>
+      <text x="275" y="210" font-size="13" fill="var(--muted)">3 Linien bei 2,0 m/s = 6,0 m/s Auftrag</text>
+    </svg>
+    <div class="tr-cmp"><div><b>bis 2,0 m/s</b><span>Verfahrgeschwindigkeit der Achsen</span></div><div><b>bis 6,0 m/s</b><span>Auftragsleistung mit drei Köpfen parallel</span></div></div>
+    <figcaption>Schematische Darstellung. Mit dem GLUEJET G² und zwei TRIPLE-Smart-Heads verdoppelt sich die Auftragsleistung.</figcaption></figure>
+  </div></section>`;
+}
+
+/* ---------- Neue Anwendungsseiten (Priorität P1 laut Analyse) ---------- */
+Object.assign(LP,{
+  'klebeplotter-sonderverpackungen':{
+    title:'Klebemaschine für Sonderverpackungen | GLUEJET® Bickers',
+    desc:'Sonderverpackungen in wechselnden Formaten automatisch verkleben: Klebebild aus der DXF-Datei, Heiß- oder Kaltleim, kein Werkzeug und kurze Rüstzeiten.',
+    crumb:'Sonderverpackungen', more:true, eyebrow:'Klebeplotter · Sonderverpackungen',
+    h1:'Klebemaschine für Sonderverpackungen',
+    img:'img/gluejet-halle.jpg', alt:'GLUEJET® XY-Klebeplotter beim Verkleben von Verpackungszuschnitten', imgW:1920, imgH:1235,
+    intro:['Sonderverpackungen sind selten gleich: <strong>andere Formate, andere Materialien, kleine Auflagen</strong>. Für eine Faltschachtelklebemaschine lohnt sich das kaum, also wird oft noch von Hand mit der Klebepistole gearbeitet.',
+      'Der <strong>GLUEJET® XY-Klebeplotter</strong> fährt jedes Klebebild ab, das Sie ihm geben. Das Programm kommt aus der Konstruktion, als <strong>CAD- oder DXF-Datei</strong>, und wird gespeichert. Ein neues Format braucht kein Werkzeug, nur ein neues Programm.',
+      'So verkleben Sie Präsentationsverpackungen, Verpackungen mit Einlagen und Formatvarianten in gleichbleibender Qualität, mit <strong>Heiß- oder Kaltleim</strong> und auf Arbeitsformaten bis <strong>2.000 × 3.000 mm</strong>.'],
+    kpis:[['ohne Werkzeug','neues Format per DXF'],['bis 2.000 × 3.000 mm','Arbeitsformat'],['unbegrenzt','gespeicherte Programme']],
+    inq:'GLUEJET® Musterverklebung Sonderverpackungen',
+    note:'Zielkeyword „Klebemaschine Sonderverpackungen“ (P1). Technische Eignung für die genannten Verpackungsarten vor Veröffentlichung mit der Anwendungstechnik bestätigen.',
+    apps:{eye:'Anwendungen',h:'Sonderverpackungen, die Sie automatisiert verkleben können',p:'Überall dort, wo Formate wechseln und die Stückzahl für eine Spezialmaschine zu klein ist.',items:[['Präsentations- und Geschenkverpackungen','Sichtbare Klebestellen sauber und ohne Überstände, auch auf bedruckten und veredelten Oberflächen.'],['Verpackungen mit Einlagen','Stege, Polster und Inlays an der richtigen Stelle fixieren, Teil für Teil reproduzierbar.'],['Formatvarianten einer Serie','Ein Programm je Variante. Der Wechsel zwischen den Formaten dauert so lange wie der Programmaufruf.'],['Kombinationen aus Karton und Kunststoff','Klebstoff und Auftragsart passend zum Material wählen. Wir testen die Verbindung an Ihren Teilen.']]},
+    steps:{eye:'Ablauf',h:'Vom neuen Format zur ersten Verpackung',items:[['Datei übernehmen','Klebebild aus der CAD- oder DXF-Konstruktion laden oder per Joystick und Laser am Teil einrichten.'],['Klebstoff wählen','Heißleim für schnelle Taktzeiten, Kaltleim für flächigen Auftrag.'],['Erstes Teil prüfen','Klebebild am Muster kontrollieren und bei Bedarf direkt an der Maschine anpassen.'],['Speichern','Das Programm steht für jeden Folgeauftrag bereit.']]},
+    refs:true, vids:true, calc:false,
+    faq:[['Lohnt sich ein Klebeplotter für Sonderverpackungen mit kleinen Auflagen?','Weil kein Werkzeug gebaut wird und das Klebebild aus der Konstruktion kommt, sind die Rüstzeiten kurz. Ob es sich für Ihre Stückzahlen rechnet, zeigt der <a href="#wirtschaftlichkeitsrechner">Wirtschaftlichkeitsrechner</a> mit Ihren eigenen Werten.'],
+      ['Welche Materialien lassen sich verkleben?','Typisch sind Karton, Vollpappe und Wellpappe, auch bedruckt oder kaschiert. Für Kunststoffe und Verbundmaterialien wählen wir den Klebstoff in einer <a href="#musterverklebung">Musterverklebung</a> aus.'],
+      ['Kann der GLUEJET® neben einer Faltschachtelklebemaschine arbeiten?','Ja. Die Faltschachtelklebemaschine übernimmt die Serie, der GLUEJET® die Sonderformate. Mehr dazu im Ratgeber <a href="#ratgeber-klebeplotter-oder-faltschachtelklebemaschine">Klebeplotter oder Faltschachtelklebemaschine?</a>']]},
+  'klebeplotter-schwerlastverpackungen':{
+    title:'Klebeplotter für Schwerlastverpackungen | GLUEJET® Bickers',
+    desc:'Großformatige Zuschnitte für Schwerlast- und Industrieverpackungen automatisch verkleben: Kalt- oder Heißleim, Hubtische bis 800 mm Stapelhöhe.',
+    crumb:'Schwerlastverpackungen', more:true, eyebrow:'Klebeplotter · Schwerlast- und Industrieverpackungen',
+    h1:'Klebeplotter für Schwerlastverpackungen',
+    img:'img/plotter-cut.webp', alt:'GLUEJET® XY-Klebeplotter für großformatige Zuschnitte', imgW:1848, imgH:1583, contain:true,
+    intro:['Schwerlast- und Industrieverpackungen bestehen aus <strong>großen Zuschnitten, mehrlagigen Konstruktionen und schweren Stapeln</strong>. Wer hier von Hand klebt, kämpft mit Format, Gewicht und gleichbleibender Festigkeit.',
+      'Der GLUEJET® verarbeitet Bögen bis <strong>2.000 × 3.000 mm</strong>, Sondergrößen auf Anfrage. Hydraulische oder elektromechanische Hubtische mit <strong>350 oder 800 mm Stapelhöhe</strong> nehmen das Material auf und halten die Arbeitshöhe konstant.',
+      'Kaltleim eignet sich für das flächige Verstärken und Kaschieren, Heißleim für Stege, Polster und Laschen, die sofort belastbar sein müssen. Beides läuft auf derselben Anlage.'],
+    kpis:[['bis 2.000 × 3.000 mm','Bogenformat, Sondergrößen möglich'],['bis 800 mm','Stapelhöhe der Hubtische'],['bis zu 4','Arbeitsplätze']],
+    inq:'GLUEJET® Musterverklebung Schwerlastverpackungen',
+    note:'Zielkeywords „Klebeplotter Schwerlastverpackungen“ (P1) und „Klebemaschine Industrieverpackungen“ (P2). Eignung für mehrwellige Qualitäten und die genannten Festigkeiten vor Veröffentlichung bestätigen.',
+    apps:{eye:'Anwendungen',h:'Was Sie bei Schwerlastverpackungen automatisiert verkleben können',p:'Von der Verstärkung bis zur mehrlagigen Konstruktion.',items:[['Verstärkungen und Kantenschutz','Zusätzliche Lagen flächig aufkaschieren, wo die Verpackung Last tragen muss.'],['Mehrlagige Polster und Stege','Einlagen und Stege für schwere oder empfindliche Güter positionsgenau verkleben.'],['Industrie- und Automobilverpackungen','Ladungsträger und Teileverpackungen mit wiederkehrenden Klebebildern, Serie für Serie gleich.'],['Großformatige Zuschnitte','Bögen bis 2.000 × 3.000 mm in einem Durchgang, ohne Umsetzen.']]},
+    cmp:{eye:'Klebstoffwahl',h:'Kaltleim oder Heißleim bei Schwerlastverpackungen?',p:'Die Entscheidung hängt von Fläche, Takt und Belastung ab.',even:true,cols:['','Kaltleim (Dispersion)','Heißleim (Schmelzklebstoff)'],rows:[['Typischer Einsatz','Kaschieren und Verstärken großer Flächen','Stege, Polster, Laschen'],['Belastbar nach','Presszeit einplanen','wenigen Sekunden'],['Saugfähige Wellpappe','dringt ein und verankert sich','haftet sofort an der Oberfläche']],after:'Welcher Klebstoff zu Ihrer Wellpappenqualität passt, testen wir an Ihrem Material. Passende <a href="#schmelzklebstoffe">Schmelzklebstoffe</a> und <a href="#kaltklebstoffe">Kaltklebstoffe</a> liefert Bickers selbst.'},
+    refs:true, vids:true, calc:false,
+    faq:[['Verarbeitet der GLUEJET® auch mehrwellige Wellpappe?','Die Anlage ist für großformatige Wellpappe ausgelegt. Ob Ihre Qualität und Ihr Klebebild die geforderte Festigkeit erreichen, klären wir in einer <a href="#musterverklebung">Musterverklebung</a> mit Ihrem Material.'],
+      ['Wie werden schwere Stapel gehandhabt?','Hubtische mit 350 oder 800 mm Stapelhöhe halten das Material auf Arbeitshöhe. So bleibt das Auflegen und Entnehmen auch bei großen Formaten ergonomisch.'],
+      ['Gibt es Sondergrößen über 2.000 × 3.000 mm?','Sondergrößen realisieren wir auf Anfrage. Sprechen Sie uns mit Ihren Formaten an.']]},
+  'klebeplotter-kleinserien':{
+    title:'Klebemaschine für Kleinserien | GLUEJET® Bickers',
+    desc:'Kleinserien, Muster und Nullserien wirtschaftlich verkleben: Programm aus der DXF-Datei, kurze Rüstzeit, Wiederholaufträge per Programmaufruf.',
+    crumb:'Kleinserien', more:true, eyebrow:'Klebeplotter · Kleinserien und Muster',
+    h1:'Klebemaschine für Kleinserien',
+    img:'img/plotter-video-poster.webp', alt:'GLUEJET® Klebeplotter beim Klebstoffauftrag auf einem Zuschnitt', imgW:1280, imgH:720,
+    intro:['Kleine Auflagen werden oft von Hand geklebt, weil sich das Einrichten einer Maschine scheinbar nicht lohnt. Beim GLUEJET® ist das Einrichten <strong>ein Programm, kein Werkzeug</strong>.',
+      'Das Klebebild kommt aus der <strong>CAD- oder DXF-Datei</strong> oder wird per Joystick und Laser direkt am Teil festgelegt. Jedes Programm bleibt gespeichert. Die Nachauflage läuft <strong>in derselben Qualität wie die erste</strong>, egal wie viel Zeit dazwischen liegt.',
+      'Mit bis zu <strong>vier unabhängig programmierbaren Arbeitsplätzen</strong> laufen verschiedene Kleinserien parallel: Während an einem Platz geklebt wird, legen Sie am nächsten auf.'],
+    kpis:[['DXF-Import','Klebebild aus der Konstruktion'],['unbegrenzt','Programme für Nachauflagen'],['bis zu 4','Aufträge parallel']],
+    inq:'GLUEJET® Musterverklebung Kleinserien',
+    note:'Zielkeyword „Klebemaschine Kleinserien“ (P1). Rüstzeiten aus einer realen Kundenanwendung belegen, bevor Zeitangaben veröffentlicht werden.',
+    apps:{eye:'Anwendungen',h:'Wo sich der Klebeplotter in kleinen Auflagen auszahlt',p:'Typische Fälle aus Verpackung, Display und Musterbau.',items:[['Nullserien und Muster','Erste Teile für die Kundenfreigabe kleben und das Programm danach in die Serie übernehmen.'],['Variantenreiche Aufträge','Viele Formate mit wenigen Stück je Format, jedes als eigenes Programm.'],['Wiederkehrende Nachauflagen','Programm aufrufen, Material auflegen, kleben. Ohne neues Anlernen.'],['Prototypen im Musterbau','Klebebild am Muster prüfen und direkt an der Maschine anpassen.']]},
+    steps:{eye:'Ablauf',h:'Von der Datei zur Kleinserie',items:[['Datei laden','DXF-Datei aus der Konstruktion übernehmen.'],['Klebebild festlegen','Raupe, Punkt oder Fläche, Heiß- oder Kaltleim.'],['Kleben','Auf bis zu vier Arbeitsplätzen auflegen und verkleben.'],['Nachauflage','Gespeichertes Programm abrufen.']]},
+    refs:true, vids:false, calc:true,
+    faq:[['Ab welcher Stückzahl lohnt sich ein Klebeplotter?','Entscheidend ist nicht die Stückzahl allein, sondern die eingesparte Zeit je Stück und wie oft Sie ähnliche Aufträge haben. Spielen Sie Ihre Werte im Rechner auf dieser Seite durch oder lesen Sie den Ratgeber <a href="#ratgeber-klebeplotter-lohnt-sich">Ab wann lohnt sich ein Klebeplotter?</a>'],
+      ['Wie lange dauert das Einrichten eines neuen Formats?','Das hängt von Klebebild und Datenlage ab. Liegt eine DXF-Datei vor, wird das Klebebild übernommen statt neu gezeichnet. Bei einer Musterverklebung zeigen wir Ihnen das an Ihrem eigenen Teil.']]}
+});
+
+/* ---------- Seite: Weitere Anwendungen ---------- */
+const WA=[
+ ['klebeplotter-sonderverpackungen','special','Sonderverpackungen','Wechselnde Formate und kleine Auflagen ohne Werkzeug verkleben.','Klebemaschine Sonderverpackungen','P1'],
+ ['klebeplotter-schwerlastverpackungen','heavy','Schwerlastverpackungen','Großformatige, mehrlagige Konstruktionen für schwere Güter.','Klebeplotter Schwerlastverpackungen','P1'],
+ ['klebeplotter-kleinserien','series','Kleinserien','Muster, Nullserien und Nachauflagen per Programmaufruf.','Klebemaschine Kleinserien','P1'],
+ ['','honey','Wabenplatten','Wabenplatten aus Papier als Leichtbau- und Polstermaterial verkleben.','Klebemaschine Wabenplatten','P2'],
+ ['','foam','Schaumstoffeinlagen','Schaumstoffeinlagen in Verpackungen fixieren, mit passendem Klebstoff.','Klebeplotter Schaumstoff','P2'],
+ ['','truck','Industrie- und Automobilverpackungen','Teileverpackungen und Ladungsträger mit wiederkehrenden Klebebildern.','Klebemaschine Industrieverpackungen','P2'],
+ ['','proto','Prototypen und Verpackungsmuster','Muster für die Kundenfreigabe schnell und reproduzierbar kleben.','Verpackungsmuster automatisch kleben','P2']];
+function viewWeitere(){
+  const card=([id,ic,t,x,kw,p])=>id
+    ?`<a class="wa-card" href="#${id}"><span class="wa-top"><span class="ai">${svgI(APP_IC[ic])}</span></span><b>${t}</b><p>${x}</p><em style="font-style:normal;font-weight:700;color:var(--orange);font-size:14px">Zur Anwendung →</em><span class="dn">Zielkeyword „${kw}“ · ${p}</span></a>`
+    :`<article class="wa-card"><span class="wa-top"><span class="ai">${svgI(APP_IC[ic])}</span></span><b>${t}</b><p>${x}</p>${SAMPLE_BTN('Weitere Anwendung: '+t,'Anwendung prüfen lassen','s-btn-out btn-sm')}<span class="dn">Zielkeyword „${kw}“ · ${p}. Eigene Seite erst nach bestätigter technischer Eignung.</span></article>`;
+  return `${headDark('Klebeplotter · Anwendungen','Weitere Anwendungen für den GLUEJET®','Neben Verpackungen, Wellpappe und POS-Displays verkleben unsere Kunden viele weitere Produkte. Hier finden Sie typische Einsatzbereiche. Ihre Anwendung ist nicht dabei? Wir prüfen sie gern an Ihren Teilen.',SAMPLE_BTN('Individuelle Anwendung prüfen lassen','Individuelle Anwendung prüfen lassen'))}
+  <section class="block lp-band"><div class="wrap">${secH('Ausführlich beschrieben','Anwendungen mit eigener Seite')}
+    <div class="wa-grid">${WA.filter(w=>w[0]).map(card).join('')}</div></div></section>
+  <section class="block lp-white"><div class="wrap">${secH('Weitere Einsatzbereiche','Auch das verkleben Klebeplotter','Für diese Anwendungen prüfen wir Material, Klebstoff und Klebebild gern in einer Musterverklebung.')}
+    <div class="wa-grid">${WA.filter(w=>!w[0]).map(card).join('')}</div>
+    <span class="dn">Die technische Eignung des GLUEJET® für jede dieser Anwendungen vor Veröffentlichung bestätigen (Empfehlung der Analyse). Vorbild ist die Verpackungsseite von FELIX GLUER mit zehn Anwendungsbereichen und zugeordneten Maschinen und Materialien.</span></div></section>
+  <section class="block lp-band"><div class="wrap">${secH('Hauptanwendungen','Klebeplotter nach Anwendung')}${appCards('weitere-anwendungen')}</div></section>
+  <section class="s-cta"><div class="wrap s-cta-in"><div><h2>Ihre Anwendung ist nicht dabei?</h2><p>Schicken Sie uns Fotos, Zeichnungen oder Musterteile. Wir sagen Ihnen, ob und wie der GLUEJET® Ihr Produkt verklebt.</p></div><div class="pact" style="margin:0">${SAMPLE_BTN('Individuelle Anwendung prüfen lassen (CTA)','Anwendung prüfen lassen')}</div></div></section>`;
+}
+
+/* ---------- Livegang-Checkliste v.4: 15 Punkte aus der Analyse ---------- */
+MEASURES.length=0;
+MEASURES.push(
+ ['P0','Eigenständige URLs statt Hash-Navigation','Hoch','tech','URL-Plan für jede Seite steht, auch für die vier neuen Seiten (Tabelle unten). Im Live-System echte Pfade über die History API oder serverseitige Seiten, keine URL-Fragmente.'],
+ ['P0','Seiteninhalte direkt als HTML ausliefern (SSR oder statische Generierung)','Hoch','tech','Der Entwurf rendert per JavaScript. Externe Abrufe sehen bisher nur Navigation und Fußzeile. Live jede Seite mit vollständigem Inhalt im HTML ausliefern.'],
+ ['P0','Individuelle Seitentitel, H1 und Meta-Descriptions','Gering','ok','Für alle Seiten hinterlegt, je Seite genau eine H1. Längen und Dubletten werden unten automatisch geprüft.'],
+ ['P0','Weiterleitungskonzept für bickers.de und gluejet.com','Mittel','part','Zuordnung der Entwurfsadressen unten. Bisherige URLs beider Domains aus der Search Console exportieren und je einer Zielseite zuordnen.'],
+ ['P0','XML-Sitemap, robots.txt und Canonical-Tags','Gering','part','Canonical je Seite im Entwurf gesetzt. Entwürfe für sitemap.xml und robots.txt unten. Im Live-System ausliefern und in der Search Console einreichen.'],
+ ['P0','Indexierbarkeit und Google-Rendering prüfen','Gering','tech','Nach dem Livegang je Seitentyp mit der URL-Prüfung der Search Console testen (Live-Test, gerenderter HTML-Code).'],
+ ['P1','Mehrsprachigkeit mit eigenen Sprach-URLs und hreflang','Mittel','tech','Struktur /de/ und /en/ vorgesehen. hreflang-Paare setzen, sobald die englische Version steht.'],
+ ['P1','Drei aussagekräftige Kundenreferenzen','Mittel','data','Vorlagen für Langlebigkeit (über 10 Jahre), Produktivität und Wiederkauf (mehrere Anlagen) stehen. Freigegebene Projekte fehlen.'],
+ ['P1','Lebenszykluskosten mit realen Daten belegen','Hoch','data','Vergleichsrechner steht. Reale Wartungs- und Ersatzteildaten über 5, 10 und 15 Jahre fehlen.'],
+ ['P1','TRIPLE-Smart-Head mit Produktionsvideo und Leistungsdaten erklären','Mittel','part','Begriff „Auftragsleistung“ und Erklärung auf der GLUEJET-Seite umgesetzt. Video und gemessener Durchsatz bei einer realen Anwendung fehlen.'],
+ ['P1','Wirtschaftlichkeitsrechner fachlich validieren','Mittel','part','Plausibilitätsprüfung und offengelegte Rechenlogik vorhanden. Freigabe der Beispielwerte durch den Vertrieb offen.'],
+ ['P1','Kontaktformulare und Musterverklebungsanfragen testen','Gering','tech','Im Entwurf Demo ohne Versand. Empfänger, Zustellung und Dateianhänge im Live-System testen.'],
+ ['P1','Mobile Darstellung und Ladegeschwindigkeit prüfen','Mittel','part','Mobile Darstellung angepasst. Video „Im Einsatz“ (7,9 MB) komprimieren, Ladezeit mit PageSpeed Insights messen.'],
+ ['P2','Weitere Anwendungsseiten und Fachartikel ergänzen','Mittel','part','Drei P1-Seiten angelegt: Sonderverpackungen, Schwerlastverpackungen, Kleinserien. Fünf P2-Themen auf „Weitere Anwendungen“ vorgemerkt.'],
+ ['P2','Conversion-Tracking für Maschinenanfragen einrichten','Gering','tech','Ereignisse: Musterverklebung, Angebot, Rechner-Anfrage, Klick auf Telefon. Nur mit Einwilligung über das Consent-Banner.']);
+const CK_GROUPS={P0:'Zwingend vor Livegang',P1:'Hohe Priorität',P2:'Erweiterung'};
+const EVAL=[['Strategische Positionierung','Deutlich verbessert','good','Unverändert: Prozesssicherheit und Wirtschaftlichkeit'],['Thematische SEO-Abdeckung','Deutlich verbessert','good','Drei weitere Anwendungsseiten, fünf Themen vorgemerkt'],['Kaufmännische Nutzenargumentation','Konzeptionell deutlich verbessert','good','Referenzvorlagen mit Kennzahlen'],['Vertriebsorientierung','Verbessert','good','„Anwendung prüfen lassen“ im Menü und auf Anwendungsseiten'],['Differenzierung vom Wettbewerb','Verbessert','good','TRIPLE-Aussage präzisiert, Vergleich mit 2 m/s vermieden'],['Übersichtlichkeit der Navigation','Teilweise verschlechtert','warn','Mega-Menü mit vier Gruppen statt elf Einträgen'],['Technische SEO-Architektur','Verbesserung nicht nachweisbar','warn','URL-Plan, Sitemap- und robots-Entwurf. Umsetzung nur im Live-System'],['Inhaltliche Qualität der Unterseiten','Nicht abschließend bewertbar','open','Vollständige HTML-Datei für eine tiefere Prüfung bereitstellen'],['Visuelle Gestaltung','Nicht abschließend bewertbar','open','Unverändert']];
+const COMP=[['Umfang des Produktportfolios','Sehr breit','Breit','Fokussiert'],['Branchenorientierung','3 zentrale Anwendungen, in v.4 erweitert','Sehr umfangreich','Begrenzt'],['Materialorientierung','Ausbaufähig','Sehr umfangreich','Begrenzt'],['Wirtschaftlichkeitsargumentation','Eigener Bereich','Ausführlich','Vorhanden'],['Lebenszykluskosten','Eigener Bereich','Kein gleichwertiger Bereich gefunden','Kein gleichwertiger Bereich gefunden'],['Maschinenvergleich','Vorgesehen','Umfangreiches Modellangebot','Zwei Hauptmodelle'],['Softwarekommunikation','Eigener Bereich','Sehr ausführlich','Gut'],['Kundenreferenzen','Vorgesehen','Sehr umfangreich','Weniger prominent'],['Musterverklebung','Eigener Menüpunkt','Materialtests und Klebe-Audit','Produktdemo'],['Nachhaltige Klebstoffe','Eigener Menüpunkt','Nachhaltigkeit thematisiert','Weniger prominent'],['Redaktionelle Inhalte','News und Ratgeber','Zahlreiche Fachartikel','Begrenzt'],['Technische SEO-Abrufbarkeit','Ungeklärt','Nachweisbar','Nachweisbar']];
+function viewCheckliste4(){
+  const keys=Object.keys(VIEWS).filter(k=>PATHS[k]);
+  const len=(n,lo,hi)=>`<span class="len ${n>=lo&&n<=hi?'ok':'warn'}">${n}</span>`;
+  const descs={}; const dup=new Set(); keys.forEach(k=>{ const d=metaFor(k).d; if(descs[d]) dup.add(d); descs[d]=1; });
+  let last='';
+  const items=MEASURES.map(([p,t,e,s,x],i)=>{ const g=p!==last?`</ul><p class="ck-group">${CK_GROUPS[p]}</p><ul class="ck-list">`:''; last=p; return g+`<li data-i="${i}"><input type="checkbox" id="ck-${i}" aria-label="${esc(t)} erledigt"><span class="pri ${p.toLowerCase()}">${p}</span><label for="ck-${i}"><b>${t}</b><small>${x} · Aufwand: ${e}</small></label><span class="st ${s}">${ST_L[s]}</span></li>`; }).join('');
+  const pub=keys.filter(k=>k!=='livegang-checkliste');
+  const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+pub.map(k=>'  <url><loc>'+SITE+PATHS[k]+'</loc></url>').join('\n')+'\n</urlset>';
+  const robots='User-agent: *\nDisallow: /de/intern/\n\nSitemap: '+SITE+'/sitemap.xml';
+  return `${headDark('Intern · nicht indexieren','Livegang-Checkliste v.4','Umsetzung der Analyse „Bickers-Webseitenentwurf V3 im Wettbewerbsvergleich“ vom 25.11.2026 (FELIX GLUER und F-Service). Diese Seite dient nur der internen Abstimmung und wird vor dem Livegang entfernt.')}
+  <section class="block lp-band"><div class="wrap">${secH('Freigabecheckliste','15 Punkte vor und nach dem Livegang','Abgehakte Punkte merkt sich dieser Browser.')}
+    <div class="ck-bar"><b id="ckCount" class="num">0/${MEASURES.length}</b><span class="ck-prog"><i id="ckProg"></i></span><button class="btn s-btn-out btn-sm" type="button" id="ckCopy">Checkliste kopieren</button></div>
+    <div id="ckList">${items.replace(/^<\/ul>/,'')}</ul></div>
+    <textarea id="ckText" class="sr" aria-hidden="true" tabindex="-1"></textarea></div></section>
+  <section class="block lp-white"><div class="wrap">${secH('Bewertung','Was die Analyse zu V3 sagt und was v.4 daraus macht')}
+    <div class="lp-cmp-wrap"><table class="lp-cmp ana"><thead><tr><th scope="col">Bereich</th><th scope="col">Analyse zu V3</th><th scope="col">Antwort in v.4</th></tr></thead><tbody>${EVAL.map(([a,b,c,d])=>`<tr><th scope="row">${a}</th><td class="v-${c}">${b}</td><td>${d}</td></tr>`).join('')}</tbody></table></div>
+    <div class="ck-two" style="margin-top:24px">
+      <div class="ck-box"><h3>Empfehlung</h3><p>Vorerst keine weiteren großen Themenbereiche hinzufügen. Die Inhaltsstruktur reicht für eine erste Veröffentlichung. Die weitere Arbeit gilt der technischen SEO-Architektur, der Qualität der vorhandenen Inhalte und der Belegbarkeit der Verkaufsargumente.</p></div>
+      <div class="ck-box"><h3>In v.4 umgesetzt</h3><ul><li>Klebeplotter-Menü als Mega-Menü: Maschinen, Anwendungen, Investitionsplanung, Service und Beratung</li><li>Seite „Weitere Anwendungen“ und drei neue Anwendungsseiten (P1)</li><li>TRIPLE-Smart-Head: Auftragsleistung statt „effektive Geschwindigkeit“, mit Erklärung</li><li>Drei konkrete Referenzvorlagen</li><li>Diese Checkliste mit 15 Punkten, Sitemap- und robots-Entwurf</li></ul></div>
+    </div></div></section>
+  <section class="block lp-band"><div class="wrap">${secH('Wettbewerb','Bickers V3 im Vergleich mit FELIX GLUER und F-Service','Stand der Analyse vom 25.11.2026. Aussagen über vorgesehene Inhalte, nicht über Rankings oder Conversion-Raten.')}
+    <div class="lp-cmp-wrap"><table class="lp-cmp ana"><thead><tr><th scope="col">Kriterium</th><th scope="col">Bickers</th><th scope="col">FELIX GLUER</th><th scope="col">F-Service</th></tr></thead><tbody>${COMP.map(([a,b,c,d])=>`<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td><td>${d}</td></tr>`).join('')}</tbody></table></div>
+    <div class="ck-two" style="margin-top:24px">
+      <div class="ck-box"><h3>Positionierung</h3><p>FELIX GLUER besetzt <strong>Digitalisierung und Anwendungsvielfalt</strong>, F-Service <strong>Geschwindigkeit und Bedienbarkeit</strong>. Bickers positioniert sich über <strong>Wirtschaftlichkeit, Lebenszykluskosten und Klebstoffkompetenz</strong>. FELIX GLUER bleibt der Maßstab für Anwendungsinhalte und Referenzen.</p></div>
+      <div class="ck-box"><h3>Domainstrategie</h3><p>Eine zentrale Website auf bickers.de mit GLUEJET-Bereich unter <code>/de/klebeplotter/</code>. gluejet.com erst nach Auswertung von Rankings, Backlinks und Besucherzahlen weiterleiten.</p></div>
+    </div></div></section>
+  <section class="block lp-white"><div class="wrap">${secH('Nachweise','Was Bickers für die Differenzierung liefern muss')}
+    <div class="lp-cmp-wrap"><table class="lp-cmp even"><thead><tr><th scope="col">Aussage auf der Website</th><th scope="col">Erforderlicher Nachweis</th></tr></thead><tbody>${PROOFS.map(([a,b])=>`<tr><th scope="row">${a}</th><td>${b}</td></tr>`).join('')}</tbody></table></div></div></section>
+  <section class="block lp-band"><div class="wrap">${secH('Seitenstruktur','URLs, Seitentitel und Descriptions','Grün: Titel 30–60 Zeichen, Description 70–160 Zeichen. Orange: prüfen.')}
+    <div class="art-wrap"><table class="art-table meta-tbl"><thead><tr><th>Geplante URL</th><th>Seitentitel</th><th>Zeichen</th><th>Description</th><th>Zeichen</th></tr></thead><tbody>${keys.map(k=>{ const m=metaFor(k); return `<tr><td><a href="#${k}"><code>${m.path}</code></a></td><td>${esc(m.t)}</td><td>${len(m.t.length,30,60)}</td><td>${esc(m.d)}${dup.has(m.d)?' <span class="len warn">Dublette</span>':''}</td><td>${len(m.d.length,70,160)}</td></tr>`; }).join('')}</tbody></table></div></div></section>
+  <section class="block lp-white"><div class="wrap ck-two">
+    <div class="ck-box"><h3>Entwurf sitemap.xml</h3><p>${pub.length} öffentliche Seiten, ohne interne Seiten.</p><pre class="ck-pre">${esc(sitemap)}</pre></div>
+    <div class="ck-box"><h3>Entwurf robots.txt</h3><pre class="ck-pre">${esc(robots)}</pre>
+      <h3 style="margin-top:20px">Weiterleitungen (301)</h3><ul>${['gluejet','klebeplotter-verpackungen','klebeplotter-kleinserien','wirtschaftlichkeitsrechner'].map(k=>`<li><code>#${k}</code> → <code>${PATHS[k]}</code></li>`).join('')}</ul><p style="margin-top:8px">Dazu alle bisherigen URLs von bickers.de und gluejet.com aus der Search Console der neuen Zielseite zuordnen.</p></div>
+  </div></section>`;
+}
+PROOFS.forEach(r=>{ if(r[0]==='TRIPLE-Smart-Head') r[1]='Produktionsvideo und gemessener Durchsatz bei einer realen Kundenanwendung. Als Auftragsleistung kommunizieren, nicht als Verfahrgeschwindigkeit'; if(r[0].startsWith('Rund 500')) r[1]='Aktuelle Installationszahl. Nicht mit der Zahl der Kundenunternehmen gleichsetzen'; });
+
+/* ---------- Registrierung v.4 ---------- */
+Object.assign(PATHS,{'weitere-anwendungen':'/de/klebeplotter/anwendungen/','klebeplotter-sonderverpackungen':'/de/klebeplotter/sonderverpackungen/','klebeplotter-schwerlastverpackungen':'/de/klebeplotter/schwerlastverpackungen/','klebeplotter-kleinserien':'/de/klebeplotter/kleinserien/'});
+Object.assign(TITLES,{'weitere-anwendungen':'Weitere Anwendungen für Klebeplotter | Bickers','livegang-checkliste':'Livegang-Checkliste v.4 (intern) | Bickers'});
+Object.assign(DESCS,{'weitere-anwendungen':'Weitere Anwendungen für den GLUEJET®: Sonder- und Schwerlastverpackungen, Kleinserien, Wabenplatten, Schaumstoffeinlagen und Prototypen.'});
+['weitere-anwendungen','klebeplotter-sonderverpackungen','klebeplotter-schwerlastverpackungen','klebeplotter-kleinserien'].forEach(k=>{ NAV_GROUP[k]='maschinen'; });
+Object.assign(VIEWS,{'weitere-anwendungen':viewWeitere,'klebeplotter-sonderverpackungen':()=>viewLanding('klebeplotter-sonderverpackungen'),'klebeplotter-schwerlastverpackungen':()=>viewLanding('klebeplotter-schwerlastverpackungen'),'klebeplotter-kleinserien':()=>viewLanding('klebeplotter-kleinserien'),'livegang-checkliste':viewCheckliste4});
 route();
 </script>
 
